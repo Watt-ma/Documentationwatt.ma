@@ -1,14 +1,14 @@
 ---
-title: "Access the Wattsc REST API"
+title: "Access the watt.ma REST API"
 sidebarTitle: "API Access"
-description: "Authenticate to the Wattsc REST API with a Bearer token, run a sample curl request to fetch readings, and understand rate limits for your plan."
+description: "Authenticate to the watt.ma REST API with a Bearer token, run a sample curl request to fetch readings, and understand rate limits for your plan."
 ---
 
-The Wattsc REST API lets you pull energy readings, meter metadata, and alert history into your own applications. This guide shows you how to generate an API key, authenticate your requests, and make your first call to retrieve meter data.
+The watt.ma REST API lets you pull energy readings, meter metadata, and alert history into your own applications. This guide shows you how to generate an API key, authenticate your requests, and make your first call to retrieve meter data.
 
 <Steps>
   <Step title="Generate an API key">
-    Go to **Settings** then **API Access** in your Wattsc account. Click **Generate New Key**, give it a descriptive name (for example, "BI Pipeline"), and copy the key immediately. You will not be able to view it again.
+    Go to **Settings** then **API Access** in your watt.ma account. Click **Generate New Key**, give it a descriptive name (for example, "BI Pipeline"), and copy the key immediately. You will not be able to view it again.
   </Step>
   <Step title="Authenticate your requests">
     Include the key in the `Authorization` header as a Bearer token on every request:

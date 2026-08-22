@@ -135,6 +135,13 @@
               "fr/analytics/consumption-reports",
               "fr/analytics/export-data"
             ]
+          },
+          {
+            "group": "Roadmap",
+            "icon": "map",
+            "pages": [
+              "roadmap"
+            ]
           }
         ]
       },

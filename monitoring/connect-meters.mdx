@@ -1,14 +1,14 @@
 ---
-title: "Connect Your Energy Meters to Wattsc"
+title: "Connect Your Energy Meters to watt.ma"
 sidebarTitle: "Connect Meters"
-description: "Learn how to add a new energy meter to Wattsc, configure Modbus/TCP or smart meter integration, and verify that readings are flowing in."
+description: "Learn how to add a new energy meter to watt.ma, configure Modbus/TCP or smart meter integration, and verify that readings are flowing in."
 ---
 
-Connecting your meters is the first step to seeing real-time energy data in Wattsc. Once a meter is linked, Wattsc starts receiving readings automatically so you can monitor consumption, run reports, and trigger alerts. This guide walks you through adding a meter and confirming the connection.
+Connecting your meters is the first step to seeing real-time energy data in watt.ma. Once a meter is linked, watt.ma starts receiving readings automatically so you can monitor consumption, run reports, and trigger alerts. This guide walks you through adding a meter and confirming the connection.
 
 <Steps>
   <Step title="Open the Meters section">
-    Log in to Wattsc and select **Monitoring** from the main navigation. Click **Meters** to open the meter management page.
+    Log in to watt.ma and select **Monitoring** from the main navigation. Click **Meters** to open the meter management page.
   </Step>
   <Step title="Add a new meter">
     Click **Add Meter**. Enter a descriptive name, such as "Main Incomer - Factory A", and choose the facility it belongs to.
@@ -23,12 +23,12 @@ Connecting your meters is the first step to seeing real-time energy data in Watt
     Define the channels you want to track, such as "Phase L1", "HVAC Floor 2", or "Production Line 3". Each channel will appear as a separate data stream in dashboards and reports.
   </Step>
   <Step title="Verify the connection">
-    Click **Test Connection**. Wattsc attempts to reach the meter and read a sample register. If the test succeeds, click **Save** to start continuous data collection. If it fails, check the network settings and credentials, then retry.
+    Click **Test Connection**. watt.ma attempts to reach the meter and read a sample register. If the test succeeds, click **Save** to start continuous data collection. If it fails, check the network settings and credentials, then retry.
   </Step>
 </Steps>
 
 <Note>
-  Wattsc supports a wide range of meter brands, including Schneider Electric, Siemens, ABB, and Socomec. If your model is not listed, contact support with the make and model number so we can add compatibility.
+  watt.ma supports a wide range of meter brands, including Schneider Electric, Siemens, ABB, and Socomec. If your model is not listed, contact support with the make and model number so we can add compatibility.
 </Note>
 
 After the meter is saved, readings typically appear on the dashboard within one to two minutes. If no data shows up after five minutes, review the connection test or check that the meter is online on your local network.

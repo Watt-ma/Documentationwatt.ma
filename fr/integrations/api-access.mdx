@@ -1,14 +1,14 @@
 ---
-title: "Accéder à l'API REST Wattsc"
+title: "Accéder à l'API REST watt.ma"
 sidebarTitle: "Accès API"
-description: "Authentifiez-vous auprès de l'API REST Wattsc avec un jeton Bearer, exécutez un exemple de requête curl pour récupérer les relevés et comprenez les limites de débit de votre plan."
+description: "Authentifiez-vous auprès de l'API REST watt.ma avec un jeton Bearer, exécutez un exemple de requête curl pour récupérer les relevés et comprenez les limites de débit de votre plan."
 ---
 
-L'API REST Wattsc vous permet de récupérer les relevés énergétiques, les métadonnées des compteurs et l'historique des alertes dans vos propres applications. Ce guide vous montre comment générer une clé API, authentifier vos requêtes et effectuer votre premier appel pour récupérer des données de compteur.
+L'API REST watt.ma vous permet de récupérer les relevés énergétiques, les métadonnées des compteurs et l'historique des alertes dans vos propres applications. Ce guide vous montre comment générer une clé API, authentifier vos requêtes et effectuer votre premier appel pour récupérer des données de compteur.
 
 <Steps>
   <Step title="Générez une clé API">
-    Rendez-vous dans **Paramètres** puis **Accès API** de votre compte Wattsc. Cliquez sur **Générer une nouvelle clé**, donnez-lui un nom descriptif (par exemple « Pipeline BI ») et copiez la clé immédiatement. Vous ne pourrez plus la consulter par la suite.
+    Rendez-vous dans **Paramètres** puis **Accès API** de votre compte watt.ma. Cliquez sur **Générer une nouvelle clé**, donnez-lui un nom descriptif (par exemple « Pipeline BI ») et copiez la clé immédiatement. Vous ne pourrez plus la consulter par la suite.
   </Step>
   <Step title="Authentifiez vos requêtes">
     Incluez la clé dans l'en-tête `Authorization` sous forme de jeton Bearer sur chaque requête :
