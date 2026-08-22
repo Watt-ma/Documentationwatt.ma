@@ -1,0 +1,55 @@
+---
+title: "Configurer les alertes pour vos bornes"
+sidebarTitle: "Alertes"
+description: "Créez des alertes personnalisées sur watt.ma pour être notifié par email ou WhatsApp en cas de panne, session anormale ou erreur de connecteur."
+---
+
+Les alertes de watt.ma vous permettent de réagir instantanément aux événements critiques sur votre parc de bornes. Au lieu de découvrir une panne par un appel client, vous recevez une notification dès qu'une borne passe hors ligne, qu'une session dure anormalement longtemps ou qu'un connecteur signale une erreur.
+
+## Types d'alertes disponibles
+
+watt.ma propose trois catégories d'alertes prêtes à l'emploi :
+
+- **Borne hors ligne** : déclenchée lorsqu'une borne cesse de communiquer avec le serveur OCPP pendant plus de quelques minutes.
+- **Session anormalement longue** : alerte si une recharge dépasse une durée seuil que vous définissez (utile pour détecter un véhicule non débranché).
+- **Erreur de connecteur** : notification en cas de défaut matériel, de surchauffe ou d'erreur de communication signalée par la borne.
+
+## Créer une alerte
+
+<Steps>
+  <Step title="Ouvrir la page des alertes">
+    Connectez-vous à [app.watt.ma](https://app.watt.ma), puis allez dans **Bornes** \> **Alertes** dans le menu latéral.
+  </Step>
+  <Step title="Choisir le type d'alerte">
+    Cliquez sur **Nouvelle alerte**. Sélectionnez le type d'événement à surveiller : borne hors ligne, session longue ou erreur de connecteur.
+  </Step>
+  <Step title="Définir la portée">
+    Appliquez l'alerte à l'ensemble de votre parc, à un site spécifique ou à une borne individuelle. Cette granularité vous évite de recevoir des notifications pour des sites que vous ne gérez pas directement.
+  </Step>
+  <Step title="Configurer le canal de notification">
+    Choisissez un ou plusieurs canaux :
+
+    - **Email** : renseignez l'adresse du responsable technique ou de la gestionnaire de site.
+    - **WhatsApp** : indiquez le numéro de téléphone au format international (\+212...). Le message est envoyé automatiquement depuis le numéro officiel de watt.ma.
+  </Step>
+  <Step title="Ajuster les paramètres avancés">
+    Pour les sessions longues, définissez le seuil en minutes ou en heures. Pour les bornes hors ligne, précisez le délai de grâce avant déclenchement (par défaut : 5 minutes).
+  </Step>
+  <Step title="Activer et tester">
+    Enregistrez l'alerte, puis cliquez sur **Tester** pour envoyer une notification de test et vérifier que l'email ou le message WhatsApp est bien reçu.
+  </Step>
+</Steps>
+
+<Warning>
+  Évitez de créer des alertes sur des événements trop fréquents sans délai de grâce. Un seuil trop bas sur une borne instable peut saturer vos canaux de notification et masquer les alertes réellement critiques.
+</Warning>
+
+<Tip>
+  Utilisez les **plages horaires silencieuses** pour couper les notifications la nuit ou pendant les périodes de maintenance planifiée. Dans les paramètres de l'alerte, définissez un créneau horaire (par exemple 23h00 - 06h00) pendant lequel les notifications sont mises en attente et regroupées en un seul récapitulatif le matin.
+</Tip>
+
+## Prochaines étapes
+
+- [Superviser vos bornes en temps réel](/bornes/tableau-de-bord)
+- [Connecter une nouvelle borne](/bornes/connecter-une-borne)
+- [Exporter l'historique des alertes](/rapports/exporter-donnees)

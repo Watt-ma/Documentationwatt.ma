@@ -1,0 +1,34 @@
+---
+title: "Gérer les badges RFID sur watt.ma"
+sidebarTitle: "Badges RFID"
+description: "Ajoutez, affectez et gérez vos badges RFID sur watt.ma pour l'authentification des conducteurs. Comparez les limites par forfait et suivez l'activité de chaque badge."
+---
+
+Les badges RFID permettent d'authentifier les conducteurs avant le démarrage d'une session de recharge. Sur watt.ma, vous créez des badges, les associez à des utilisateurs ou des flottes, et suivez leur utilisation en temps réel. Cette méthode est particulièrement adaptée aux entreprises, résidences et gestionnaires de parcs de véhicules électriques.
+
+<Steps>
+  <Step title="Ajouter un badge RFID">
+    Dans le menu latéral, allez dans **Sessions \> Badges RFID**, puis cliquez sur **Nouveau badge**. Saisissez l'identifiant unique du badge (UID) tel que lu par la borne, ou scannez-le directement depuis l'interface si votre lecteur est connecté.
+  </Step>
+  <Step title="Affecter le badge à un utilisateur">
+    Renseignez les informations du conducteur : nom, prénom, numéro de téléphone et adresse email. Vous pouvez aussi l'associer à un groupe (par exemple "Flotte entreprise" ou "Résidence X") pour appliquer des tarifs différenciés.
+  </Step>
+  <Step title="Activer ou désactiver un badge">
+    Chaque badge dispose d'un interrupteur **Actif / Inactif**. Désactivez un badge instantanément en cas de perte, de départ d'un employé ou de suspension temporaire. La borne refuse alors l'authentification avec ce badge.
+  </Step>
+  <Step title="Consulter l'historique d'utilisation">
+    Cliquez sur un badge pour voir l'historique complet des sessions démarrées avec celui-ci : dates, sites, bornes, énergie consommée et montants facturés.
+  </Step>
+</Steps>
+
+## Limites de badges par forfait
+
+| Forfait | Limite de badges | Contexte |
+| --- | --- | --- |
+| Startup | Jusqu'à 500 badges | Petits opérateurs, gestionnaires immobiliers, hôtels |
+| Production | Badges illimités | CPO en croissance, flottes de taille moyenne |
+| Entreprise | Badges illimités | Grandes flottes, collectivités, déploiements multi-sites |
+
+<Tip>
+  Pour les grands parcs de bornes, utilisez l'import en masse depuis un fichier CSV pour créer plusieurs badges en une seule opération. Le format attendu est précisé dans le modèle téléchargeable depuis la page **Badges RFID**.
+</Tip>

@@ -1,47 +1,43 @@
 ---
-title: "Quickstart"
-description: "Begin with a guide on the fastest path to a successful outcome"
+title: "Démarrage rapide avec watt.ma"
+description: "Lancez votre première borne de recharge en 4 étapes : créez un compte, connectez une borne OCPP 1.6J, vérifiez la connexion et lancez une session."
+sidebarTitle: "Démarrage Rapide"
 ---
 
-Describe how someone begins using your product. What is the first thing they need to do? Are there any prerequisites?
-
-A quickstart should take someone from zero to using your product. They'll get a quick win and a sense of what they can accomplish.
-
-## Prerequisites
-
-Before you begin, you must have:
-
-- Requirement one (for example, Node.js 18+, a free account, an API key)
-- Requirement two (for example, a compatible device, a compatible browser, a compatible operating system)
-
-## Get started
+Ce guide vous accompagne de l'inscription jusqu'à la première session de recharge opérationnelle sur watt.ma. En moins de 15 minutes, vous aurez créé votre compte, connecté une borne compatible OCPP 1.6J et vérifié que tout fonctionne correctement.
 
 <Steps>
-  <Step title="Install">
-    Describe how to install your product or sign up.
-
-    ```bash
-    npm install your-package
-    ```
+  <Step title="Créer un compte sur app.watt.ma">
+    Rendez-vous sur [app.watt.ma](https://app.watt.ma) et cliquez sur **Créer un compte**. Renseignez votre adresse e-mail, un mot de passe sécurisé, puis le nom de votre organisation. Validez votre adresse e-mail via le lien de confirmation envoyé.
   </Step>
-  <Step title="Configure">
-    Describe any setup or configuration needed before first use.
-
-    ```bash
-    your-cli init
-    ```
+  <Step title="Ajouter une première borne">
+    Dans le menu **Bornes**, cliquez sur **Ajouter une borne**. Saisissez l'identifiant de la borne (chargeBoxId), sélectionnez le modèle dans la liste ou choisissez **Générique OCPP 1.6J**. watt.ma génère automatiquement l'URL de connexion OCPP et un identifiant de sécurité pour cette borne.
   </Step>
-  <Step title="Run it">
-    Show the first thing a user does to see it working.
+  <Step title="Configurer la borne en OCPP 1.6J">
+    Connectez-vous à l'interface d'administration de votre borne (Alfen, ABB, Ratio, Teison, etc.). Dans les paramètres réseau ou OCPP, saisissez :
 
-    ```bash
-    your-cli start
-    ```
+    - **URL OCPP** : l'URL fournie par watt.ma
+    - **ChargeBox ID** : l'identifiant saisi à l'étape précédente
+    - **Protocole** : OCPP 1.6J (JSON over WebSocket) Enregistrez et redémarrez la borne si nécessaire.
+  </Step>
+  <Step title="Vérifier la connexion">
+    Retournez sur watt.ma, dans **Bornes \> Vue d'ensemble**. Le statut de votre borne doit passer à **Connectée** (indicateur vert). Cliquez sur la borne pour consulter son état, ses connecteurs et sa dernière activité.
+  </Step>
+  <Step title="Lancer une première session">
+    Depuis le tableau de bord ou la fiche de la borne, cliquez sur **Démarrer une session** pour tester. Vous pouvez aussi scanner le QR code affiché sur la borne avec un téléphone pour initier un paiement CMI. Vérifiez que la session apparaît dans **Sessions \> Suivi des sessions**.
   </Step>
 </Steps>
 
-<Tip>
-  Give people a way to get help. This could be a link to a support page, a chat with a customer support agent, or a forum for your product.
+<Note>
+  Si la borne ne passe pas au statut Connectée après 2 minutes, vérifiez que le port WebSocket (généralement 443 ou 80) n'est pas bloqué par votre pare-feu. Consultez la page [Connecter une borne](/bornes/connecter-une-borne) pour le dépannage détaillé.
+</Note>
 
-  Example: Need help? Reach out to us at [support@yourcompany.com](mailto:support@yourcompany.com).
-</Tip>
+<CardGroup cols={2}>
+  <Card title="Connecter une borne" icon="plug" href="/bornes/connecter-une-borne">
+    Configuration OCPP détaillée par fabricant
+  </Card>
+
+  <Card title="Gérer les tarifs" icon="tag" href="/sessions/tarifs">
+    Définir vos prix de recharge
+  </Card>
+</CardGroup>

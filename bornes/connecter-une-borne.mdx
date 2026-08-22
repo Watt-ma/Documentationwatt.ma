@@ -1,0 +1,60 @@
+---
+title: "Connecter une borne OCPP à watt.ma"
+sidebarTitle: "Connecter une Borne"
+description: "Guide étape par étape pour connecter votre borne de recharge OCPP 1.6J à watt.ma : URL serveur, configuration borne et vérification de la connexion."
+---
+
+Connecter une borne de recharge à watt.ma est la première étape pour superviser votre parc et permettre à vos utilisateurs de recharger. Ce guide vous explique comment récupérer l'URL de votre serveur OCPP, la configurer sur la borne, puis vérifier que la connexion est bien établie depuis le tableau de bord.
+
+<Note>
+  watt.ma supporte uniquement le protocole **OCPP 1.6J** (JSON over WebSocket). Assurez-vous que votre borne est compatible avec cette version avant de commencer.
+</Note>
+
+## Prérequis
+
+- Une borne de recharge compatible OCPP 1.6J (Alfen, ABB, Ratio, Teison, ou autre)
+- Un accès à l'interface d'administration de la borne (écran tactile, application constructeur ou portail web local)
+- Un compte actif sur [app.watt.ma](https://app.watt.ma)
+
+## Étapes de connexion
+
+<Steps>
+  <Step title="Récupérer l'URL du serveur OCPP">
+    Connectez-vous à [app.watt.ma](https://app.watt.ma), puis rendez-vous dans la section **Bornes** \> **Ajouter une borne**. watt.ma génère automatiquement une URL unique de serveur OCPP pour votre compte, par exemple :
+
+    ```text
+    wss://ocpp.watt.ma/123e4567-e89b-12d3-a456-426614174000
+    ```
+
+    Copiez cette URL. Elle identifie votre compte et permet à la borne de s'authentifier auprès de watt.ma.
+  </Step>
+  <Step title="Configurer la borne">
+    Depuis l'interface d'administration de votre borne, accédez aux paramètres réseau ou OCPP. Renseignez les champs suivants :
+
+    - **URL du backend OCPP** : collez l'URL copiée à l'étape précédente
+    - **Protocole** : WebSocket (wss://)
+    - **Version OCPP** : 1.6J
+    - **ChargeBox ID** : identifiant unique de la borne (souvent son numéro de série) Enregistrez la configuration et redémarrez la borne si le constructeur l'exige.
+  </Step>
+  <Step title="Vérifier la connexion dans watt.ma">
+    Retournez sur [app.watt.ma](https://app.watt.ma), ouvrez le **Tableau de bord** et repérez votre nouvelle borne. Si la connexion est réussie, le statut passe à **En ligne** en vert en moins de deux minutes. Les connecteurs apparaissent alors comme disponibles.
+  </Step>
+</Steps>
+
+<Tip>
+  Avant de mettre la borne en production, lancez une session de test depuis le tableau de bord ou avec un badge RFID. Vérifiez que la session apparaît bien dans **Sessions** \> **Suivi des sessions** avec la bonne consommation et le bon tarif.
+</Tip>
+
+## Problèmes courants
+
+| Symptôme | Cause probable | Solution |
+| --- | --- | --- |
+| Statut "Hors ligne" après 5 min | Mauvaise URL ou pare-feu | Vérifiez l'URL, le port 443 et les règles réseau |
+| Connexion instable | Proxy ou NAT agressif | Activez le keep-alive WebSocket sur la borne |
+| Connecteurs non visibles | Mauvais ChargeBox ID | Assurez-vous que l'ID correspond à celui enregistré dans watt.ma |
+
+## Prochaines étapes
+
+- [Superviser vos bornes en temps réel](/bornes/tableau-de-bord)
+- [Configurer les alertes](/bornes/alertes)
+- [Gérer les tarifs de recharge](/sessions/tarifs)

@@ -1,0 +1,92 @@
+---
+title: "Accéder à l'API watt.ma"
+sidebarTitle: "Accès API"
+description: "Générez votre clé API, authentifiez vos requêtes avec un Bearer token et interrogez les endpoints sessions, bornes et revenus de watt.ma."
+---
+
+L'API watt.ma vous permet d'intégrer les données de votre parc de bornes de recharge dans vos propres systèmes : applications mobiles, tableaux de bord internes, outils de facturation ou logiciels de gestion de flotte. L'API REST suit le standard OpenAPI et retourne des réponses au format JSON.
+
+<Note>
+  L'accès à l'API complet est disponible à partir du forfait **Production**. Le forfait **Startup** offre un accès limité en lecture seule aux données de base de votre compte.
+</Note>
+
+## Générer votre clé API
+
+<Steps>
+  <Step title="Vérifier votre forfait">
+    Assurez-vous que votre compte est sur le forfait Production ou Entreprise. Rendez-vous dans **Compte \> Forfaits** pour vérifier.
+  </Step>
+  <Step title="Ouvrir les paramètres API">
+    Connectez-vous à [app.watt.ma](https://app.watt.ma), cliquez sur votre profil en haut à droite, puis sélectionnez **Paramètres \> API**.
+  </Step>
+  <Step title="Créer une clé">
+    Cliquez sur **Générer une nouvelle clé API**. Donnez un nom descriptif à la clé (par exemple : "Intégration comptabilité") pour la retrouver facilement.
+  </Step>
+  <Step title="Copier la clé">
+    Copiez la clé affichée immédiatement. Elle ne sera plus visible par la suite pour des raisons de sécurité.
+  </Step>
+</Steps>
+
+<Warning>
+  Ne partagez jamais votre clé API dans du code client, des dépôts publics ou des messages non sécurisés. En cas de compromission, révoquez-la immédiatement depuis les paramètres API et générez-en une nouvelle.
+</Warning>
+
+## Authentification
+
+Toutes les requêtes vers l'API watt.ma doivent inclure votre clé API dans l'en-tête HTTP `Authorization` au format Bearer token.
+
+```text
+Authorization: Bearer VOTRE_CLE_API
+```
+
+## Exemple de requête
+
+Voici un exemple avec curl pour récupérer la liste de vos sessions de recharge :
+
+```bash
+curl -X GET "https://api.watt.ma/v1/sessions" \
+  -H "Authorization: Bearer VOTRE_CLE_API" \
+  -H "Accept: application/json"
+```
+
+### Réponse attendue
+
+```json
+{
+  "data": [
+    {
+      "id": "sess_abc123",
+      "charge_point_id": "cp_001",
+      "start_time": "2024-01-15T08:30:00Z",
+      "end_time": "2024-01-15T10:15:00Z",
+      "energy_kwh": 18.5,
+      "amount_mad": 55.50,
+      "payment_method": "qr_cmi",
+      "status": "completed"
+    }
+  ],
+  "meta": {
+    "total": 142,
+    "page": 1,
+    "per_page": 20
+  }
+}
+```
+
+## Limites de débit
+
+L'API applique les limites suivantes selon votre forfait :
+
+| Forfait | Requêtes par minute |
+| --- | --- |
+| Startup | 30 |
+| Production | 300 |
+| Entreprise | Illimité |
+
+Les réponses HTTP 429 indiquent que vous avez dépassé votre limite. Attendez une minute avant de renouveler votre requête.
+
+## Prochaines étapes
+
+- [Déployer watt.ma en marque blanche](/api/marque-blanche)
+- [Gérer votre équipe](/compte/gestion-equipe)
+- [Consulter les forfaits et tarification](/compte/forfaits)

@@ -1,0 +1,37 @@
+---
+title: "Suivre et analyser vos sessions de recharge"
+sidebarTitle: "Sessions"
+description: "Consultez l'historique complet de vos sessions de recharge sur watt.ma : démarrage à distance, énergie consommée, utilisateur, méthode d'authentification et filtres avancés par date, site ou borne."
+---
+
+Le suivi des sessions vous permet de superviser chaque recharge effectuée sur votre parc de bornes. Depuis le tableau de bord watt.ma, vous visualisez en temps réel les sessions actives et accédez à un historique détaillé pour analyser la consommation, identifier les utilisateurs et optimiser l'utilisation de vos équipements.
+
+<Steps>
+  <Step title="Accéder à l'historique des sessions">
+    Connectez-vous à [app.watt.ma](https://app.watt.ma), puis cliquez sur **Sessions** dans le menu latéral. La liste affiche toutes les sessions avec leur statut (en cours ou terminée).
+  </Step>
+  <Step title="Filtrer et rechercher">
+    Utilisez les filtres en haut de page pour affiner les résultats :
+
+    - **Date** : plage personnalisée ou prédéfinie (aujourd'hui, cette semaine, ce mois)
+    - **Site** : sélectionnez un ou plusieurs sites
+    - **Borne** : filtrez par identifiant de borne OCPP
+    - **Utilisateur** : recherchez par nom ou badge RFID
+  </Step>
+  <Step title="Consulter le détail d'une session">
+    Cliquez sur une ligne pour ouvrir la fiche détaillée. Vous y trouvez :
+
+    - Date et heure de début et de fin
+    - Durée totale de la recharge
+    - Énergie consommée en kWh
+    - Identifiant de l'utilisateur et méthode d'authentification (QR code CMI, badge RFID, ou démarrage à distance)
+    - Montant facturé et statut du paiement
+  </Step>
+  <Step title="Démarrer ou arrêter une session à distance">
+    Si une borne est connectée et disponible, cliquez sur **Démarrer** ou **Arrêter** depuis la fiche de la borne pour prendre le contrôle à distance. Cette action est immédiatement transmise via le protocole OCPP 1.6J.
+  </Step>
+</Steps>
+
+<Tip>
+  Exportez vos sessions au format CSV ou Excel depuis le menu **Exporter** en haut de la liste. Cette fonction est idéale pour la comptabilité ou les rapports mensuels. Pour plus d'options d'export, consultez la page [Exporter les données](/rapports/exporter-donnees).
+</Tip>

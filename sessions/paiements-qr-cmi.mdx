@@ -1,0 +1,30 @@
+---
+title: "Accepter les paiements par QR code avec CMI"
+sidebarTitle: "Paiements CMI"
+description: "Activez les paiements par QR code CMI sur watt.ma pour permettre à vos utilisateurs de payer leurs recharges en scannant un code avec leur application bancaire marocaine."
+---
+
+watt.ma intègre nativement le paiement par QR code via le Centre Monétique Interbancaire (CMI). Cette fonction permet à vos utilisateurs de régler leurs sessions de recharge en scannant un QR code affiché sur l'écran de la borne ou sur leur téléphone, directement depuis leur application bancaire marocaine compatible. Aucun terminal de paiement physique n'est requis.
+
+<Steps>
+  <Step title="Vérifier vos prérequis CMI">
+    Assurez-vous de disposer d'un **compte commerçant CMI** actif. Ce compte est ouvert auprès de votre banque au Maroc et vous donne accès à l'acceptation des paiements électroniques via le réseau CMI.
+  </Step>
+  <Step title="Activer l'intégration CMI dans watt.ma">
+    Connectez-vous à [app.watt.ma](https://app.watt.ma), puis allez dans **Paramètres \> Paiements**. Cliquez sur **Activer CMI**, puis renseignez les identifiants commerçant fournis par votre banque (numéro de contrat, clé API ou certificat selon le format transmis par le CMI).
+  </Step>
+  <Step title="Configurer les bornes pour l'affichage QR">
+    Dans la configuration de chaque borne compatible, activez l'option **Afficher le QR code CMI à l'écran**. Lorsqu'un utilisateur branche son véhicule, la borne affiche un QR code unique associé à la session en cours.
+  </Step>
+  <Step title="Tester un paiement complet">
+    Lancez une session de test depuis une borne. Scannez le QR code avec une application bancaire marocaine (ex. : application de votre banque partenaire CMI). Vérifiez que le paiement est bien déclenché, que la session démarre automatiquement, et que le reçu est généré.
+  </Step>
+</Steps>
+
+<Note>
+  L'intégration CMI nécessite impérativement un compte commerçant actif auprès d'une banque marocaine adhérente au CMI. Sans ce compte, l'option de paiement QR code reste inactive dans l'interface watt.ma.
+</Note>
+
+<Tip>
+  Activez l'option **Reçu WhatsApp** dans les paramètres de notification. À chaque paiement CMI réussi, l'utilisateur reçoit automatiquement un reçu détaillé sur WhatsApp avec le montant, la durée, l'énergie consommée et le lieu de la recharge. Cette fonction est disponible dès le forfait Startup.
+</Tip>

@@ -1,0 +1,55 @@
+---
+title: "Superviser vos bornes en temps réel"
+sidebarTitle: "Tableau de Bord"
+description: "Utilisez le tableau de bord watt.ma pour visualiser vos sites, l'état des connecteurs, les sessions actives et la consommation en temps réel."
+---
+
+Le tableau de bord de watt.ma est votre centre de commande pour superviser l'ensemble de votre infrastructure de recharge. Il affiche une carte interactive de vos sites, l'état de chaque connecteur, les sessions en cours et les alertes récentes, le tout mis à jour en temps réel.
+
+## Naviguer dans le tableau de bord
+
+<Steps>
+  <Step title="Accéder au tableau de bord">
+    Connectez-vous à [app.watt.ma](https://app.watt.ma). Le tableau de bord s'affiche par défaut à la connexion. Sinon, cliquez sur **Tableau de bord** dans le menu principal de gauche.
+  </Step>
+  <Step title="Explorer la carte des sites">
+    La vue carte montre l'emplacement de chaque site. Les pastilles de couleur indiquent l'état global du site :
+
+    - **Vert** : tous les connecteurs sont disponibles
+    - **Orange** : au moins une session en cours
+    - **Rouge** : toutes les bornes sont hors ligne ou en erreur Cliquez sur un site pour zoomer et voir le détail des bornes.
+  </Step>
+  <Step title="Consulter l'état des connecteurs">
+    Dans le panneau latéral ou la vue liste, chaque connecteur affiche son statut :
+
+    - **Disponible** : prêt à recevoir une session
+    - **Occupé** : une recharge est en cours
+    - **Hors ligne** : la borne ne communique pas avec watt.ma
+    - **En erreur** : problème matériel ou logiciel détecté
+  </Step>
+  <Step title="Suivre les sessions actives">
+    La section **Sessions en cours** liste toutes les recharges actives avec la puissance instantanée, l'énergie délivrée et le temps écoulé. Cliquez sur une session pour voir le détail complet.
+  </Step>
+  <Step title="Analyser la consommation">
+    Le graphique de consommation agrège l'énergie totale délivrée par site ou par période (jour, semaine, mois). Utilisez-le pour identifier les pics d'usage et ajuster vos tarifs.
+  </Step>
+</Steps>
+
+<Tip>
+  Si vous gérez plusieurs sites (résidences, hôtels, parkings), activez la **vue multi-sites** en haut du tableau de bord. Vous pouvez filtrer par région, par statut ou par nom de site pour ne garder à l'écran que les bornes qui vous intéressent.
+</Tip>
+
+## Comprendre les indicateurs clés
+
+| Indicateur | Description | Utilisation |
+| --- | --- | --- |
+| Taux de disponibilité | Pourcentage de connecteurs opérationnels sur une période | Mesurer la fiabilité de votre parc |
+| Énergie délivrée | kWh total consommés par les véhicules | Facturation et rapports de revenus |
+| Durée moyenne | Temps moyen d'une session de recharge | Dimensionner votre infrastructure |
+| Sessions actives | Nombre de recharges en cours | Supervision opérationnelle en direct |
+
+## Prochaines étapes
+
+- [Configurer les alertes pour vos bornes](/bornes/alertes)
+- [Suivre l'historique des sessions](/sessions/suivi-sessions)
+- [Exporter les données de consommation](/rapports/exporter-donnees)
