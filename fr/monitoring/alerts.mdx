@@ -1,0 +1,40 @@
+---
+title: "Configurer des alertes de consommation"
+sidebarTitle: "Alertes"
+description: "Créez des règles d'alerte Wattsc pour les seuils énergétiques, choisissez les canaux de notification et gérez les heures silencieuses pour éviter la fatigue liée aux alertes."
+---
+
+Les alertes vous aident à détecter une consommation inattendue avant qu'elle ne fasse grimper les coûts. Dans Wattsc, une règle d'alerte relie un compteur ou un canal à un seuil et à une méthode de notification. Lorsque le seuil est franchi, votre équipe est notifiée immédiatement afin de pouvoir enquêter et agir.
+
+<Steps>
+  <Step title="Ouvrez la page Alertes">
+    Accédez à **Suivi** \> **Alertes** et cliquez sur **Nouvelle règle d'alerte**.
+  </Step>
+  <Step title="Sélectionnez un compteur ou un canal">
+    Choisissez le site, puis sélectionnez le compteur et le canal spécifique que vous souhaitez surveiller. Vous pouvez également sélectionner **Tous les canaux** sur un compteur pour une règle combinée.
+  </Step>
+  <Step title="Définissez le seuil">
+    Définissez la condition qui déclenche l'alerte :
+
+    - **kW** — Se déclenche lorsque la puissance instantanée dépasse une valeur.
+    - **kWh** — Se déclenche lorsque la consommation cumulée sur une période dépasse une valeur. Saisissez la limite et choisissez si l'alerte doit se déclencher lorsque la valeur est **supérieure** ou **inférieure** au seuil.
+  </Step>
+  <Step title="Choisissez les canaux de notification">
+    Sélectionnez la manière dont votre équipe doit être notifiée :
+
+    - **E-mail** — Envoyé aux adresses que vous listez.
+    - **SMS** — Envoyé aux numéros de téléphone vérifiés de votre compte.
+    - **Webhook** — Envoyé en POST vers une URL que vous fournissez, utile pour l'intégration avec Slack, Microsoft Teams ou vos propres systèmes.
+  </Step>
+  <Step title="Enregistrez et testez">
+    Cliquez sur **Enregistrer la règle**, puis utilisez le bouton **Envoyer un test** pour confirmer que les canaux choisis fonctionnent.
+  </Step>
+</Steps>
+
+<Warning>
+  Évitez de créer trop de règles qui se chevauchent sur un même canal. Recevoir des dizaines d'alertes pour des variations mineures conduit à une fatigue face aux alertes et fait passer inaperçus les vrais problèmes. Commencez par un ou deux seuils critiques et affinez-les au fil du temps.
+</Warning>
+
+<Tip>
+  Utilisez le paramètre **Heures silencieuses** pour mettre en pause les alertes non critiques la nuit ou le week-end. Vous pouvez planifier différentes plages silencieuses par règle d'alerte afin que le personnel d'astreinte ne reçoive que les notifications réellement urgentes en dehors des heures ouvrables.
+</Tip>

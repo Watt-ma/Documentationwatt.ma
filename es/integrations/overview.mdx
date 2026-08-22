@@ -1,0 +1,36 @@
+---
+title: "Integre Wattsc con sus herramientas"
+sidebarTitle: "Descripción general"
+description: "Conecte Wattsc con su stack mediante API REST, webhooks y exportaciones CSV. Los conectores SCADA y BMS están en el roadmap para integraciones industriales."
+---
+
+Wattsc está diseñado para adaptarse a su flujo de trabajo actual. Puede llevar datos a sus propios sistemas, recibir notificaciones en tiempo real cuando se superen umbrales y exportar datos históricos para análisis fuera de línea. Esta página resume las opciones de integración disponibles hoy y lo que viene a continuación.
+
+<CardGroup cols={2}>
+  <Card title="Acceso a la API" icon="code" href="/integrations/api-access">
+    Consulte lecturas, medidores y alertas de forma programática usando la API REST de Wattsc.
+  </Card>
+
+  <Card title="Notificaciones por webhook" icon="webhook" href="/monitoring/alerts">
+    Configure destinos de alertas para enviar cargas útiles JSON a sus propios endpoints en tiempo real.
+  </Card>
+
+  <Card title="Exportación CSV / Excel" icon="download" href="/analytics/export-data">
+    Descargue o programe exportaciones recurrentes de datos de energía para herramientas de BI y hojas de cálculo.
+  </Card>
+
+  <Card title="Conectores SCADA / BMS" icon="factory">
+    Los conectores de protocolos industriales están en el roadmap. Contáctenos si necesita soporte de Modbus, BACnet u OPC-UA.
+  </Card>
+</CardGroup>
+
+<Note>
+  ¿Necesita una integración que no aparece en la lista? Escriba a [support@wattsc.com](mailto:support@wattsc.com) con su caso de uso. Priorizamos los conectores según la demanda de nuestros clientes.
+</Note>
+
+## Cuándo usar cada integración
+
+- **API REST**: Ideal para construir tableros personalizados, sincronizar datos con su ERP o automatizar canalizaciones de reportes.
+- **Webhooks**: Úselos cuando necesite notificaciones push instantáneas para alertas críticas, en lugar de consultar la API constantemente.
+- **Exportación CSV/Excel**: Ideal para conciliación de facturación mensual, presentaciones regulatorias o análisis puntuales en Excel.
+- **SCADA/BMS**: Planeado para grandes instalaciones que desean sumar las analíticas de Wattsc sobre sus sistemas de control industrial existentes.

@@ -1,0 +1,32 @@
+---
+title: "Suivi énergétique avec Wattsc"
+sidebarTitle: "Vue d'ensemble"
+description: "Découvrez comment fonctionne le suivi énergétique Wattsc, des connexions aux compteurs intelligents aux relevés en temps réel, en passant par les canaux et les alertes de seuil pour vos sites."
+---
+
+Le suivi énergétique Wattsc vous donne une vue en direct de la consommation électrique sur l'ensemble de vos sites. En connectant des compteurs intelligents et des capteurs IoT, vous collectez des relevés granulaires, vous les organisez en canaux et vous faites remonter les informations utiles sur un tableau de bord en temps réel. Cette page présente les concepts clés que vous utiliserez au quotidien.
+
+## Concepts clés
+
+- **Compteurs** — Les compteurs intelligents physiques ou capteurs d'énergie IoT installés sur votre site. Chaque compteur envoie ses données de consommation à Wattsc via Modbus/TCP ou une intégration directe.
+- **Canaux** — Regroupements logiques au sein d'un compteur, comme une phase spécifique, un étage ou un équipement. Les canaux vous permettent de décomposer la consommation au niveau qui compte pour votre analyse.
+- **Relevés** — Les points de données réels que Wattsc reçoit, généralement en kilowatts (kW) ou kilowattheures (kWh). Les relevés sont stockés et mis à disposition pour les tableaux de bord, les rapports et les alertes.
+- **Alertes** — Règles que vous créez pour notifier votre équipe lorsque la consommation dépasse un seuil que vous définissez. Les alertes peuvent être envoyées par e-mail, SMS ou webhook.
+
+## Commencer le suivi
+
+Choisissez une tâche ci-dessous pour configurer ou utiliser votre environnement de suivi.
+
+<CardGroup cols={2}>
+  <Card title="Connecter vos compteurs" icon="plug" href="/monitoring/connect-meters">
+    Ajoutez un nouveau compteur et vérifiez la connexion pour commencer à recevoir des données.
+  </Card>
+
+  <Card title="Tableau de bord en temps réel" icon="gauge" href="/monitoring/real-time-dashboard">
+    Visualisez la consommation en direct, les coûts et les principaux consommateurs sur tous vos sites.
+  </Card>
+
+  <Card title="Configurer des alertes" icon="bell" href="/monitoring/alerts">
+    Créez des règles de seuil et choisissez comment votre équipe est notifiée.
+  </Card>
+</CardGroup>

@@ -1,0 +1,36 @@
+---
+title: "Intégrer Wattsc à vos outils"
+sidebarTitle: "Vue d'ensemble"
+description: "Connectez Wattsc à votre stack via API REST, webhooks et exports CSV. Les connecteurs SCADA et GTB sont prévus dans la feuille de route pour les intégrations industrielles."
+---
+
+Wattsc est conçu pour s'intégrer à votre flux de travail existant. Vous pouvez récupérer les données dans vos propres systèmes, recevoir des notifications en temps réel lorsque des seuils sont dépassés et exporter les données historiques pour une analyse hors ligne. Cette page résume les options d'intégration disponibles aujourd'hui et ce qui est prévu ensuite.
+
+<CardGroup cols={2}>
+  <Card title="Accès API" icon="code" href="/integrations/api-access">
+    Interrogez les relevés, les compteurs et les alertes de manière programmatique à l'aide de l'API REST Wattsc.
+  </Card>
+
+  <Card title="Notifications webhook" icon="webhook" href="/monitoring/alerts">
+    Configurez des destinations d'alerte pour envoyer des charges utiles JSON à vos propres endpoints en temps réel.
+  </Card>
+
+  <Card title="Export CSV / Excel" icon="download" href="/analytics/export-data">
+    Téléchargez ou planifiez des exports récurrents de données énergétiques pour vos outils BI et vos tableurs.
+  </Card>
+
+  <Card title="Connecteurs SCADA / GTB" icon="factory">
+    Les connecteurs de protocoles industriels sont prévus dans la feuille de route. Contactez-nous si vous avez besoin d'un support Modbus, BACnet ou OPC-UA.
+  </Card>
+</CardGroup>
+
+<Note>
+  Besoin d'une intégration qui n'est pas listée ? Écrivez à [support@wattsc.com](mailto:support@wattsc.com) en décrivant votre cas d'usage. Nous priorisons les connecteurs en fonction de la demande client.
+</Note>
+
+## Quand utiliser chaque intégration
+
+- **API REST** : Idéale pour créer des tableaux de bord personnalisés, synchroniser les données avec votre ERP ou automatiser vos pipelines de reporting.
+- **Webhooks** : À utiliser lorsque vous avez besoin de notifications push instantanées pour les alertes critiques, plutôt que d'interroger l'API.
+- **Export CSV/Excel** : Idéal pour le rapprochement de facturation mensuel, les déclarations réglementaires ou l'analyse ponctuelle dans Excel.
+- **SCADA/GTB** : Prévu pour les grands sites qui souhaitent superposer les analyses Wattsc à leurs systèmes de contrôle industriel existants.

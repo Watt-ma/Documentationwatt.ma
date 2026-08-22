@@ -1,0 +1,34 @@
+---
+title: "将您的能源电表连接到 Wattsc"
+sidebarTitle: "连接电表"
+description: "了解如何向 Wattsc 添加新的能源电表、配置 Modbus/TCP 或智能电表集成，并验证读数是否正常传入。"
+---
+
+连接电表是您在 Wattsc 中查看实时能源数据的第一步。电表连接后，Wattsc 会自动开始接收读数，您就可以监控消耗、运行报表并触发告警。本指南将引导您添加电表并确认连接。
+
+<Steps>
+  <Step title="打开 Meters 页面">
+    登录 Wattsc，并从主导航中选择 **Monitoring**。点击 **Meters** 打开电表管理页面。
+  </Step>
+  <Step title="添加新电表">
+    点击 **Add Meter**。输入一个具有描述性的名称，例如 "Main Incomer - Factory A"，并选择所属的设施。
+  </Step>
+  <Step title="选择集成类型">
+    选择您的电表支持的协议：
+
+    - **Modbus/TCP** — 输入电表的 IP 地址、端口（通常为 502）以及 Modbus 单元 ID。
+    - **Smart meter integration** — 从列表中选择您的电表品牌，并输入制造商提供的序列号或 API 凭据。
+  </Step>
+  <Step title="映射通道">
+    定义您要跟踪的通道，例如 "Phase L1"、"HVAC Floor 2" 或 "Production Line 3"。每个通道将在仪表板和报表中作为独立的数据流显示。
+  </Step>
+  <Step title="验证连接">
+    点击 **Test Connection**。Wattsc 会尝试访问电表并读取一个示例寄存器。若测试成功，点击 **Save** 开始持续数据采集。若失败，请检查网络设置和凭据后重试。
+  </Step>
+</Steps>
+
+<Note>
+  Wattsc 支持广泛的电表品牌，包括 Schneider Electric、Siemens、ABB 和 Socomec。如果您的型号未列出，请联系支持团队并提供品牌与型号，以便我们添加兼容性。
+</Note>
+
+保存电表后，读数通常会在一到两分钟内出现在仪表板上。如果 5 分钟后仍无数据，请检查连接测试或确认该电表在您的本地网络中处于在线状态。
