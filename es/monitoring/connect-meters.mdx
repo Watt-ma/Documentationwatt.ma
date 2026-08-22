@@ -1,0 +1,34 @@
+---
+title: "Conecte sus medidores de energía a Wattsc"
+sidebarTitle: "Conectar medidores"
+description: "Aprenda a agregar un nuevo medidor de energía a Wattsc, configurar la integración por Modbus/TCP o con medidores inteligentes, y verificar que las lecturas estén llegando."
+---
+
+Conectar sus medidores es el primer paso para ver datos de energía en tiempo real en Wattsc. Una vez que un medidor está vinculado, Wattsc comienza a recibir lecturas automáticamente para que pueda monitorear el consumo, generar reportes y activar alertas. Esta guía lo acompaña en el proceso de agregar un medidor y confirmar la conexión.
+
+<Steps>
+  <Step title="Abra la sección Medidores">
+    Inicie sesión en Wattsc y seleccione **Monitoreo** en el menú principal. Haga clic en **Medidores** para abrir la página de gestión de medidores.
+  </Step>
+  <Step title="Agregue un nuevo medidor">
+    Haga clic en **Agregar medidor**. Ingrese un nombre descriptivo, como "Alimentador principal - Fábrica A", y elija la instalación a la que pertenece.
+  </Step>
+  <Step title="Elija el tipo de integración">
+    Seleccione el protocolo que admite su medidor:
+
+    - **Modbus/TCP** — Ingrese la dirección IP del medidor, el puerto (habitualmente 502) y el ID de unidad Modbus.
+    - **Integración con medidor inteligente** — Elija la marca de su medidor en la lista e ingrese el número de serie o las credenciales de API proporcionadas por el fabricante.
+  </Step>
+  <Step title="Mapee los canales">
+    Defina los canales que desea monitorear, como "Fase L1", "HVAC piso 2" o "Línea de producción 3". Cada canal aparecerá como un flujo de datos independiente en los tableros y reportes.
+  </Step>
+  <Step title="Verifique la conexión">
+    Haga clic en **Probar conexión**. Wattsc intentará comunicarse con el medidor y leer un registro de muestra. Si la prueba es exitosa, haga clic en **Guardar** para iniciar la recolección continua de datos. Si falla, revise la configuración de red y las credenciales, y vuelva a intentarlo.
+  </Step>
+</Steps>
+
+<Note>
+  Wattsc admite una amplia variedad de marcas de medidores, incluidas Schneider Electric, Siemens, ABB y Socomec. Si su modelo no aparece en la lista, contacte a soporte con la marca y el número de modelo para que podamos añadir la compatibilidad.
+</Note>
+
+Después de guardar el medidor, las lecturas suelen aparecer en el tablero en uno o dos minutos. Si no aparecen datos después de cinco minutos, revise la prueba de conexión o verifique que el medidor esté en línea en su red local.

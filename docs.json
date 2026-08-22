@@ -9,68 +9,274 @@
   },
   "favicon": "/images/logo.png",
   "navigation": {
-    "pages": [
+    "languages": [
       {
-        "group": "Getting Started",
+        "language": "en",
+        "default": true,
         "pages": [
-          "index",
-          "quickstart"
-        ]
-      }
-    ],
-    "groups": [
-      {
-        "group": "Démarrer",
-        "icon": "rocket",
-        "pages": [
-          "index",
-          "quickstart",
-          "demarrer/creer-un-compte"
-        ]
-      },
-      {
-        "group": "Gestion des Bornes",
-        "icon": "bolt",
-        "pages": [
-          "bornes/vue-ensemble",
-          "bornes/connecter-une-borne",
-          "bornes/tableau-de-bord",
-          "bornes/alertes"
-        ]
-      },
-      {
-        "group": "Sessions et Paiements",
-        "icon": "credit-card",
-        "pages": [
-          "sessions/suivi-sessions",
-          "sessions/tarifs",
-          "sessions/paiements-qr-cmi",
-          "sessions/badges-rfid"
-        ]
-      },
-      {
-        "group": "Rapports et Revenus",
-        "icon": "chart-bar",
-        "pages": [
-          "rapports/vue-ensemble",
-          "rapports/revenus",
-          "rapports/exporter-donnees"
+          {
+            "group": "Getting Started",
+            "pages": [
+              "index",
+              "quickstart",
+              "getting-started/account-setup"
+            ]
+          },
+          {
+            "group": "Monitoring",
+            "pages": [
+              "monitoring/overview",
+              "monitoring/connect-meters",
+              "monitoring/real-time-dashboard",
+              "monitoring/alerts"
+            ]
+          },
+          {
+            "group": "Analytics",
+            "pages": [
+              "analytics/overview",
+              "analytics/consumption-reports",
+              "analytics/export-data"
+            ]
+          },
+          {
+            "group": "Integrations",
+            "pages": [
+              "integrations/overview",
+              "integrations/api-access"
+            ]
+          },
+          {
+            "group": "Account",
+            "pages": [
+              "account/team-management",
+              "account/billing"
+            ]
+          }
         ]
       },
       {
-        "group": "Intégrations et API",
-        "icon": "plug",
+        "language": "fr",
         "pages": [
-          "api/acces-api",
-          "api/marque-blanche"
+          {
+            "group": "Démarrer",
+            "icon": "rocket",
+            "pages": [
+              "index",
+              "quickstart",
+              "demarrer/creer-un-compte",
+              "fr/getting-started/account-setup"
+            ]
+          },
+          {
+            "group": "Gestion des Bornes",
+            "icon": "bolt",
+            "pages": [
+              "bornes/vue-ensemble",
+              "bornes/connecter-une-borne",
+              "bornes/tableau-de-bord",
+              "bornes/alertes"
+            ]
+          },
+          {
+            "group": "Sessions et Paiements",
+            "icon": "credit-card",
+            "pages": [
+              "sessions/suivi-sessions",
+              "sessions/tarifs",
+              "sessions/paiements-qr-cmi",
+              "sessions/badges-rfid"
+            ]
+          },
+          {
+            "group": "Rapports et Revenus",
+            "icon": "chart-bar",
+            "pages": [
+              "rapports/vue-ensemble",
+              "rapports/revenus",
+              "rapports/exporter-donnees"
+            ]
+          },
+          {
+            "group": "Intégrations et API",
+            "icon": "plug",
+            "pages": [
+              "api/acces-api",
+              "api/marque-blanche",
+              "fr/integrations/overview",
+              "fr/integrations/api-access"
+            ]
+          },
+          {
+            "group": "Compte et Équipe",
+            "icon": "gear",
+            "pages": [
+              "compte/gestion-equipe",
+              "compte/forfaits",
+              "fr/account/team-management",
+              "fr/account/billing"
+            ]
+          },
+          {
+            "group": "Supervision",
+            "icon": "gauge",
+            "pages": [
+              "fr/monitoring/overview",
+              "fr/monitoring/connect-meters",
+              "fr/monitoring/real-time-dashboard",
+              "fr/monitoring/alerts"
+            ]
+          },
+          {
+            "group": "Analytique",
+            "icon": "chart-line",
+            "pages": [
+              "fr/analytics/overview",
+              "fr/analytics/consumption-reports",
+              "fr/analytics/export-data"
+            ]
+          }
         ]
       },
       {
-        "group": "Compte et Équipe",
-        "icon": "gear",
+        "language": "es",
         "pages": [
-          "compte/gestion-equipe",
-          "compte/forfaits"
+          {
+            "group": "Primeros pasos",
+            "icon": "rocket",
+            "pages": [
+              "es/getting-started/account-setup"
+            ]
+          },
+          {
+            "group": "Monitoreo",
+            "icon": "bolt",
+            "pages": [
+              "es/monitoring/overview",
+              "es/monitoring/connect-meters",
+              "es/monitoring/real-time-dashboard",
+              "es/monitoring/alerts"
+            ]
+          },
+          {
+            "group": "Analítica",
+            "icon": "chart-bar",
+            "pages": [
+              "es/analytics/overview",
+              "es/analytics/consumption-reports",
+              "es/analytics/export-data"
+            ]
+          },
+          {
+            "group": "Integraciones",
+            "icon": "plug",
+            "pages": [
+              "es/integrations/overview",
+              "es/integrations/api-access"
+            ]
+          },
+          {
+            "group": "Cuenta",
+            "icon": "gear",
+            "pages": [
+              "es/account/team-management",
+              "es/account/billing"
+            ]
+          }
+        ]
+      },
+      {
+        "language": "ar",
+        "pages": [
+          {
+            "group": "البدء",
+            "icon": "rocket",
+            "pages": [
+              "ar/getting-started/account-setup"
+            ]
+          },
+          {
+            "group": "المراقبة",
+            "icon": "bolt",
+            "pages": [
+              "ar/monitoring/overview",
+              "ar/monitoring/connect-meters",
+              "ar/monitoring/real-time-dashboard",
+              "ar/monitoring/alerts"
+            ]
+          },
+          {
+            "group": "التحليلات",
+            "icon": "chart-bar",
+            "pages": [
+              "ar/analytics/overview",
+              "ar/analytics/consumption-reports",
+              "ar/analytics/export-data"
+            ]
+          },
+          {
+            "group": "التكاملات",
+            "icon": "plug",
+            "pages": [
+              "ar/integrations/overview",
+              "ar/integrations/api-access"
+            ]
+          },
+          {
+            "group": "الحساب",
+            "icon": "gear",
+            "pages": [
+              "ar/account/team-management",
+              "ar/account/billing"
+            ]
+          }
+        ]
+      },
+      {
+        "language": "zh",
+        "pages": [
+          {
+            "group": "入门",
+            "icon": "rocket",
+            "pages": [
+              "cn/getting-started/account-setup"
+            ]
+          },
+          {
+            "group": "监控",
+            "icon": "bolt",
+            "pages": [
+              "cn/monitoring/overview",
+              "cn/monitoring/connect-meters",
+              "cn/monitoring/real-time-dashboard",
+              "cn/monitoring/alerts"
+            ]
+          },
+          {
+            "group": "分析",
+            "icon": "chart-bar",
+            "pages": [
+              "cn/analytics/overview",
+              "cn/analytics/consumption-reports",
+              "cn/analytics/export-data"
+            ]
+          },
+          {
+            "group": "集成",
+            "icon": "plug",
+            "pages": [
+              "cn/integrations/overview",
+              "cn/integrations/api-access"
+            ]
+          },
+          {
+            "group": "账户",
+            "icon": "gear",
+            "pages": [
+              "cn/account/team-management",
+              "cn/account/billing"
+            ]
+          }
         ]
       }
     ]
