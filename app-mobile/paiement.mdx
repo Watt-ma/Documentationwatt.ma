@@ -1,0 +1,69 @@
+---
+title: "Paiement et portefeuille prépayé watt.ma"
+sidebarTitle: "Portefeuille et paiement"
+description: "Rechargez votre portefeuille watt.ma en dirhams, gérez vos cartes Visa, Mastercard et CMI, et payez vos sessions de recharge en un clic."
+---
+
+L'application watt.ma fonctionne avec un **portefeuille prépayé en dirhams (MAD)**. Vous rechargez votre solde depuis l'app, puis chaque session de recharge est débitée automatiquement à la fin. Cette page couvre la gestion du portefeuille, les moyens de paiement pris en charge et le fonctionnement de la tokenisation.
+
+## Portefeuille prépayé
+
+Le solde du portefeuille est visible en permanence sur l'écran **Recharger** et sur votre **Profil**.
+
+- Devise : dirham marocain (MAD).
+- Solde débité automatiquement à la fin de chaque session, en fonction de la puissance délivrée et du tarif de la borne.
+- Rechargement instantané depuis un moyen de paiement enregistré.
+- Montants raccourcis proposés : 50 MAD, 100 MAD, 200 MAD, 500 MAD, ou montant personnalisé.
+
+<Note>
+  Le portefeuille peut afficher un solde initial de démonstration lorsque l'app tourne en **Mock Mode**. Voir la page [Installation](/app-mobile/installation) pour désactiver ce mode.
+</Note>
+
+## Moyens de paiement
+
+<img
+  src="/images/app-mobile/09-payment-methods.png"
+  alt="Écran Moyens de paiement dans l'app watt.ma"
+  width="320"
+/>
+
+Depuis **Profil → Moyens de paiement**, vous pouvez :
+
+- Ajouter une carte Visa ou Mastercard.
+- Définir une carte par défaut pour les rechargements.
+- Supprimer une carte enregistrée.
+
+L'app affiche uniquement les **4 derniers chiffres** et la date d'expiration. Le numéro complet n'est jamais stocké sur l'appareil.
+
+<Info>
+  En Mock Mode, une carte de démonstration `VISA •••• 4242` est préchargée pour tester le flux sans configurer Stripe.
+</Info>
+
+## Tokenisation et sécurité
+
+- **Stripe** : tokenisation des cartes internationales via le SDK Stripe côté client. La clé Stripe est fournie par `EXPO_PUBLIC_STRIPE_PUBLISHABLE_KEY` et `STRIPE_SECRET_KEY` côté backend FastAPI.
+- **CMI (Centre Monétique Interbancaire)** : intégration prévue pour la tokenisation des cartes bancaires marocaines émises localement. Voir la [Roadmap](/roadmap).
+- Aucun numéro de carte n'est stocké dans MongoDB : seuls les tokens Stripe/CMI et les 4 derniers chiffres sont conservés.
+
+## Recharger le portefeuille
+
+<Steps>
+  <Step title="Ouvrir le portefeuille">
+    Depuis l'écran **Recharger** ou **Profil**, appuyez sur le solde du portefeuille.
+  </Step>
+  <Step title="Choisir un montant">
+    Sélectionnez un raccourci (50, 100, 200, 500 MAD) ou saisissez un montant personnalisé.
+  </Step>
+  <Step title="Sélectionner un moyen de paiement">
+    L'app propose votre carte par défaut. Vous pouvez en choisir une autre ou en ajouter une nouvelle.
+  </Step>
+  <Step title="Confirmer">
+    Le solde est mis à jour immédiatement après confirmation du paiement.
+  </Step>
+</Steps>
+
+## Facturation
+
+- Chaque top-up et chaque session apparaît dans l'[Historique des transactions](/app-mobile/historique).
+- L'export PDF des factures par session est **prévu** (voir la [Roadmap](/roadmap)).
+- Pour les factures d'entreprise, contactez [contact@wattsc.com](mailto:contact@wattsc.com).

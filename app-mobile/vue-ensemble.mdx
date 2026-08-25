@@ -1,0 +1,51 @@
+---
+title: "Application Mobile watt.ma : recharge EV au Maroc"
+sidebarTitle: "Vue d'ensemble"
+description: "Découvrez l'app mobile watt.ma : localisation des bornes, scan QR pour lancer une session et portefeuille prépayé en dirhams sur iOS et Android."
+---
+
+L'application mobile watt.ma est une app cross-platform iOS et Android conçue pour le réseau de recharge électrique au Maroc. Elle permet aux conducteurs de VE de localiser les bornes à Casablanca, Marrakech, Rabat, Tanger et dans le reste du pays, de scanner un QR code pour démarrer une session, et de gérer leurs paiements via un portefeuille prépayé sécurisé en dirhams (MAD).
+
+## Fonctionnalités principales
+
+<CardGroup cols={2}>
+  <Card title="Carte et liste des bornes" icon="map-location-dot" href="/app-mobile/carte-bornes">
+    Cartes interactives couvrant les villes marocaines avec détails des connecteurs, puissance et tarifs.
+  </Card>
+
+  <Card title="Recharger via QR" icon="qrcode" href="/app-mobile/demarrer-recharge">
+    Scannez le QR code d'une borne pour déclencher la simulation ou la session réelle.
+  </Card>
+
+  <Card title="Portefeuille prépayé" icon="wallet" href="/app-mobile/paiement">
+    Rechargez en dirhams, gérez vos cartes Visa, Mastercard et CMI et consultez l'historique des transactions.
+  </Card>
+
+  <Card title="Historique des sessions" icon="clock-rotate-left" href="/app-mobile/historique">
+    Journal chronologique des recharges, top-ups et débits pour votre suivi personnel.
+  </Card>
+</CardGroup>
+
+## Stack technique
+
+- **Frontend mobile** : React Native, Expo SDK 54, Expo Router (navigation par fichiers), Zustand (state management), Expo Camera.
+- **Backend API** : FastAPI, MongoDB (client Motor asynchrone), Pydantic (validation), PyJWT (tokens d'authentification).
+- **Simulations** : les commandes de connecteurs OCPP sont simulées en mode développement. La puissance de recharge par défaut est de 43 kW, typique des chargeurs urbains marocains semi-rapides et rapides.
+
+## Localisation marocaine
+
+- **Devise** : dirham marocain (MAD).
+- **Conformité réglementaire** : emplacements de conformité pour la loi 09-08 sur la protection des données personnelles.
+- **Passerelles de paiement** : tokenisation CMI (Centre Monétique Interbancaire) prévue pour les cartes bancaires locales, en parallèle de Stripe.
+
+<Note>
+  L'app inclut un **Mock Mode** global pour développer sans backend : OTP auto-validé, top-ups instantanés, sessions simulées mises à jour chaque seconde. Consultez la page [Installation](/app-mobile/installation) pour la configuration.
+</Note>
+
+## À qui s'adresse l'app
+
+- **Conducteurs de VE** au Maroc qui cherchent une borne et lancent une session par QR code.
+- **Utilisateurs prépayés** qui rechargent leur portefeuille en dirhams et paient en un clic.
+- **Développeurs et intégrateurs** qui veulent tester l'app en local grâce au Mock Mode sans dépendre d'un backend.
+
+Pour la supervision et la gestion opérateur des bornes, consultez la [documentation opérateur](/bornes/vue-ensemble).

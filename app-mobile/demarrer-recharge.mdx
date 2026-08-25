@@ -1,0 +1,54 @@
+---
+title: "Démarrer une recharge par QR code sur watt.ma"
+sidebarTitle: "Démarrer une recharge"
+description: "Scannez le QR code de la borne depuis le hub Recharger pour lancer une session et suivre la puissance, l'énergie et le coût en temps réel dans l'app."
+---
+
+Depuis l'app watt.ma, vous démarrez une session de recharge en scannant le QR code de la borne depuis l'onglet **Recharger**. Cette page décrit le flux complet et le suivi en temps réel de la session.
+
+## Authentification préalable
+
+Avant de lancer votre première session, vous devez avoir :
+
+1. Créé un compte via les écrans **Sign Up** (nom et validation du numéro de téléphone).
+2. Validé votre numéro avec le code OTP à 6 chiffres reçu par SMS (saisie auto-avance).
+3. Configuré un moyen de paiement dans le portefeuille (voir [Paiement](/app-mobile/paiement)).
+
+<Note>
+  En **Mock Mode**, n'importe quel code OTP à 6 chiffres est accepté. C'est pratique pour tester le flux sans dépendre d'un fournisseur SMS.
+</Note>
+
+## Lancer une session
+
+<Steps>
+  <Step title="Ouvrir le hub Recharger">
+    Appuyez sur l'onglet **Recharger** en bas de l'écran. C'est le hub QR de l'app.
+  </Step>
+  <Step title="Scanner le QR code">
+    L'app ouvre la caméra via `expo-camera`. Pointez-la sur le QR code affiché sur la borne pour déclencher la session.
+  </Step>
+  <Step title="Confirmer et brancher">
+    Vérifiez le tarif et le connecteur affichés à l'écran, confirmez et branchez votre véhicule.
+  </Step>
+</Steps>
+
+## Suivi de la session
+
+Une fois la session lancée, l'app affiche en temps réel :
+
+- La **puissance instantanée** (43 kW par défaut en Mock Mode)
+- L'**énergie délivrée** en kWh
+- Le **temps écoulé** depuis le début
+- Le **coût cumulé** en dirhams
+
+<Info>
+  Les commandes de connecteur reposent sur le protocole OCPP. En Mock Mode, les valeurs sont simulées et mises à jour chaque seconde. Une fois `EXPO_PUBLIC_MOCK_MODE=false`, l'app envoie les commandes réelles au backend via `OCPP_BACKEND_URL`.
+</Info>
+
+## Arrêter la session
+
+Appuyez sur **Arrêter** dans l'app pour clore la session. Le montant final est débité du portefeuille prépayé et la transaction apparaît dans l'[historique](/app-mobile/historique).
+
+<Warning>
+  Ne débranchez pas le câble avant d'avoir arrêté la session dans l'app. Certains véhicules verrouillent le connecteur tant que la session est active.
+</Warning>

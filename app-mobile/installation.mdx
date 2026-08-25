@@ -1,0 +1,106 @@
+---
+title: "Installer et configurer l'app watt.ma (Expo, FastAPI)"
+sidebarTitle: "Installation"
+description: "Configurez le backend FastAPI et le frontend Expo React Native de l'app watt.ma, ou activez le Mock Mode pour tester sans MongoDB ni serveur."
+---
+
+L'application watt.ma est construite avec Expo (React Native) côté mobile et FastAPI \+ MongoDB côté serveur. Cette page couvre l'installation locale complète et le fonctionnement du Mock Mode qui vous permet de tester l'app sans backend.
+
+## Prérequis
+
+- Node.js v20 ou supérieur
+- Python 3.10 ou supérieur
+- MongoDB en local ou une URL de base cloud
+
+## 1. Backend FastAPI
+
+<Steps>
+  <Step title="Se placer dans le dossier backend">
+    ```bash
+    cd backend
+    ```
+  </Step>
+  <Step title="Créer et activer l'environnement virtuel Python">
+    ```bash
+    python3 -m venv .venv
+    source .venv/bin/activate
+    ```
+  </Step>
+  <Step title="Installer les dépendances">
+    ```bash
+    pip install -r requirements.txt
+    ```
+  </Step>
+  <Step title="Copier et configurer le fichier d'environnement">
+    Renseignez au minimum `MONGO_URL` dans le fichier `.env`.
+
+    ```bash
+    cp .env.example .env
+    ```
+  </Step>
+  <Step title="Lancer le serveur FastAPI">
+    ```bash
+    uvicorn server:app --reload
+    ```
+
+    La documentation interactive Swagger est disponible sur [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs). La documentation développeur en production est hébergée sur [docs.watt.ma](https://docs.watt.ma).
+  </Step>
+</Steps>
+
+## 2. Frontend Expo (React Native)
+
+<Steps>
+  <Step title="Se placer dans le dossier frontend">
+    ```bash
+    cd frontend
+    ```
+  </Step>
+  <Step title="Installer les paquets npm">
+    ```bash
+    npm install
+    ```
+  </Step>
+  <Step title="Copier la configuration d'environnement">
+    ```bash
+    cp .env.example .env
+    ```
+  </Step>
+  <Step title="Lancer Expo">
+    ```bash
+    npm run start
+    ```
+
+    Utilisez le menu développeur :
+
+    - `i` pour ouvrir le simulateur iOS
+    - `a` pour ouvrir l'émulateur Android
+    - Scannez le QR code du terminal avec l'app **Expo Go** sur un appareil physique
+  </Step>
+</Steps>
+
+## Mock Mode vs Production
+
+L'application dispose d'un bascule global **Mock Mode**. Quand `EXPO_PUBLIC_MOCK_MODE=true` dans la config frontend :
+
+- Aucun serveur backend ni MongoDB n'est requis.
+- Les codes OTP sont validés automatiquement (n'importe quels 6 chiffres passent).
+- Les top-ups du portefeuille sont crédités instantanément pour les cartes de test.
+- Les métriques de session de recharge (kWh délivrés, temps écoulé, coût) sont incrémentées et mises à jour localement chaque seconde.
+
+Passer `EXPO_PUBLIC_MOCK_MODE=false` redirige tout le trafic vers le serveur FastAPI configuré dans `frontend/services/api.ts`.
+
+## Matrice de configuration
+
+| Fichier | Clé de configuration | Rôle |
+| --- | --- | --- |
+| `frontend/config/env.ts` | `EXPO_PUBLIC_MOCK_MODE` | Active le mode simulé du frontend (par défaut `true`) |
+| `frontend/config/env.ts` | `STRIPE_PUBLISHABLE_KEY` | Token public pour la saisie et tokenisation des cartes |
+| `backend/config.py` | `MONGO_URL` | URI de connexion MongoDB (ex. `mongodb://localhost:27017`) |
+| `backend/config.py` | `JWT_SECRET` | Clé de signature des tokens d'accès API |
+| `backend/config.py` | `SMS_PROVIDER_API_KEY` | Clé du fournisseur SMS pour l'envoi des OTP (logs par défaut en dev) |
+| `backend/config.py` | `STRIPE_SECRET_KEY` | Token secret pour la capture des paiements de recharge et top-up |
+| `backend/config.py` | `OCPP_BACKEND_URL` | URL de base pour les commandes distantes vers les bornes |
+
+<Tip>
+  Pour un premier test rapide, laissez `EXPO_PUBLIC_MOCK_MODE=true` : vous verrez immédiatement les écrans d'authentification, la carte des bornes et une session simulée sans installer MongoDB ni configurer Stripe.
+</Tip>

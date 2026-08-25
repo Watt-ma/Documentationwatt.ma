@@ -9,63 +9,17 @@
   },
   "favicon": "/images/logo.png",
   "navigation": {
-    "languages": [
+    "tabs": [
       {
-        "language": "en",
-        "default": true,
-        "pages": [
-          {
-            "group": "Getting Started",
-            "pages": [
-              "index",
-              "quickstart",
-              "getting-started/account-setup"
-            ]
-          },
-          {
-            "group": "Monitoring",
-            "pages": [
-              "monitoring/overview",
-              "monitoring/connect-meters",
-              "monitoring/real-time-dashboard",
-              "monitoring/alerts"
-            ]
-          },
-          {
-            "group": "Analytics",
-            "pages": [
-              "analytics/overview",
-              "analytics/consumption-reports",
-              "analytics/export-data"
-            ]
-          },
-          {
-            "group": "Integrations",
-            "pages": [
-              "integrations/overview",
-              "integrations/api-access"
-            ]
-          },
-          {
-            "group": "Account",
-            "pages": [
-              "account/team-management",
-              "account/billing"
-            ]
-          }
-        ]
-      },
-      {
-        "language": "fr",
-        "pages": [
+        "tab": "Plateforme CPMS",
+        "groups": [
           {
             "group": "Démarrer",
             "icon": "rocket",
             "pages": [
               "index",
               "quickstart",
-              "demarrer/creer-un-compte",
-              "fr/getting-started/account-setup"
+              "demarrer/creer-un-compte"
             ]
           },
           {
@@ -102,9 +56,7 @@
             "icon": "plug",
             "pages": [
               "api/acces-api",
-              "api/marque-blanche",
-              "fr/integrations/overview",
-              "fr/integrations/api-access"
+              "api/marque-blanche"
             ]
           },
           {
@@ -112,28 +64,7 @@
             "icon": "gear",
             "pages": [
               "compte/gestion-equipe",
-              "compte/forfaits",
-              "fr/account/team-management",
-              "fr/account/billing"
-            ]
-          },
-          {
-            "group": "Supervision",
-            "icon": "gauge",
-            "pages": [
-              "fr/monitoring/overview",
-              "fr/monitoring/connect-meters",
-              "fr/monitoring/real-time-dashboard",
-              "fr/monitoring/alerts"
-            ]
-          },
-          {
-            "group": "Analytique",
-            "icon": "chart-line",
-            "pages": [
-              "fr/analytics/overview",
-              "fr/analytics/consumption-reports",
-              "fr/analytics/export-data"
+              "compte/forfaits"
             ]
           },
           {
@@ -146,142 +77,48 @@
         ]
       },
       {
-        "language": "es",
-        "pages": [
+        "tab": "Application Mobile",
+        "groups": [
           {
-            "group": "Primeros pasos",
-            "icon": "rocket",
+            "group": "Découvrir l'app",
+            "icon": "mobile-screen",
             "pages": [
-              "es/getting-started/account-setup"
+              "app-mobile/vue-ensemble",
+              "app-mobile/installation"
             ]
           },
           {
-            "group": "Monitoreo",
+            "group": "Compte Conducteur",
+            "icon": "user",
+            "pages": [
+              "app-mobile/inscription-connexion",
+              "app-mobile/profil"
+            ]
+          },
+          {
+            "group": "Recharger",
             "icon": "bolt",
             "pages": [
-              "es/monitoring/overview",
-              "es/monitoring/connect-meters",
-              "es/monitoring/real-time-dashboard",
-              "es/monitoring/alerts"
+              "app-mobile/carte-bornes",
+              "app-mobile/details-station",
+              "app-mobile/favoris",
+              "app-mobile/demarrer-recharge"
             ]
           },
           {
-            "group": "Analítica",
-            "icon": "chart-bar",
+            "group": "Paiement et Historique",
+            "icon": "wallet",
             "pages": [
-              "es/analytics/overview",
-              "es/analytics/consumption-reports",
-              "es/analytics/export-data"
+              "app-mobile/paiement",
+              "app-mobile/historique"
             ]
           },
           {
-            "group": "Integraciones",
-            "icon": "plug",
-            "pages": [
-              "es/integrations/overview",
-              "es/integrations/api-access"
-            ]
-          },
-          {
-            "group": "Cuenta",
+            "group": "Paramètres",
             "icon": "gear",
             "pages": [
-              "es/account/team-management",
-              "es/account/billing"
-            ]
-          }
-        ]
-      },
-      {
-        "language": "ar",
-        "pages": [
-          {
-            "group": "البدء",
-            "icon": "rocket",
-            "pages": [
-              "ar/getting-started/account-setup"
-            ]
-          },
-          {
-            "group": "المراقبة",
-            "icon": "bolt",
-            "pages": [
-              "ar/monitoring/overview",
-              "ar/monitoring/connect-meters",
-              "ar/monitoring/real-time-dashboard",
-              "ar/monitoring/alerts"
-            ]
-          },
-          {
-            "group": "التحليلات",
-            "icon": "chart-bar",
-            "pages": [
-              "ar/analytics/overview",
-              "ar/analytics/consumption-reports",
-              "ar/analytics/export-data"
-            ]
-          },
-          {
-            "group": "التكاملات",
-            "icon": "plug",
-            "pages": [
-              "ar/integrations/overview",
-              "ar/integrations/api-access"
-            ]
-          },
-          {
-            "group": "الحساب",
-            "icon": "gear",
-            "pages": [
-              "ar/account/team-management",
-              "ar/account/billing"
-            ]
-          }
-        ]
-      },
-      {
-        "language": "zh",
-        "pages": [
-          {
-            "group": "入门",
-            "icon": "rocket",
-            "pages": [
-              "cn/getting-started/account-setup"
-            ]
-          },
-          {
-            "group": "监控",
-            "icon": "bolt",
-            "pages": [
-              "cn/monitoring/overview",
-              "cn/monitoring/connect-meters",
-              "cn/monitoring/real-time-dashboard",
-              "cn/monitoring/alerts"
-            ]
-          },
-          {
-            "group": "分析",
-            "icon": "chart-bar",
-            "pages": [
-              "cn/analytics/overview",
-              "cn/analytics/consumption-reports",
-              "cn/analytics/export-data"
-            ]
-          },
-          {
-            "group": "集成",
-            "icon": "plug",
-            "pages": [
-              "cn/integrations/overview",
-              "cn/integrations/api-access"
-            ]
-          },
-          {
-            "group": "账户",
-            "icon": "gear",
-            "pages": [
-              "cn/account/team-management",
-              "cn/account/billing"
+              "app-mobile/parametres",
+              "app-mobile/faq"
             ]
           }
         ]
