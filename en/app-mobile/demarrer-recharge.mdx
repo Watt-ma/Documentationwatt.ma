@@ -1,0 +1,60 @@
+---
+title: "Start Charging via QR Code on watt.ma"
+sidebarTitle: "Start Charging"
+description: "Scan the station's QR code from the Charge hub to launch a session and track power, energy, and cost in real time in the app."
+---
+
+From the watt.ma app, you start a charging session by scanning the station's QR code from the **Charge** tab. This page describes the full flow and real-time session tracking.
+
+<img
+  src="/images/app-mobile/05-charge-hub.png"
+  alt="Charge screen in the watt.ma app"
+  width="320"
+/>
+
+## Pre-Authentication
+
+Before launching your first session, you must have:
+
+1. Created an account via the **Sign Up** screens (name and phone number validation).
+2. Validated your number with the 6-digit OTP received by SMS (auto-advance input).
+3. Set up a payment method in the wallet (see [Payment](/en/app-mobile/paiement)).
+
+<Note>
+  In **Mock Mode**, any 6-digit OTP code is accepted. This is useful for testing the flow without depending on an SMS provider.
+</Note>
+
+## Launch a Session
+
+<Steps>
+  <Step title="Open the Charge hub">
+    Tap the **Charge** tab at the bottom of the screen. This is the app's QR hub.
+  </Step>
+  <Step title="Scan the QR code">
+    The app opens the camera via `expo-camera`. Point it at the QR code displayed on the station to trigger the session.
+  </Step>
+  <Step title="Confirm and plug in">
+    Verify the pricing and connector shown on screen, confirm, and plug in your vehicle.
+  </Step>
+</Steps>
+
+## Session Tracking
+
+Once the session is launched, the app displays in real time:
+
+- The **instantaneous power** (43 kW by default in Mock Mode)
+- The **energy delivered** in kWh
+- The **elapsed time** since the start
+- The **cumulative cost** in dirhams
+
+<Info>
+  Connector commands rely on the OCPP protocol. In Mock Mode, values are simulated and updated every second. Once `EXPO_PUBLIC_MOCK_MODE=false`, the app sends real commands to the backend via `OCPP_BACKEND_URL`.
+</Info>
+
+## Stop the Session
+
+Tap **Stop** in the app to end the session. The final amount is debited from the prepaid wallet and the transaction appears in the [history](/en/app-mobile/historique).
+
+<Warning>
+  Do not unplug the cable before stopping the session in the app. Some vehicles lock the connector while the session is active.
+</Warning>

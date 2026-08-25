@@ -1,3 +1,51 @@
 ---
-title: "details-station"
+title: "Détails d'une station de recharge dans l'app watt.ma"
+sidebarTitle: "Détails station"
+description: "Consultez les informations d'une station watt.ma : connecteurs, puissance, statut en temps réel et navigation GPS depuis l'app mobile."
 ---
+
+Quand vous touchez une station sur la carte ou dans la liste, l'app watt.ma ouvre un écran **Détails de la station** avec toutes les infos utiles avant de vous déplacer : statut d'ouverture, adresse, connecteurs disponibles et navigation GPS.
+
+## Vue d'ensemble
+
+<img
+  src="/images/app-mobile/13-station-details.png"
+  alt="Écran Détails de la station dans l'app watt.ma"
+  width="320"
+/>
+
+L'écran affiche :
+
+- **Badge de statut** : `Ouvert`, `Fermé` ou `En maintenance`.
+- **Nom** de la station (par exemple `Total Energies Djebilet`).
+- **Adresse** complète et **ville** (Casablanca, Rabat, Marrakech, Tanger, etc.).
+- **Trois compteurs** : nombre de points de charge, types de vitesse et connecteurs.
+- **Connecteurs disponibles** : CCS2, CHAdeMO, Type 2.
+
+## Informations techniques
+
+Pour chaque station, l'app expose :
+
+| Champ | Description |
+| --- | --- |
+| Points de charge | Nombre total de connecteurs physiques sur le site |
+| Types de vitesse | AC lente/rapide, DC rapide |
+| Connecteurs | Types de prises : CCS2, CHAdeMO, Type 2 |
+| Statut OCPP | Disponible, En charge, Occupé, Hors service (depuis le CPMS) |
+| Tarif | MAD par kWh, défini par l'opérateur de la borne |
+
+Le statut est remonté en direct depuis le [CPMS watt.ma](/bornes/vue-ensemble) via OCPP 1.6J.
+
+## Démarrer la navigation
+
+Le bouton **Démarrer la navigation** ouvre l'app de cartographie par défaut du téléphone (Google Maps, Apple Maps ou Waze) avec l'itinéraire préchargé vers la station.
+
+## Actions disponibles
+
+- **Ajouter aux favoris** : icône cœur en haut à droite. Voir [Favoris](/app-mobile/favoris).
+- **Démarrer une recharge** : depuis l'onglet **Recharger** en scannant le QR de la borne sur place. Voir [Démarrer une recharge](/app-mobile/demarrer-recharge).
+- **Signaler un problème** : à venir dans une prochaine version.
+
+<Note>
+  Les stations sont issues du réseau des opérateurs partenaires watt.ma. La première mise en service publique est prévue à l'Université Al Akhawayn à Ifrane.
+</Note>

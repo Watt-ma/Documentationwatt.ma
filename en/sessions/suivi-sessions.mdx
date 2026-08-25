@@ -1,0 +1,37 @@
+---
+title: "Track and Analyze Charging Sessions on watt.ma"
+sidebarTitle: "Sessions"
+description: "View charging session history on watt.ma: energy consumed, authentication method, remote start or stop, and filtering by site or station."
+---
+
+Session tracking lets you monitor every charge performed across your charging fleet. From the watt.ma dashboard, you visualize active sessions in real time and access a detailed history to analyze consumption, identify users, and optimize the use of your equipment.
+
+<Steps>
+  <Step title="Access session history">
+    Sign in to [watt.ma](https://watt.ma), then click **Sessions** in the sidebar menu. The list displays all sessions with their status (in progress or completed).
+  </Step>
+  <Step title="Filter and search">
+    Use the filters at the top of the page to refine results:
+
+    - **Date**: custom range or preset (today, this week, this month)
+    - **Site**: select one or more sites
+    - **Station**: filter by OCPP station identifier
+    - **User**: search by name or RFID card
+  </Step>
+  <Step title="View session details">
+    Click a row to open the detailed view. You will find:
+
+    - Start and end date and time
+    - Total charge duration
+    - Energy consumed in kWh
+    - User identifier and authentication method (CMI QR code, RFID card, or remote start)
+    - Amount billed and payment status
+  </Step>
+  <Step title="Start or stop a session remotely">
+    If a station is connected and available, click **Start** or **Stop** from the station details page to take control remotely. This action is transmitted immediately via the OCPP 1.6J protocol.
+  </Step>
+</Steps>
+
+<Tip>
+  Export your sessions as CSV or Excel from the **Export** menu at the top of the list. This feature is ideal for accounting or monthly reporting. For more export options, see the [Export data](/en/rapports/exporter-donnees) page.
+</Tip>

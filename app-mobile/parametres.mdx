@@ -1,3 +1,48 @@
 ---
-title: "parametres"
+title: "Paramètres de l'app mobile watt.ma"
+sidebarTitle: "Paramètres"
+description: "Gérez les notifications, la localisation, le mode sombre, les moyens de paiement et les documents légaux dans l'app watt.ma."
 ---
+
+L'écran **Paramètres** de l'app watt.ma regroupe les préférences de l'expérience conducteur et les liens vers les documents légaux. Il s'ouvre depuis **Profil → Paramètres**.
+
+## Vue d'ensemble
+
+<img
+  src="/images/app-mobile/11-settings.png"
+  alt="Écran Paramètres dans l'app watt.ma"
+  width="320"
+/>
+
+L'écran est divisé en deux sections :
+
+- **Préférences** : options d'usage quotidien.
+- **Compte** : moyens de paiement et documents légaux.
+
+En bas de l'écran, la version installée est affichée (par exemple `watt.ma v1.0.0`).
+
+## Préférences
+
+| Réglage | Description |
+| --- | --- |
+| Notifications | Active les notifications push (fin de session, top-up, alertes de borne) |
+| Services de localisation | Autorise l'app à afficher les stations les plus proches sur la carte |
+| Mode sombre | Bascule entre thème clair et sombre, indépendamment du réglage système |
+
+Les notifications utilisent Expo Notifications. La localisation utilise l'API standard d'Expo Location : GPS ou fond de carte selon la précision demandée par l'écran.
+
+## Compte
+
+- **Moyens de paiement** : ouvre la gestion des cartes. Voir [Portefeuille et paiement](/app-mobile/paiement).
+- **FAQs** : questions fréquentes. Voir [FAQ](/app-mobile/faq).
+- **Termes & Conditions** : conditions générales d'utilisation watt.ma.
+- **Politique de confidentialité** : traitement des données personnelles selon la loi 09-08.
+
+## Langue
+
+L'app est publiée en français. Le support multilingue (arabe et anglais) est prévu dans une prochaine version. Voir la [Roadmap](/roadmap).
+
+## Se déconnecter et supprimer le compte
+
+- **Se déconnecter** : bouton en bas de l'écran Paramètres. Revient à l'écran de [connexion](/app-mobile/inscription-connexion).
+- **Supprimer le compte** : envoyez la demande à [contact@wattsc.com](mailto:contact@wattsc.com). Vos données personnelles seront effacées conformément à la loi 09-08.

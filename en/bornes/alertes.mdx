@@ -1,0 +1,55 @@
+---
+title: "Configure Alerts for Charging Station Issues"
+sidebarTitle: "Alerts"
+description: "Create custom alerts on watt.ma to get notified by email or WhatsApp when a station fails, a session is abnormal, or a connector errors."
+---
+
+watt.ma alerts let you react instantly to critical events across your charging fleet. Instead of discovering a failure through a customer call, you receive a notification as soon as a station goes offline, a session runs abnormally long, or a connector reports an error.
+
+## Available Alert Types
+
+watt.ma offers three ready-to-use alert categories:
+
+- **Station offline**: triggered when a station stops communicating with the OCPP server for more than a few minutes.
+- **Abnormally long session**: alert if a charge exceeds a duration threshold you define (useful for detecting an unplugged vehicle).
+- **Connector error**: notification in case of hardware fault, overheating, or communication error reported by the station.
+
+## Create an Alert
+
+<Steps>
+  <Step title="Open the alerts page">
+    Sign in to [watt.ma](https://watt.ma), then go to **Stations \> Alerts** in the sidebar menu.
+  </Step>
+  <Step title="Choose the alert type">
+    Click **New alert**. Select the event type to monitor: station offline, long session, or connector error.
+  </Step>
+  <Step title="Define the scope">
+    Apply the alert to your entire fleet, a specific site, or an individual station. This granularity prevents you from receiving notifications for sites you do not manage directly.
+  </Step>
+  <Step title="Configure the notification channel">
+    Choose one or more channels:
+
+    - **Email**: enter the address of the technical manager or site manager.
+    - **WhatsApp**: enter the phone number in international format (\+212...). The message is sent automatically from watt.ma's official number.
+  </Step>
+  <Step title="Adjust advanced settings">
+    For long sessions, set the threshold in minutes or hours. For offline stations, specify the grace period before triggering (default: 5 minutes).
+  </Step>
+  <Step title="Activate and test">
+    Save the alert, then click **Test** to send a test notification and verify that the email or WhatsApp message is received.
+  </Step>
+</Steps>
+
+<Warning>
+  Avoid creating alerts on overly frequent events without a grace period. A threshold that is too low on an unstable station can flood your notification channels and drown out truly critical alerts.
+</Warning>
+
+<Tip>
+  Use **quiet hours** to silence notifications at night or during planned maintenance windows. In the alert settings, define a time range (for example 11:00 PM to 6:00 AM) during which notifications are held and grouped into a single summary in the morning.
+</Tip>
+
+## Next Steps
+
+- [Monitor your stations in real time](/en/bornes/tableau-de-bord)
+- [Connect a new station](/en/bornes/connecter-une-borne)
+- [Export alert history](/en/rapports/exporter-donnees)

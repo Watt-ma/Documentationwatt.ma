@@ -9,116 +9,240 @@
   },
   "favicon": "/images/logo.png",
   "navigation": {
-    "tabs": [
+    "languages": [
       {
-        "tab": "Plateforme CPMS",
-        "groups": [
+        "language": "fr",
+        "default": true,
+        "tabs": [
           {
-            "group": "Démarrer",
-            "icon": "rocket",
-            "pages": [
-              "index",
-              "quickstart",
-              "demarrer/creer-un-compte"
+            "tab": "Plateforme CPMS",
+            "groups": [
+              {
+                "group": "Démarrer",
+                "icon": "rocket",
+                "pages": [
+                  "index",
+                  "quickstart",
+                  "demarrer/creer-un-compte"
+                ]
+              },
+              {
+                "group": "Gestion des Bornes",
+                "icon": "bolt",
+                "pages": [
+                  "bornes/vue-ensemble",
+                  "bornes/connecter-une-borne",
+                  "bornes/tableau-de-bord",
+                  "bornes/alertes"
+                ]
+              },
+              {
+                "group": "Sessions et Paiements",
+                "icon": "credit-card",
+                "pages": [
+                  "sessions/suivi-sessions",
+                  "sessions/tarifs",
+                  "sessions/paiements-qr-cmi",
+                  "sessions/badges-rfid"
+                ]
+              },
+              {
+                "group": "Rapports et Revenus",
+                "icon": "chart-bar",
+                "pages": [
+                  "rapports/vue-ensemble",
+                  "rapports/revenus",
+                  "rapports/exporter-donnees"
+                ]
+              },
+              {
+                "group": "Intégrations et API",
+                "icon": "plug",
+                "pages": [
+                  "api/acces-api",
+                  "api/marque-blanche"
+                ]
+              },
+              {
+                "group": "Compte et Équipe",
+                "icon": "gear",
+                "pages": [
+                  "compte/gestion-equipe",
+                  "compte/forfaits"
+                ]
+              },
+              {
+                "group": "Roadmap",
+                "icon": "map",
+                "pages": [
+                  "roadmap"
+                ]
+              }
             ]
           },
           {
-            "group": "Gestion des Bornes",
-            "icon": "bolt",
-            "pages": [
-              "bornes/vue-ensemble",
-              "bornes/connecter-une-borne",
-              "bornes/tableau-de-bord",
-              "bornes/alertes"
-            ]
-          },
-          {
-            "group": "Sessions et Paiements",
-            "icon": "credit-card",
-            "pages": [
-              "sessions/suivi-sessions",
-              "sessions/tarifs",
-              "sessions/paiements-qr-cmi",
-              "sessions/badges-rfid"
-            ]
-          },
-          {
-            "group": "Rapports et Revenus",
-            "icon": "chart-bar",
-            "pages": [
-              "rapports/vue-ensemble",
-              "rapports/revenus",
-              "rapports/exporter-donnees"
-            ]
-          },
-          {
-            "group": "Intégrations et API",
-            "icon": "plug",
-            "pages": [
-              "api/acces-api",
-              "api/marque-blanche"
-            ]
-          },
-          {
-            "group": "Compte et Équipe",
-            "icon": "gear",
-            "pages": [
-              "compte/gestion-equipe",
-              "compte/forfaits"
-            ]
-          },
-          {
-            "group": "Roadmap",
-            "icon": "map",
-            "pages": [
-              "roadmap"
+            "tab": "Application Mobile",
+            "groups": [
+              {
+                "group": "Découvrir l'app",
+                "icon": "mobile-screen",
+                "pages": [
+                  "app-mobile/vue-ensemble",
+                  "app-mobile/installation"
+                ]
+              },
+              {
+                "group": "Compte Conducteur",
+                "icon": "user",
+                "pages": [
+                  "app-mobile/inscription-connexion",
+                  "app-mobile/profil"
+                ]
+              },
+              {
+                "group": "Recharger",
+                "icon": "bolt",
+                "pages": [
+                  "app-mobile/carte-bornes",
+                  "app-mobile/details-station",
+                  "app-mobile/favoris",
+                  "app-mobile/demarrer-recharge"
+                ]
+              },
+              {
+                "group": "Paiement et Historique",
+                "icon": "wallet",
+                "pages": [
+                  "app-mobile/paiement",
+                  "app-mobile/historique"
+                ]
+              },
+              {
+                "group": "Paramètres",
+                "icon": "gear",
+                "pages": [
+                  "app-mobile/parametres",
+                  "app-mobile/faq"
+                ]
+              }
             ]
           }
         ]
       },
       {
-        "tab": "Application Mobile",
-        "groups": [
+        "language": "en",
+        "tabs": [
           {
-            "group": "Découvrir l'app",
-            "icon": "mobile-screen",
-            "pages": [
-              "app-mobile/vue-ensemble",
-              "app-mobile/installation"
+            "tab": "CPMS Platform",
+            "groups": [
+              {
+                "group": "Get Started",
+                "icon": "rocket",
+                "pages": [
+                  "en/index",
+                  "en/quickstart",
+                  "en/demarrer/creer-un-compte"
+                ]
+              },
+              {
+                "group": "Charge Point Management",
+                "icon": "bolt",
+                "pages": [
+                  "en/bornes/vue-ensemble",
+                  "en/bornes/connecter-une-borne",
+                  "en/bornes/tableau-de-bord",
+                  "en/bornes/alertes"
+                ]
+              },
+              {
+                "group": "Sessions and Payments",
+                "icon": "credit-card",
+                "pages": [
+                  "en/sessions/suivi-sessions",
+                  "en/sessions/tarifs",
+                  "en/sessions/paiements-qr-cmi",
+                  "en/sessions/badges-rfid"
+                ]
+              },
+              {
+                "group": "Reports and Revenue",
+                "icon": "chart-bar",
+                "pages": [
+                  "en/rapports/vue-ensemble",
+                  "en/rapports/revenus",
+                  "en/rapports/exporter-donnees"
+                ]
+              },
+              {
+                "group": "Integrations and API",
+                "icon": "plug",
+                "pages": [
+                  "en/api/acces-api",
+                  "en/api/marque-blanche"
+                ]
+              },
+              {
+                "group": "Account and Team",
+                "icon": "gear",
+                "pages": [
+                  "en/compte/gestion-equipe",
+                  "en/compte/forfaits"
+                ]
+              },
+              {
+                "group": "Roadmap",
+                "icon": "map",
+                "pages": [
+                  "en/roadmap"
+                ]
+              }
             ]
           },
           {
-            "group": "Compte Conducteur",
-            "icon": "user",
-            "pages": [
-              "app-mobile/inscription-connexion",
-              "app-mobile/profil"
-            ]
-          },
-          {
-            "group": "Recharger",
-            "icon": "bolt",
-            "pages": [
-              "app-mobile/carte-bornes",
-              "app-mobile/details-station",
-              "app-mobile/favoris",
-              "app-mobile/demarrer-recharge"
-            ]
-          },
-          {
-            "group": "Paiement et Historique",
-            "icon": "wallet",
-            "pages": [
-              "app-mobile/paiement",
-              "app-mobile/historique"
-            ]
-          },
-          {
-            "group": "Paramètres",
-            "icon": "gear",
-            "pages": [
-              "app-mobile/parametres",
-              "app-mobile/faq"
+            "tab": "Mobile App",
+            "groups": [
+              {
+                "group": "Discover the App",
+                "icon": "mobile-screen",
+                "pages": [
+                  "en/app-mobile/vue-ensemble",
+                  "en/app-mobile/installation"
+                ]
+              },
+              {
+                "group": "Driver Account",
+                "icon": "user",
+                "pages": [
+                  "en/app-mobile/inscription-connexion",
+                  "en/app-mobile/profil"
+                ]
+              },
+              {
+                "group": "Charging",
+                "icon": "bolt",
+                "pages": [
+                  "en/app-mobile/carte-bornes",
+                  "en/app-mobile/details-station",
+                  "en/app-mobile/favoris",
+                  "en/app-mobile/demarrer-recharge"
+                ]
+              },
+              {
+                "group": "Payment and History",
+                "icon": "wallet",
+                "pages": [
+                  "en/app-mobile/paiement",
+                  "en/app-mobile/historique"
+                ]
+              },
+              {
+                "group": "Settings",
+                "icon": "gear",
+                "pages": [
+                  "en/app-mobile/parametres",
+                  "en/app-mobile/faq"
+                ]
+              }
             ]
           }
         ]
@@ -128,19 +252,6 @@
   "logo": {
     "light": "/images/logo.png",
     "dark": "/images/logo.png"
-  },
-  "navbar": {
-    "links": [
-      {
-        "label": "Support",
-        "href": "mailto:contact@wattsc.com"
-      }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Tableau de bord",
-      "href": "https://app.watt.ma"
-    }
   },
   "footer": {
     "socials": {
