@@ -1,0 +1,118 @@
+---
+title: "Issue resident invoices for condos and buildings"
+sidebarTitle: "Resident Invoices"
+description: "Generate, send, and track monthly invoices for condo and building residents on watt.ma, with reminders and accounting exports."
+---
+
+Resident invoices let the property manager bill each resident every month for their charging sessions, with an automated cycle for generation, delivery, and collection. watt.ma aggregates all monthly sessions per unit and produces an invoice compliant with Moroccan format requirements.
+
+## Monthly billing cycle
+
+<Steps>
+  <Step title="Cycle close">
+    On the configured closing date (for example the last day of the month), watt.ma automatically aggregates all sessions attributed to each unit over the period.
+  </Step>
+  <Step title="Invoice generation">
+    A named PDF invoice is generated for each active unit, with a sequential number, 20% VAT, Moroccan legal notices, and a session breakdown.
+  </Step>
+  <Step title="Property manager review">
+    The property manager gets a notification and can approve or adjust invoices before sending. An automatic mode allows direct delivery without manual review.
+  </Step>
+  <Step title="Delivery to residents">
+    Invoices are emailed to residents. Depending on the payment method, a CMI direct debit or an online payment link is attached.
+  </Step>
+  <Step title="Tracking and reminders">
+    watt.ma automatically sends reminders to residents past due at D\+7, D\+15, and D\+30, with an option to customize the message.
+  </Step>
+</Steps>
+
+## Anatomy of an invoice
+
+Every generated invoice contains:
+
+- **Header**: property manager or condo name, ICE and IF, address
+- **Resident**: name, unit (apartment or lot), billing address
+- **Number and date**: unique sequential number and issue date
+- **Session breakdown**: date, charger, duration, kWh consumed, applied rate
+- **Summary**: subtotal, 20% VAT, grand total in Moroccan dirhams
+- **Payment terms**: IBAN, CMI link, or wire transfer instructions
+
+<Note>
+  Invoices comply with requirements from the Moroccan tax authority (Direction Générale des Impôts): tax identification number, ICE, VAT rate, and continuous sequential numbering.
+</Note>
+
+## Payment methods
+
+<CardGroup cols={2}>
+  <Card title="CMI direct debit" icon="credit-card">
+    Automatic debit on the resident's saved card on the due date.
+  </Card>
+
+  <Card title="Online payment link" icon="link">
+    CMI link sent by email and SMS, valid until the due date.
+  </Card>
+
+  <Card title="Bank transfer" icon="building-columns">
+    Property manager IBAN printed on the invoice, with manual reconciliation in watt.ma.
+  </Card>
+
+  <Card title="Condo fee integration" icon="receipt">
+    Export to the property manager's software for inclusion in the monthly condo call.
+  </Card>
+</CardGroup>
+
+## Billing dashboard
+
+The **Reports \> Resident Invoices** dashboard shows for each cycle:
+
+| Metric | Description |
+| --- | --- |
+| **Invoices issued** | Count and total amount for the month |
+| **Collected** | Share paid to date, with day-by-day evolution |
+| **Overdue** | Invoices past due, with debt age |
+| **Bad debt** | Invoices unpaid beyond 60 days |
+
+Filter by site, unit, or period to analyze the financial health of each condo.
+
+## Accounting export
+
+Two export formats are available to integrate invoices into your management tool:
+
+- **CSV / Excel**: detailed list of invoices with statuses, amounts, and references
+- **Grouped PDF**: ZIP archive with every invoice for the month, ready to hand over to your accountant
+- **Property manager API**: direct integration with property management software (contact us for the supported list)
+
+See the [Export data page](/en/rapports/exporter-donnees) to schedule a monthly export.
+
+## Handling overdue invoices
+
+<Steps>
+  <Step title="Review overdue invoices">
+    The dashboard lists past-due invoices with amount, age, and resident contact.
+  </Step>
+  <Step title="Send a manual reminder">
+    Click **Remind** to send a personalized reminder by email or SMS.
+  </Step>
+  <Step title="Suspend charger access">
+    If the delay exceeds 60 days, watt.ma can automatically disable the resident's card until the situation is resolved.
+  </Step>
+  <Step title="Escalate to collections">
+    Export overdue invoices in a format compatible with your collections provider to start the recovery process.
+  </Step>
+</Steps>
+
+<Warning>
+  Suspending access to a charger installed on a private parking space is subject to specific rules in the condo bylaws. Verify that your bylaws allow this measure before enabling it.
+</Warning>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Residential Billing" icon="building" href="/en/sessions/facturation-residentielle">
+    Set up a condo and attribute sessions to residents.
+  </Card>
+
+  <Card title="Export data" icon="download" href="/en/rapports/exporter-donnees">
+    Schedule monthly exports for your accounting.
+  </Card>
+</CardGroup>

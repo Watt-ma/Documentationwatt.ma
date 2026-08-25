@@ -1,0 +1,118 @@
+---
+title: "Émettre les factures résidents en copropriété"
+sidebarTitle: "Factures Résidents"
+description: "Générez, envoyez et suivez les factures mensuelles des résidents de copropriétés et immeubles sur watt.ma, avec relances et export comptable."
+---
+
+Les factures résidents permettent au syndic ou au gestionnaire d'immeuble de facturer chaque mois les résidents pour leurs sessions de recharge, avec un cycle automatisé de génération, d'envoi et de recouvrement. watt.ma agrège toutes les sessions du mois par unité et produit une facture conforme au format marocain.
+
+## Cycle de facturation mensuel
+
+<Steps>
+  <Step title="Clôture du cycle">
+    À la date de clôture définie (par exemple le dernier jour du mois), watt.ma agrège automatiquement toutes les sessions attribuées à chaque unité sur la période.
+  </Step>
+  <Step title="Génération des factures">
+    Une facture PDF nominative est générée pour chaque unité active, avec numéro séquentiel, TVA 20 %, mentions légales marocaines, et détail des sessions.
+  </Step>
+  <Step title="Validation par le syndic">
+    Le syndic reçoit une notification et peut valider ou ajuster les factures avant envoi. Un mode automatique permet l'envoi direct sans validation manuelle.
+  </Step>
+  <Step title="Envoi aux résidents">
+    Les factures sont envoyées par email au résident. Selon le mode de paiement, un prélèvement CMI ou un lien de règlement en ligne est joint.
+  </Step>
+  <Step title="Suivi et relances">
+    watt.ma envoie automatiquement des relances aux résidents en retard de paiement, à J\+7, J\+15 et J\+30, avec possibilité de personnaliser le message.
+  </Step>
+</Steps>
+
+## Anatomie d'une facture
+
+Chaque facture générée contient :
+
+- **En-tête** : nom du syndic ou de la copropriété, ICE et IF, adresse
+- **Résident** : nom, unité (appartement ou lot), adresse de facturation
+- **Numéro et date** : numéro séquentiel unique et date d'émission
+- **Détail des sessions** : date, borne, durée, kWh consommés, tarif appliqué
+- **Récapitulatif** : total HT, TVA 20 %, total TTC en dirhams marocains
+- **Modalités de paiement** : IBAN, lien CMI, ou instructions de virement
+
+<Note>
+  Les factures sont conformes aux exigences de la Direction Générale des Impôts (DGI) marocaine : mention du numéro d'identification fiscale, ICE, taux de TVA, et numérotation séquentielle continue.
+</Note>
+
+## Modes de paiement
+
+<CardGroup cols={2}>
+  <Card title="Prélèvement CMI" icon="credit-card">
+    Prélèvement automatique sur la carte bancaire enregistrée du résident à échéance.
+  </Card>
+
+  <Card title="Lien de paiement en ligne" icon="link">
+    Lien CMI envoyé par email et SMS, valable jusqu'à la date d'échéance.
+  </Card>
+
+  <Card title="Virement bancaire" icon="building-columns">
+    IBAN du syndic mentionné sur la facture, rapprochement manuel dans watt.ma.
+  </Card>
+
+  <Card title="Prélèvement sur charges" icon="receipt">
+    Export vers le logiciel de gestion du syndic pour intégration aux appels de charges.
+  </Card>
+</CardGroup>
+
+## Tableau de bord de facturation
+
+Le tableau de bord **Rapports \> Factures résidents** affiche pour chaque cycle :
+
+| Indicateur | Description |
+| --- | --- |
+| **Factures émises** | Nombre et montant total des factures du mois |
+| **Encaissé** | Part réglée à date, avec évolution jour par jour |
+| **En retard** | Factures dépassant l'échéance, avec âge de la dette |
+| **Impayés** | Factures en défaut de paiement au-delà de 60 jours |
+
+Filtrez par site, par unité ou par période pour analyser la santé financière de chaque copropriété.
+
+## Export comptable
+
+Deux formats d'export sont disponibles pour intégrer les factures dans votre outil de gestion :
+
+- **CSV / Excel** : liste détaillée des factures avec statuts, montants et références
+- **PDF groupé** : archive ZIP contenant toutes les factures du mois pour transmission au comptable
+- **API syndic** : intégration directe avec les logiciels de syndic (contactez-nous pour la liste)
+
+Consultez la [page Exporter les données](/rapports/exporter-donnees) pour configurer un export planifié mensuel.
+
+## Gérer les impayés
+
+<Steps>
+  <Step title="Consulter les impayés">
+    Le tableau de bord affiche la liste des factures en retard, avec le montant, l'ancienneté et le contact du résident.
+  </Step>
+  <Step title="Envoyer une relance manuelle">
+    Cliquez sur **Relancer** pour envoyer un rappel personnalisé par email ou SMS.
+  </Step>
+  <Step title="Suspendre l'accès aux bornes">
+    Si le retard dépasse 60 jours, watt.ma peut désactiver automatiquement le badge du résident jusqu'à régularisation.
+  </Step>
+  <Step title="Transmettre au recouvrement">
+    Exportez les impayés au format compatible avec votre prestataire de recouvrement pour engager la procédure.
+  </Step>
+</Steps>
+
+<Warning>
+  La suspension d'accès à une borne installée sur une place de parking privée est soumise à des règles particulières dans le règlement de copropriété. Vérifiez que votre règlement autorise cette mesure avant activation.
+</Warning>
+
+## Étapes suivantes
+
+<CardGroup cols={2}>
+  <Card title="Facturation résidentielle" icon="building" href="/sessions/facturation-residentielle">
+    Configurez une copropriété et attribuez les sessions aux résidents.
+  </Card>
+
+  <Card title="Exporter les données" icon="download" href="/rapports/exporter-donnees">
+    Planifiez des exports mensuels pour votre comptabilité.
+  </Card>
+</CardGroup>

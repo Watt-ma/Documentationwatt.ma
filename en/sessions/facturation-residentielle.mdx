@@ -1,0 +1,96 @@
+---
+title: "Invoice EV charging in condos and buildings"
+sidebarTitle: "Residential Billing"
+description: "Invoice charging sessions per apartment or unit in a condo with watt.ma, rebilling each resident based on their actual consumption."
+---
+
+Residential billing lets condo property managers and building operators rebill each charging session to the correct resident. watt.ma automatically attributes every kWh consumed to the driver's unit (apartment, lot, parking space) and generates monthly invoices at the end of each cycle.
+
+## Use cases
+
+<CardGroup cols={2}>
+  <Card title="Residential condos" icon="building">
+    Rebill charging to owners or tenants based on real consumption, with a breakdown per unit.
+  </Card>
+
+  <Card title="Office buildings" icon="building-user">
+    Split billing between corporate tenants or eligible employees.
+  </Card>
+
+  <Card title="Serviced residences" icon="hotel">
+    Bill resident or visitor charging on their overall monthly statement.
+  </Card>
+
+  <Card title="Private parking lots" icon="square-parking">
+    Attribute sessions to subscribed users with a monthly plan or pay-as-you-go.
+  </Card>
+</CardGroup>
+
+## Set up a condo
+
+<Steps>
+  <Step title="Create a condo site">
+    In **Charge Points \> Sites**, click **New site** and choose the **Condo / Building** type. Fill in the address, property manager, and total number of units (lots).
+  </Step>
+  <Step title="Declare units and residents">
+    Add each unit (for example apartment A-101, lot 42, space P-15) and link the matching resident: name, email, preferred payment method. Residents receive an invitation to activate their RFID card or mobile app account.
+  </Step>
+  <Step title="Assign chargers to the site">
+    Link the charging stations to the condo site. Chargers can be shared (accessible to all residents) or private (dedicated to a specific unit, for example a charger installed on a private parking space).
+  </Step>
+  <Step title="Choose the rebilling model">
+    Select the billing model: passthrough of the actual electricity cost (ONEE rate per kWh) or a fixed rate defined by the property manager. Optionally add a fixed monthly fee to cover maintenance and management costs.
+  </Step>
+  <Step title="Activate monthly invoicing">
+    Set the cycle closing date (for example the last day of the month) and the invoice delivery mode: email PDF, CMI direct debit, or export for the property manager.
+  </Step>
+</Steps>
+
+## Attribute a session to a unit
+
+Each session is automatically linked to the resident's unit through authentication.
+
+- **Named RFID card**: each resident receives a card linked to their unit. A single tap on the charger starts a session billed to the right lot.
+- **watt.ma mobile app**: authenticated residents start charging from their phone. The session is attributed to their unit.
+- **Personal QR code**: for occasional visitors, residents can generate a temporary QR code that bills the session to their account.
+
+<Note>
+  If a private charger is installed on a dedicated parking space, all sessions there are automatically attributed to the space owner, with no authentication required.
+</Note>
+
+## Pricing and VAT
+
+Three rebilling models are available for condos in Morocco:
+
+| Model | Description | Use case |
+| --- | --- | --- |
+| **Passthrough cost** | Rebill at the actual ONEE rate applied to the building, with an exact per-kWh split | Condos that want full transparency |
+| **Fixed rate** | Per-kWh price defined by the property manager, margin included to cover overhead | Buildings that pool charger maintenance |
+| **Monthly plan** | Fixed subscription for unlimited access, optionally capped in kWh | Serviced residences and private parking |
+
+<Warning>
+  Morocco's 20% VAT applies to charging services invoiced by the property manager or operator. Set the applicable rate in **Account \> Billing**. For passthrough rebilling between co-owners, consult your accountant to confirm the tax treatment.
+</Warning>
+
+## Tracking and reporting
+
+Property managers get a dedicated dashboard that shows:
+
+- Total building consumption over the period
+- Per-unit breakdown, with kWh consumed and amount due
+- Outstanding payments and reminders in progress
+- Invoices issued, sent, and paid
+
+See the [Resident Invoices page](/en/rapports/factures-residents) to generate, export, and track monthly invoices.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Resident Invoices" icon="file-invoice" href="/en/rapports/factures-residents">
+    Issue and track monthly invoices for residents.
+  </Card>
+
+  <Card title="RFID Cards" icon="id-card" href="/en/sessions/badges-rfid">
+    Distribute and manage named cards per unit.
+  </Card>
+</CardGroup>

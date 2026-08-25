@@ -1,0 +1,96 @@
+---
+title: "Facturer les recharges en copropriété et immeuble"
+sidebarTitle: "Facturation Résidentielle"
+description: "Facturez les sessions de recharge par appartement ou lot dans une copropriété avec watt.ma, en refacturant chaque résident selon sa consommation réelle."
+---
+
+La facturation résidentielle permet aux syndics de copropriété et gestionnaires d'immeubles de refacturer chaque session de recharge au résident concerné. watt.ma attribue automatiquement chaque kWh consommé à l'unité (appartement, lot, place de parking) du conducteur et génère des factures mensuelles à la fin de chaque cycle.
+
+## Cas d'usage
+
+<CardGroup cols={2}>
+  <Card title="Copropriétés résidentielles" icon="building">
+    Refacturez la recharge aux propriétaires ou locataires selon leur consommation réelle, avec ventilation par lot.
+  </Card>
+
+  <Card title="Immeubles de bureaux" icon="building-user">
+    Répartissez la facturation entre entreprises locataires ou salariés bénéficiaires du service.
+  </Card>
+
+  <Card title="Résidences services" icon="hotel">
+    Facturez les recharges des résidents ou visiteurs sur leur note mensuelle globale.
+  </Card>
+
+  <Card title="Parkings privatifs" icon="square-parking">
+    Attribuez les sessions à des utilisateurs abonnés avec un forfait mensuel ou à la consommation.
+  </Card>
+</CardGroup>
+
+## Configurer une copropriété
+
+<Steps>
+  <Step title="Créer un site de type copropriété">
+    Dans **Bornes \> Sites**, cliquez sur **Nouveau site** et choisissez le type **Copropriété / Immeuble**. Renseignez l'adresse, le syndic ou gestionnaire, et le nombre total d'unités (lots).
+  </Step>
+  <Step title="Déclarer les unités et les résidents">
+    Ajoutez chaque unité (par exemple appartement A-101, lot 42, place P-15) et associez le résident correspondant : nom, email, mode de paiement préféré. Les résidents reçoivent une invitation à activer leur badge RFID ou leur compte application mobile.
+  </Step>
+  <Step title="Affecter les bornes au site">
+    Rattachez les bornes de recharge au site copropriété. Les bornes peuvent être partagées (accessibles à tous les résidents) ou privatives (dédiées à une unité, par exemple une borne installée sur une place de parking privée).
+  </Step>
+  <Step title="Choisir le mode de refacturation">
+    Sélectionnez le mode de facturation : au coût réel de l'électricité (répercussion du tarif ONEE au kWh) ou à un tarif fixe défini par le syndic. Ajoutez éventuellement une part fixe mensuelle pour couvrir les frais d'entretien et de gestion.
+  </Step>
+  <Step title="Activer la facturation mensuelle">
+    Définissez la date de clôture du cycle (par exemple le dernier jour du mois) et le mode d'envoi des factures : email PDF, prélèvement CMI, ou export pour le syndic.
+  </Step>
+</Steps>
+
+## Attribuer une session à une unité
+
+Chaque session est automatiquement rattachée à l'unité du résident grâce à l'authentification.
+
+- **Badge RFID nominatif** : chaque résident reçoit un badge lié à son unité. Un simple scan sur la borne démarre la session facturée au bon lot.
+- **Application mobile watt.ma** : les résidents authentifiés démarrent la recharge depuis leur téléphone. La session est attribuée à leur unité.
+- **QR code personnel** : pour les visiteurs occasionnels, les résidents peuvent générer un QR code temporaire qui facture la session sur leur compte.
+
+<Note>
+  Si une borne privative est installée sur une place de parking dédiée, toutes les sessions y sont automatiquement attribuées au propriétaire de la place, sans besoin d'authentification.
+</Note>
+
+## Tarification et TVA
+
+Trois modèles de refacturation sont disponibles pour les copropriétés au Maroc :
+
+| Modèle | Description | Cas d'usage |
+| --- | --- | --- |
+| **Coût réel** | Refacturation au tarif ONEE réel appliqué à l'immeuble, avec ventilation exacte au kWh | Copropriétés qui souhaitent la transparence totale |
+| **Tarif fixe** | Prix au kWh défini par le syndic, marge incluse pour couvrir les frais généraux | Immeubles qui mutualisent l'entretien des bornes |
+| **Forfait mensuel** | Abonnement fixe pour un accès illimité, éventuellement plafonné en kWh | Résidences services et parkings privatifs |
+
+<Warning>
+  La TVA de 20 % s'applique aux prestations de recharge facturées par le syndic ou l'exploitant. Configurez le taux applicable dans **Compte \> Facturation**. Pour la refacturation au coût réel entre copropriétaires, consultez votre expert-comptable pour valider le traitement fiscal.
+</Warning>
+
+## Suivi et rapports
+
+Les syndics et gestionnaires disposent d'un tableau de bord dédié qui affiche :
+
+- La consommation totale de l'immeuble sur la période
+- Le détail par unité, avec kWh consommés et montant à facturer
+- Les impayés et relances en cours
+- Les factures émises, envoyées et réglées
+
+Consultez la [page Factures résidents](/rapports/factures-residents) pour générer, exporter et suivre les factures mensuelles.
+
+## Étapes suivantes
+
+<CardGroup cols={2}>
+  <Card title="Factures résidents" icon="file-invoice" href="/rapports/factures-residents">
+    Émettez et suivez les factures mensuelles des résidents.
+  </Card>
+
+  <Card title="Badges RFID" icon="id-card" href="/sessions/badges-rfid">
+    Distribuez et gérez les badges nominatifs par unité.
+  </Card>
+</CardGroup>
