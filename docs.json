@@ -12,122 +12,7 @@
     "languages": [
       {
         "language": "fr",
-        "default": true,
-        "tabs": [
-          {
-            "tab": "Plateforme CPMS",
-            "groups": [
-              {
-                "group": "Démarrer",
-                "icon": "rocket",
-                "pages": [
-                  "index",
-                  "quickstart",
-                  "demarrer/creer-un-compte"
-                ]
-              },
-              {
-                "group": "Gestion des Bornes",
-                "icon": "bolt",
-                "pages": [
-                  "bornes/vue-ensemble",
-                  "bornes/connecter-une-borne",
-                  "bornes/tableau-de-bord",
-                  "bornes/alertes"
-                ]
-              },
-              {
-                "group": "Sessions et Paiements",
-                "icon": "credit-card",
-                "pages": [
-                  "sessions/suivi-sessions",
-                  "sessions/tarifs",
-                  "sessions/paiements-qr-cmi",
-                  "sessions/badges-rfid"
-                ]
-              },
-              {
-                "group": "Rapports et Revenus",
-                "icon": "chart-bar",
-                "pages": [
-                  "rapports/vue-ensemble",
-                  "rapports/revenus",
-                  "rapports/exporter-donnees"
-                ]
-              },
-              {
-                "group": "Intégrations et API",
-                "icon": "plug",
-                "pages": [
-                  "api/acces-api",
-                  "api/marque-blanche"
-                ]
-              },
-              {
-                "group": "Compte et Équipe",
-                "icon": "gear",
-                "pages": [
-                  "compte/gestion-equipe",
-                  "compte/forfaits"
-                ]
-              },
-              {
-                "group": "Roadmap",
-                "icon": "map",
-                "pages": [
-                  "roadmap"
-                ]
-              }
-            ]
-          },
-          {
-            "tab": "Application Mobile",
-            "groups": [
-              {
-                "group": "Découvrir l'app",
-                "icon": "mobile-screen",
-                "pages": [
-                  "app-mobile/vue-ensemble",
-                  "app-mobile/installation"
-                ]
-              },
-              {
-                "group": "Compte Conducteur",
-                "icon": "user",
-                "pages": [
-                  "app-mobile/inscription-connexion",
-                  "app-mobile/profil"
-                ]
-              },
-              {
-                "group": "Recharger",
-                "icon": "bolt",
-                "pages": [
-                  "app-mobile/carte-bornes",
-                  "app-mobile/details-station",
-                  "app-mobile/favoris",
-                  "app-mobile/demarrer-recharge"
-                ]
-              },
-              {
-                "group": "Paiement et Historique",
-                "icon": "wallet",
-                "pages": [
-                  "app-mobile/paiement",
-                  "app-mobile/historique"
-                ]
-              },
-              {
-                "group": "Paramètres",
-                "icon": "gear",
-                "pages": [
-                  "app-mobile/parametres",
-                  "app-mobile/faq"
-                ]
-              }
-            ]
-          }
-        ]
+        "default": true
       },
       {
         "language": "en",
@@ -187,13 +72,6 @@
                 "pages": [
                   "en/compte/gestion-equipe",
                   "en/compte/forfaits"
-                ]
-              },
-              {
-                "group": "Roadmap",
-                "icon": "map",
-                "pages": [
-                  "en/roadmap"
                 ]
               }
             ]
