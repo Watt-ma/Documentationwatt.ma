@@ -74,6 +74,16 @@
                 ]
               },
               {
+                "group": "Carte Interactive",
+                "icon": "map-location",
+                "pages": [
+                  "cartes/vue-ensemble",
+                  "cartes/localiser-une-borne",
+                  "cartes/filtres-recherche",
+                  "cartes/details-station"
+                ]
+              },
+              {
                 "group": "Roadmap",
                 "icon": "map",
                 "pages": [
@@ -191,6 +201,16 @@
                 "pages": [
                   "en/compte/gestion-equipe",
                   "en/compte/forfaits"
+                ]
+              },
+              {
+                "group": "Interactive Map",
+                "icon": "map-location",
+                "pages": [
+                  "cartes/vue-ensemble",
+                  "cartes/localiser-une-borne",
+                  "cartes/filtres-recherche",
+                  "cartes/details-station"
                 ]
               },
               {
