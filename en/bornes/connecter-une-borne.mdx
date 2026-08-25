@@ -1,0 +1,62 @@
+---
+title: "Connect an OCPP Charging Station to watt.ma"
+sidebarTitle: "Connect Station"
+description: "Step-by-step guide to connect your OCPP 1.6J charging station to watt.ma: server URL, station configuration, and connection verification."
+---
+
+Connecting a charging station to watt.ma is the first step toward monitoring your fleet and enabling users to charge. This guide explains how to retrieve your OCPP server URL, configure it on the station, then verify that the connection is successfully established from the dashboard.
+
+<Note>
+  watt.ma supports only the **OCPP 1.6J** protocol (JSON over WebSocket). Make sure your station is compatible with this version before beginning.
+</Note>
+
+## Prerequisites
+
+- A charging station compatible with OCPP 1.6J (Alfen, ABB, Ratio, Teison, or other)
+- Access to the station's administration interface (touch screen, manufacturer app, or local web portal)
+- An active account on [watt.ma](https://watt.ma)
+
+## Connection Steps
+
+<Steps>
+  <Step title="Retrieve the OCPP server URL">
+    Sign in to [watt.ma](https://watt.ma), then go to **Stations \> Add a station**. watt.ma automatically generates a unique OCPP server URL for your account, for example:
+
+    ```text
+    wss://ocpp.watt.ma/123e4567-e89b-12d3-a456-426614174000
+    ```
+
+    Copy this URL. It identifies your account and allows the station to authenticate with watt.ma.
+  </Step>
+  <Step title="Configure the station">
+    From your station's administration interface, access the network or OCPP settings. Fill in the following fields:
+
+    - **OCPP backend URL**: paste the URL copied in the previous step
+    - **Protocol**: WebSocket (wss://)
+    - **OCPP version**: 1.6J
+    - **ChargeBox ID**: unique identifier for the station (often its serial number)
+
+    Save the configuration and restart the station if the manufacturer requires it.
+  </Step>
+  <Step title="Verify the connection in watt.ma">
+    Return to [watt.ma](https://watt.ma), open the **Dashboard**, and locate your new station. If the connection is successful, the status changes to **Online** in green within two minutes. The connectors then appear as available.
+  </Step>
+</Steps>
+
+<Tip>
+  Before putting the station into production, launch a test session from the dashboard or with an RFID card. Verify that the session appears correctly in **Sessions \> Session tracking** with the right consumption and pricing.
+</Tip>
+
+## Common Issues
+
+| Symptom | Likely Cause | Solution |
+| --- | --- | --- |
+| "Offline" status after 5 min | Wrong URL or firewall | Check the URL, port 443, and network rules |
+| Unstable connection | Aggressive proxy or NAT | Enable WebSocket keep-alive on the station |
+| Connectors not visible | Wrong ChargeBox ID | Make sure the ID matches the one registered in watt.ma |
+
+## Next Steps
+
+- [Monitor your stations in real time](/en/bornes/tableau-de-bord)
+- [Configure alerts](/en/bornes/alertes)
+- [Manage charging rates](/en/sessions/tarifs)

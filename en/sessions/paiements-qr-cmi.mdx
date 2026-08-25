@@ -1,0 +1,30 @@
+---
+title: "Accept QR Code Payments with CMI on watt.ma"
+sidebarTitle: "CMI Payments"
+description: "Activate QR code CMI payments on watt.ma: users pay for charging sessions by scanning a code from their Moroccan banking app."
+---
+
+watt.ma natively integrates QR code payments through the Centre Monétique Interbancaire (CMI). This feature allows your users to pay for their charging sessions by scanning a QR code displayed on the station screen or their phone, directly from their compatible Moroccan banking app. No physical payment terminal is required.
+
+<Steps>
+  <Step title="Verify your CMI prerequisites">
+    Make sure you have an active **CMI merchant account**. This account is opened through your bank in Morocco and gives you access to electronic payment acceptance via the CMI network.
+  </Step>
+  <Step title="Activate CMI integration in watt.ma">
+    Sign in to [watt.ma](https://watt.ma), then go to **Settings \> Payments**. Click **Activate CMI**, then enter the merchant credentials provided by your bank (contract number, API key, or certificate depending on the format provided by CMI).
+  </Step>
+  <Step title="Configure stations for QR display">
+    In each compatible station's settings, enable the **Display CMI QR code on screen** option. When a user plugs in their vehicle, the station displays a unique QR code linked to the current session.
+  </Step>
+  <Step title="Test a complete payment">
+    Launch a test session from a station. Scan the QR code with a Moroccan banking app (for example, your bank's CMI partner app). Verify that the payment is triggered, the session starts automatically, and the receipt is generated.
+  </Step>
+</Steps>
+
+<Note>
+  CMI integration requires an active merchant account with a Moroccan bank that is a CMI member. Without this account, the QR code payment option remains inactive in the watt.ma interface.
+</Note>
+
+<Tip>
+  Enable the **WhatsApp receipt** option in notification settings. After each successful CMI payment, the user automatically receives a detailed receipt via WhatsApp with the amount, duration, energy consumed, and location of the charge. This feature is available starting from the Startup plan.
+</Tip>

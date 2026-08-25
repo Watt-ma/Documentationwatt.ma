@@ -1,0 +1,45 @@
+---
+title: "Quickstart with watt.ma Charging Management"
+description: "Get your first charging station online in 4 steps: create an account, connect an OCPP 1.6J station, verify the connection, and launch a session."
+sidebarTitle: "Quickstart"
+---
+
+This guide walks you from sign-up to your first operational charging session on watt.ma. In under 15 minutes, you will create your account, connect an OCPP 1.6J compatible charging station, and verify everything is working correctly.
+
+<Steps>
+  <Step title="Create an account on watt.ma">
+    Go to [watt.ma](https://watt.ma) and click **Create an account**. Enter your email address, a secure password, and your organization name. Verify your email address via the confirmation link sent to you.
+  </Step>
+  <Step title="Add your first station">
+    In the **Stations** menu, click **Add a station**. Enter the station identifier (chargeBoxId), select the model from the list or choose **Generic OCPP 1.6J**. watt.ma automatically generates the OCPP connection URL and a security identifier for this station.
+  </Step>
+  <Step title="Configure the station for OCPP 1.6J">
+    Log in to your station's administration interface (Alfen, ABB, Ratio, Teison, and so on). In the network or OCPP settings, enter:
+
+    - **OCPP URL**: the URL provided by watt.ma
+    - **ChargeBox ID**: the identifier entered in the previous step
+    - **Protocol**: OCPP 1.6J (JSON over WebSocket)
+
+    Save and restart the station if required.
+  </Step>
+  <Step title="Verify the connection">
+    Return to watt.ma, in **Stations \> Overview**. The status of your station should change to **Connected** (green indicator). Click on the station to view its state, connectors, and latest activity.
+  </Step>
+  <Step title="Launch a first session">
+    From the dashboard or the station details page, click **Start a session** to test. You can also scan the QR code displayed on the station with a phone to initiate a CMI payment. Verify that the session appears in **Sessions \> Session tracking**.
+  </Step>
+</Steps>
+
+<Note>
+  If the station does not change to Connected status after 2 minutes, check that the WebSocket port (usually 443 or 80) is not blocked by your firewall. See the [Connect a station](/en/bornes/connecter-une-borne) page for detailed troubleshooting.
+</Note>
+
+<CardGroup cols={2}>
+  <Card title="Connect a station" icon="plug" href="/en/bornes/connecter-une-borne">
+    Detailed OCPP configuration by manufacturer
+  </Card>
+
+  <Card title="Manage pricing" icon="tag" href="/en/sessions/tarifs">
+    Define your charging prices
+  </Card>
+</CardGroup>

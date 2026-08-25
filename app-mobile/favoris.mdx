@@ -1,3 +1,44 @@
 ---
-title: "favoris"
+title: "Stations favorites dans l'app watt.ma"
+sidebarTitle: "Favoris"
+description: "Épinglez vos stations de recharge préférées dans l'app watt.ma pour les retrouver en un tap depuis la barre de navigation."
 ---
+
+L'onglet **Favoris** de l'app watt.ma vous permet d'épingler les stations que vous utilisez le plus souvent : bornes du domicile, du bureau ou sur vos trajets habituels. Cette page décrit comment ajouter, retirer et retrouver vos favoris.
+
+## Vue d'ensemble
+
+<img
+  src="/images/app-mobile/06-favorites.png"
+  alt="Onglet Favoris dans l'app watt.ma"
+  width="320"
+/>
+
+L'écran **Favoris** affiche le nombre de stations épinglées et la liste correspondante. Quand aucune station n'est encore ajoutée, l'app affiche un état vide avec un message d'accompagnement.
+
+## Ajouter une station en favori
+
+<Steps>
+  <Step title="Ouvrir la station">
+    Depuis la carte ou la liste, touchez la station que vous voulez épingler.
+  </Step>
+  <Step title="Appuyer sur le cœur">
+    En haut à droite de l'écran [Détails de la station](/app-mobile/details-station), touchez l'icône cœur pour l'activer.
+  </Step>
+  <Step title="Retrouver la station">
+    Ouvrez l'onglet **Favoris** en bas de l'app : la station apparaît dans la liste.
+  </Step>
+</Steps>
+
+## Retirer un favori
+
+Depuis l'onglet **Favoris** ou depuis l'écran détails, touchez à nouveau l'icône cœur pour la désactiver. La station reste accessible via la carte et la recherche.
+
+## Synchronisation
+
+- Les favoris sont liés à votre compte watt.ma et **synchronisés** entre vos appareils dès que vous vous connectez avec le même compte.
+- Le stockage est côté backend FastAPI, dans MongoDB.
+
+<Tip>
+  Combinez favoris et [historique](/app-mobile/historique) pour identifier vos bornes les plus fiables en début et fin de trajet.
+</Tip>

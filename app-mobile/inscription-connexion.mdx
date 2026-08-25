@@ -1,3 +1,68 @@
 ---
-title: "inscription-connexion"
+title: "Inscription et connexion à l'app watt.ma"
+sidebarTitle: "Inscription et connexion"
+description: "Créez votre compte watt.ma, connectez-vous par e-mail, Google ou Apple, et sécurisez votre accès conducteur au réseau de recharge marocain."
 ---
+
+L'app watt.ma s'ouvre sur un écran de connexion. Vous pouvez créer un compte conducteur en quelques secondes ou vous connecter par e-mail ou via un fournisseur externe. Cette page décrit les deux parcours et les données collectées.
+
+## Se connecter
+
+<img
+  src="/images/app-mobile/01-sign-in.png"
+  alt="Écran de connexion de l'app watt.ma"
+  width="320"
+/>
+
+L'écran **Connexion** accepte :
+
+- Adresse e-mail et mot de passe.
+- **Google** en un tap (OAuth).
+- **Apple** en un tap (Sign in with Apple, requis pour la publication iOS).
+
+Un lien **S'inscrire** en bas de l'écran ouvre le formulaire de création de compte.
+
+## Créer un compte
+
+<img
+  src="/images/app-mobile/02-sign-up.png"
+  alt="Écran d'inscription de l'app watt.ma"
+  width="320"
+/>
+
+Le formulaire **Créer un compte** demande :
+
+- **Nom complet**.
+- **Adresse e-mail** (utilisée pour la récupération de mot de passe et les reçus).
+- **Téléphone** au format international `+212 6XX XX XX XX`.
+- **Mot de passe** (minimum 6 caractères).
+
+En validant, vous acceptez les **Termes & Conditions** et la **Politique de confidentialité** watt.ma, conformément à la loi 09-08 sur la protection des données personnelles au Maroc.
+
+## Vérification OTP
+
+Après l'inscription, l'app envoie un **code OTP à 6 chiffres** par SMS ou e-mail. Ce code sécurise la première connexion et déverrouille le portefeuille.
+
+<Note>
+  En Mock Mode, l'OTP est **auto-validé** pour accélérer le développement. Consultez [Installation](/app-mobile/installation) pour désactiver ce comportement.
+</Note>
+
+## Session et tokens
+
+- Authentification par **JWT** signé côté FastAPI avec `JWT_SECRET`.
+- Token stocké de façon sécurisée par Expo SecureStore.
+- Expiration configurable côté backend, avec rafraîchissement silencieux dans l'app.
+
+## Récupérer un mot de passe
+
+Depuis l'écran **Connexion**, appuyez sur **Mot de passe oublié** (à venir) ou contactez [contact@wattsc.com](mailto:contact@wattsc.com).
+
+## Données collectées
+
+À l'inscription, l'app enregistre uniquement :
+
+- Nom complet, e-mail, téléphone.
+- Hash du mot de passe (bcrypt).
+- Identifiant de compte fournisseur (Google ou Apple) si applicable.
+
+Aucune donnée bancaire n'est stockée à ce stade ; voir [Portefeuille et paiement](/app-mobile/paiement) pour la tokenisation des cartes.

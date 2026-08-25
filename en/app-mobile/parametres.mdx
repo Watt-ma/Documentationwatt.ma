@@ -1,0 +1,48 @@
+---
+title: "Mobile App Settings for watt.ma"
+sidebarTitle: "Settings"
+description: "Manage notifications, location, dark mode, payment methods, and legal documents in the watt.ma app."
+---
+
+The **Settings** screen in the watt.ma app gathers the driver experience preferences and links to legal documents. It opens from **Profile → Settings**.
+
+## Overview
+
+<img
+  src="/images/app-mobile/11-settings.png"
+  alt="Settings screen in the watt.ma app"
+  width="320"
+/>
+
+The screen is divided into two sections:
+
+- **Preferences**: everyday usage options.
+- **Account**: payment methods and legal documents.
+
+At the bottom of the screen, the installed version is displayed (for example `watt.ma v1.0.0`).
+
+## Preferences
+
+| Setting | Description |
+| --- | --- |
+| Notifications | Enables push notifications (session end, top-up, station alerts) |
+| Location services | Allows the app to display the nearest stations on the map |
+| Dark mode | Toggles between light and dark theme, independent of system setting |
+
+Notifications use Expo Notifications. Location uses the standard Expo Location API: GPS or map fallback depending on the precision required by the screen.
+
+## Account
+
+- **Payment Methods**: opens card management. See [Wallet and Payment](/en/app-mobile/paiement).
+- **FAQs**: frequently asked questions. See [FAQ](/en/app-mobile/faq).
+- **Terms & Conditions**: watt.ma terms of use.
+- **Privacy Policy**: personal data processing under law 09-08.
+
+## Language
+
+The app is published in French. Multilingual support (Arabic and English) is planned for a future release. See the [Roadmap](/roadmap).
+
+## Sign Out and Delete Account
+
+- **Sign out**: button at the bottom of the Settings screen. Returns to the [sign-in](/en/app-mobile/inscription-connexion) screen.
+- **Delete account**: send the request to [contact@wattsc.com](mailto:contact@wattsc.com). Your personal data will be erased in compliance with law 09-08.

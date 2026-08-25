@@ -1,0 +1,92 @@
+---
+title: "Access the watt.ma API"
+sidebarTitle: "API Access"
+description: "Generate your API key, authenticate requests with a Bearer token, and query watt.ma endpoints for sessions, stations, and revenue."
+---
+
+The watt.ma API lets you integrate your charging station fleet data into your own systems: mobile apps, internal dashboards, billing tools, or fleet management software. The REST API follows the OpenAPI standard and returns JSON responses.
+
+<Note>
+  Full API access is available starting with the **Production** plan. The **Startup** plan offers limited read-only access to your account's basic data.
+</Note>
+
+## Generate your API key
+
+<Steps>
+  <Step title="Check your plan">
+    Make sure your account is on the Production or Enterprise plan. Go to **Account \> Plans** to verify.
+  </Step>
+  <Step title="Open API settings">
+    Sign in to [web.watt.ma](https://web.watt.ma), click your profile in the top right, then select **Settings \> API**.
+  </Step>
+  <Step title="Create a key">
+    Click **Generate a new API key**. Give the key a descriptive name (for example: "Accounting integration") so you can easily identify it later.
+  </Step>
+  <Step title="Copy the key">
+    Copy the key shown immediately. It will no longer be visible afterward for security reasons.
+  </Step>
+</Steps>
+
+<Warning>
+  Never share your API key in client-side code, public repositories, or unsecured messages. If compromised, revoke it immediately from the API settings and generate a new one.
+</Warning>
+
+## Authentication
+
+All requests to the watt.ma API must include your API key in the HTTP `Authorization` header as a Bearer token.
+
+```text
+Authorization: Bearer YOUR_API_KEY
+```
+
+## Example request
+
+Here is a curl example to fetch your charging session list:
+
+```bash
+curl -X GET "https://api.watt.ma/v1/sessions" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Accept: application/json"
+```
+
+### Expected response
+
+```json
+{
+  "data": [
+    {
+      "id": "sess_abc123",
+      "charge_point_id": "cp_001",
+      "start_time": "2024-01-15T08:30:00Z",
+      "end_time": "2024-01-15T10:15:00Z",
+      "energy_kwh": 18.5,
+      "amount_mad": 55.50,
+      "payment_method": "qr_cmi",
+      "status": "completed"
+    }
+  ],
+  "meta": {
+    "total": 142,
+    "page": 1,
+    "per_page": 20
+  }
+}
+```
+
+## Rate limits
+
+The API enforces the following limits based on your plan:
+
+| Plan | Requests per minute |
+| --- | --- |
+| Startup | 30 |
+| Production | 300 |
+| Enterprise | Unlimited |
+
+HTTP 429 responses indicate you have exceeded your limit. Wait one minute before retrying your request.
+
+## Next steps
+
+- [Deploy watt.ma white label](/en/api/marque-blanche)
+- [Manage your team](/en/compte/gestion-equipe)
+- [View plans and pricing](/en/compte/forfaits)

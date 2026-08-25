@@ -1,0 +1,57 @@
+---
+title: "Monitor Charging Stations in Real Time with watt.ma"
+sidebarTitle: "Dashboard"
+description: "Use the watt.ma dashboard to visualize your sites, connector status, active sessions, and real-time energy consumption."
+---
+
+The watt.ma dashboard is your command center for monitoring your entire charging infrastructure. It displays an interactive map of your sites, the status of each connector, active sessions, and recent alerts, all updated in real time.
+
+## Navigate the Dashboard
+
+<Steps>
+  <Step title="Access the dashboard">
+    Sign in to [watt.ma](https://watt.ma). The dashboard displays by default upon login. Otherwise, click **Dashboard** in the main left menu.
+  </Step>
+  <Step title="Explore the site map">
+    The map view shows the location of each site. Color markers indicate the overall site status:
+
+    - **Green**: all connectors are available
+    - **Orange**: at least one session in progress
+    - **Red**: all stations are offline or in error
+
+    Click a site to zoom in and see station details.
+  </Step>
+  <Step title="Check connector status">
+    In the side panel or list view, each connector displays its status:
+
+    - **Available**: ready for a session
+    - **Busy**: a charge is in progress
+    - **Offline**: the station is not communicating with watt.ma
+    - **Error**: a hardware or software issue is detected
+  </Step>
+  <Step title="Monitor active sessions">
+    The **Active sessions** section lists all active charges with instantaneous power, energy delivered, and elapsed time. Click a session to see full details.
+  </Step>
+  <Step title="Analyze consumption">
+    The consumption chart aggregates total energy delivered by site or period (day, week, month). Use it to identify usage peaks and adjust your pricing.
+  </Step>
+</Steps>
+
+<Tip>
+  If you manage multiple sites (residences, hotels, parking lots), enable the **multi-site view** at the top of the dashboard. You can filter by region, status, or site name to keep only the stations you care about on screen.
+</Tip>
+
+## Key Metrics Explained
+
+| Metric | Description | Use |
+| --- | --- | --- |
+| Uptime rate | Percentage of operational connectors over a period | Measure the reliability of your fleet |
+| Energy delivered | Total kWh consumed by vehicles | Billing and revenue reports |
+| Average duration | Average time of a charging session | Sizing your infrastructure |
+| Active sessions | Number of charges currently in progress | Live operational monitoring |
+
+## Next Steps
+
+- [Configure alerts for your stations](/en/bornes/alertes)
+- [Track session history](/en/sessions/suivi-sessions)
+- [Export consumption data](/en/rapports/exporter-donnees)

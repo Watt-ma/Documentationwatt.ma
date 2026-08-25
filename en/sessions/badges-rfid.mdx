@@ -1,0 +1,34 @@
+---
+title: "Manage RFID Cards for Driver Authentication on watt.ma"
+sidebarTitle: "RFID Cards"
+description: "Add, assign, and manage RFID cards on watt.ma to authenticate drivers, compare plan limits, and track activity per card."
+---
+
+RFID cards let you authenticate drivers before starting a charging session. On watt.ma, you create cards, associate them with users or fleets, and track their usage in real time. This method is particularly suited to businesses, residences, and managers of electric vehicle parks.
+
+<Steps>
+  <Step title="Add an RFID card">
+    In the sidebar menu, go to **Sessions \> RFID cards**, then click **New card**. Enter the card's unique identifier (UID) as read by the station, or scan it directly from the interface if your reader is connected.
+  </Step>
+  <Step title="Assign the card to a user">
+    Fill in the driver's information: last name, first name, phone number, and email address. You can also associate them with a group (for example "Corporate fleet" or "Residence X") to apply differentiated pricing.
+  </Step>
+  <Step title="Activate or deactivate a card">
+    Each card has an **Active / Inactive** toggle. Deactivate a card instantly in case of loss, employee departure, or temporary suspension. The station will then refuse authentication with that card.
+  </Step>
+  <Step title="View usage history">
+    Click a card to see the complete history of sessions started with it: dates, sites, stations, energy consumed, and amounts billed.
+  </Step>
+</Steps>
+
+## Card Limits by Plan
+
+| Plan | Card Limit | Use Case |
+| --- | --- | --- |
+| Startup | Up to 500 cards | Small operators, property managers, hotels |
+| Production | Unlimited cards | Growing CPOs, mid-size fleets |
+| Enterprise | Unlimited cards | Large fleets, municipalities, multi-site deployments |
+
+<Tip>
+  For large charging networks, use bulk import from a CSV file to create multiple cards in a single operation. The expected format is detailed in the downloadable template from the **RFID cards** page.
+</Tip>

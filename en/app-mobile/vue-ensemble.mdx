@@ -1,0 +1,59 @@
+---
+title: "watt.ma Mobile App: EV Charging in Morocco"
+sidebarTitle: "Overview"
+description: "Discover the watt.ma mobile app: locate charging stations, scan QR codes to start sessions, and manage your prepaid dirham wallet on iOS and Android."
+---
+
+The watt.ma mobile app is a cross-platform iOS and Android application designed for Morocco's electric vehicle charging network. It lets EV drivers locate stations in Casablanca, Marrakech, Rabat, Tangier, and across the country, scan a QR code to start a session, and manage payments through a secure prepaid wallet in dirhams (MAD).
+
+## Key Features
+
+<CardGroup cols={2}>
+  <Card title="Sign Up and Sign In" icon="user-plus" href="/en/app-mobile/inscription-connexion">
+    Create an account in seconds by email, Google, or Apple with OTP verification.
+  </Card>
+
+  <Card title="Station Map and List" icon="map-location-dot" href="/en/app-mobile/carte-bornes">
+    Interactive maps covering Moroccan cities with connector details, power ratings, and pricing.
+  </Card>
+
+  <Card title="Favorites and Station Details" icon="heart" href="/en/app-mobile/favoris">
+    Pin your frequent stations and check their status, connectors, and GPS navigation.
+  </Card>
+
+  <Card title="Charge via QR" icon="qrcode" href="/en/app-mobile/demarrer-recharge">
+    Scan the station's QR code to trigger a simulation or a real charging session.
+  </Card>
+
+  <Card title="Prepaid Wallet" icon="wallet" href="/en/app-mobile/paiement">
+    Top up in dirhams, manage your Visa, Mastercard, and CMI cards, and view your transaction history.
+  </Card>
+
+  <Card title="Profile and Settings" icon="gear" href="/en/app-mobile/profil">
+    Wallet, transactions, notifications, dark mode, and legal documents in a single hub.
+  </Card>
+</CardGroup>
+
+## Tech Stack
+
+- **Mobile frontend**: React Native, Expo SDK 54, Expo Router (file-based navigation), Zustand (state management), Expo Camera.
+- **Backend API**: FastAPI, MongoDB (async Motor client), Pydantic (validation), PyJWT (authentication tokens).
+- **Simulations**: OCPP connector commands are simulated in development mode. Default charging power is 43 kW, typical of semi-fast and fast urban Moroccan chargers.
+
+## Moroccan Localization
+
+- **Currency**: Moroccan dirham (MAD).
+- **Regulatory compliance**: aligned with Moroccan law 09-08 on personal data protection.
+- **Payment gateways**: CMI (Centre Monétique Interbancaire) tokenization planned for local bank cards, alongside Stripe.
+
+<Note>
+  The app includes a global **Mock Mode** for development without a backend: auto-validated OTP, instant top-ups, and locally updated simulated sessions refreshed every second. See the [Installation](/en/app-mobile/installation) page for configuration.
+</Note>
+
+## Who the App Is For
+
+- **EV drivers** in Morocco looking for a station and starting a session by QR code.
+- **Prepaid users** who top up their wallet in dirhams and pay in one tap.
+- **Developers and integrators** who want to test the app locally using Mock Mode without depending on a backend.
+
+For station supervision and operator management, visit the [operator documentation](/en/bornes/vue-ensemble).
