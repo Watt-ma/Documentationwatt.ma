@@ -1,0 +1,131 @@
+---
+title: "Suivre les soldes clients sur watt.ma"
+sidebarTitle: "Soldes Clients"
+description: "Suivez les soldes clients sur watt.ma : non facturé, dû, créditeur et en retard. Filtrez par compte, statut et ancienneté, et agissez en fonction de votre rôle."
+---
+
+La page Soldes clients de watt.ma centralise l'exposition financière de chaque compte de facturation en un seul tableau. Vous y distinguez ce qui est dû, ce qui est en retard, et ce qui est créditeur pourprendre les bonnes décisions : relancer, suspendre ou appliquer un avoir. Ce suivi est essentiel pour maintenir une trésorerie saine et anticiper les risques d'impayés.
+
+## Vue d'ensemble
+
+Le tableau des soldes clients agrège l'ensemble des transactions ouvertes par compte de facturation. Il ne remplace pas la consultation détaillée du registre de charges, mais en donne une synthèse immédiate pour l'équipe opérationnelle et administrative.
+
+Chaque ligne du tableau représente un compte client et expose plusieurs soldes simultanés, car une situation client peut cumuler plusieurs statuts : des charges non facturées, une facture émise non payée, et un avoir disponible.
+
+## Types de soldes
+
+### Solde non facturé
+
+Le solde non facturé regroupe toutes les charges accumulées depuis la dernière facture et n'ayant pas encore fait l'objet d'un document comptable. Ces charges proviennent des sessions de recharge, des frais de connexion, des frais d'inactivité et des abonnements courant.
+
+Exemple : Résidence Al Andalous a un cycle mensuel qui clôture le 30. Le 15 du mois, le solde non facturé s'élève à 312 MAD. Ce montant n'est pas encore exigible, mais il est visible pour anticiper la facture à venir.
+
+### Montant dû
+
+Le montant dû représente le total des factures émises dont la date d'échéance est atteinte ou proche, et qui n'ont pas encore été réglées. Il s'agit d'une créance certaine et documentée.
+
+Exemple : Atlas Logistics a reçu la facture F-2026-08-0042 pour 12 500 MAD avec échéance le 20 août. Le montant dû est de 12 500 MAD tant que le virement n'est pas rapproché.
+
+### Solde en retard
+
+Le solde en retard est le sous-ensemble du montant dû dont l'échéance est dépassée. watt.ma découpe les retards par tranches d'ancienneté pour prioriser les relances.
+
+Exemple : Un client avec une facture de 840 MAD émise le 1er juillet et impayée le 15 août présente un solde en retard de 840 MAD dans la tranche 30-60 jours.
+
+### Solde créditeur
+
+Le solde créditeur représente les avoirs et les paiements en excès appliqués au compte client. Ce montant est automatiquement déduit de la prochaine facture ou peut faire l'objet d'un remboursement sur demande.
+
+Exemple : Un geste commercial de 200 MAD a été appliqué au compte de Green Energy Park. Ce solde créditeur de 200 MAD sera imputé sur la prochaine facture mensuelle.
+
+## Exemple de solde combiné
+
+Voici comment watt.ma présente une exposition financière complète, où plusieurs types de soldes coexistent :
+
+```text
+Ancienne facture impayée       200 MAD
+Recharge du mois               145 MAD
+Avoir client                   -50 MAD
+------------------------------------
+Exposition totale              295 MAD
+```
+
+Dans cet exemple, le client cumule une ancienne facture impayée de 200 MAD, des charges non facturées de 145 MAD pour le mois en cours, et bénéficie d'un avoir de 50 MAD. L'exposition totale est de 295 MAD. Seuls les 200 MAD de facture émise sont juridiquement exigibles aujourd'hui.
+
+## Filtres disponibles
+
+Le tableau des soldes clients offre plusieurs filtres pour cibler les comptes à traiter :
+
+| Filtre | Options | Usage |
+| --- | --- | --- |
+| **Compte de facturation** | Recherche par nom, ID ou ICE | Isoler un client spécifique |
+| **Statut** | À jour, En retard, Impayé, Créditeur | Prioriser les relances |
+| **Ancienneté** | 0-30 jours, 30-60 jours, 60\+ jours | Identifier les créances douteuses |
+| **Type de solde** | Non facturé, Dû, En retard, Créditeur | Afficher uniquement les expositions positives ou négatives |
+| **Site** | Green Energy Park, Parking A, etc. | Filtrer par périmètre opérationnel |
+
+<Note>
+  Les filtres peuvent être combinés. Par exemple, vous pouvez afficher uniquement les comptes avec un solde en retard de plus de 60 jours appartenant au site Green Energy Park.
+</Note>
+
+## Actions disponibles
+
+Selon votre rôle, plusieurs actions sont accessibles depuis la ligne d'un compte client :
+
+| Action | Description | Rôle requis |
+| --- | --- | --- |
+| **Envoyer un rappel** | Envoi immédiat d'un email de relance au client avec le détail du solde | Opérateur ou Admin |
+| **Appliquer un avoir** | Crédite le compte client d'un montant à déduire de la prochaine facture | Admin |
+| **Suspendre les recharges** | Bloque immédiatement tous les badges et accès liés au compte | Admin |
+| **Exporter le détail** | Télécharge un CSV du solde détaillé avec toutes les lignes | Opérateur ou Admin |
+| **Relancer une facture** | Régénère le PDF et réenvoie la facture par email | Opérateur ou Admin |
+
+<Warning>
+  La suspension des recharges est immédiate et affecte tous les conducteurs liés au compte de facturation. Documentez la raison dans les notes du compte avant de suspendre.
+</Warning>
+
+## Statuts du compte client
+
+watt.ma calcule automatiquement un statut global pour chaque compte en fonction de ses soldes :
+
+| Statut | Définition |
+| --- | --- |
+| **À jour** | Aucun montant dû non payé. Le compte peut avoir un solde non facturé, mais rien n'est en retard. |
+| **En retard** | Au moins une facture a dépassé son échéance de 1 à 30 jours. |
+| **Impayé** | Au moins une facture a dépassé son échéance de plus de 30 jours, ou le montant cumulé des impayés a franchi le seuil d'alerte configuré. |
+| **Créditeur** | Le solde créditeur est supérieur au solde dû. Le compte a un excédent en sa faveur. |
+
+<Info>
+  Un compte peut être simultanément En retard et Créditeur si un avoir couvre partiellement les factures impayées. Le statut affiché est celui avec la priorité la plus haute : Impayé \> En retard \> Créditeur \> À jour.
+</Info>
+
+## Permissions
+
+| Action | Admin | Opérateur | Lecteur |
+| --- | :-: | :-: | :-: |
+| Consulter les soldes | Oui | Oui | Oui |
+| Envoyer un rappel | Oui | Oui | Non |
+| Exporter le détail | Oui | Oui | Non |
+| Relancer une facture | Oui | Oui | Non |
+| Appliquer un avoir | Oui | Non | Non |
+| Suspendre les recharges | Oui | Non | Non |
+
+## Voir aussi
+
+<CardGroup cols={2}>
+  <Card title="Encaissements" icon="money-bill" href="/rapports/encaissements">
+    Suivez les paiements rapprochés par moyen de paiement et par période.
+  </Card>
+
+  <Card title="Remboursements et avoirs" icon="rotate-left" href="/rapports/remboursements-avoirs">
+    Distinguez les remboursements d'argent des avoirs comptables et gérez les deux.
+  </Card>
+
+  <Card title="Comptes de facturation" icon="user-group" href="/sessions/comptes-facturation">
+    Créez et configurez les comptes clients référencés dans le tableau des soldes.
+  </Card>
+
+  <Card title="Facturation" icon="file-invoice" href="/rapports/facturation">
+    Comprenez le cycle de vie complet des factures et comment elles alimentent les soldes.
+  </Card>
+</CardGroup>

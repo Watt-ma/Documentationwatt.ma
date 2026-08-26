@@ -6,6 +6,24 @@ description: "Analysez vos revenus de recharge par période, site, borne et mét
 
 Le tableau des revenus de watt.ma vous permet de suivre précisément l'activité financière générée par vos bornes de recharge. Chaque session terminée alimente automatiquement le rapport, qu'elle ait été payée par QR code CMI, par badge RFID ou en mode gratuit.
 
+## Vue d'ensemble : distinguer les revenus
+
+Le rapport Revenus de watt.ma distingue plusieurs notions comptables pour vous aider à lire votre activité sans confusion. Utilisez ce tableau de référence pour interpréter chaque indicateur :
+
+| Notion | Sens |
+| --- | --- |
+| Revenu de recharge | Valeur brute générée par les sessions |
+| Revenu facturé | Montant total des factures émises |
+| Revenu encaissé | Argent effectivement reçu sur le compte |
+| Solde en attente | Factures émises non encore payées |
+| Solde en retard | Factures échues et non payées |
+| Revenu remboursé | Sommes retournées aux clients |
+| Marge brute de recharge | Revenu de recharge moins coût électricité |
+
+<Note>
+  La marge brute de recharge n'est PAS le bénéfice net. Elle ne déduit pas les frais de paiement, les charges d'exploitation, ni la maintenance des bornes. Elle mesure uniquement le revenu de recharge auquel vous retirez le coût direct de l'énergie vendue.
+</Note>
+
 ## Consulter vos revenus
 
 <Steps>
@@ -25,7 +43,7 @@ Le tableau des revenus de watt.ma vous permet de suivre précisément l'activit�
 
 ## Rapports de partage de revenus
 
-Si vous exploitez des bornes sur des sites appartenant à des tiers, le rapport de partage de revenus vous permet de définir une répartition automatique entre le propriétaire du site et l'opérateur de recharge.
+Si vous exploitez des bornes sur des sites appartenant à des tiers, watt.ma vous permet de définir une répartition automatique entre le propriétaire du site et l'opérateur de recharge. Consultez le guide détaillé sur le partage de revenus et le suivi des règlements pour configurer et contrôler ces flux.
 
 <Note>
   Les rapports de partage de revenus sont disponibles à partir du forfait **Production**. Le forfait **Startup** affiche uniquement les revenus agrégés sans répartition.
@@ -47,6 +65,28 @@ Si vous exploitez des bornes sur des sites appartenant à des tiers, le rapport 
 
 ## Prochaines étapes
 
-- [Exporter vos données de recharge](/rapports/exporter-donnees)
-- [Configurer les tarifs de vos bornes](/sessions/tarifs)
-- [Consulter la vue d'ensemble des rapports](/rapports/vue-ensemble)
+<CardGroup cols={2}>
+  <Card title="Soldes clients" icon="users" href="/rapports/soldes-clients">
+    Visualisez les créances et les soldes par compte de facturation.
+  </Card>
+
+  <Card title="Encaissements" icon="wallet" href="/rapports/encaissements">
+    Listez les paiements reçus et leur mode de règlement.
+  </Card>
+
+  <Card title="Remboursements et avoirs" icon="rotate-left" href="/rapports/remboursements-avoirs">
+    Suivez les sommes retournées aux clients et les avoirs émis.
+  </Card>
+
+  <Card title="Marge énergie" icon="bolt" href="/rapports/marge-energie">
+    Calculez la marge brute après coût direct de l'électricité.
+  </Card>
+
+  <Card title="Analytique financière" icon="chart-line" href="/rapports/analytique-financiere">
+    Croisez vos indicateurs financiers et vos métriques opérationnelles.
+  </Card>
+
+  <Card title="Règlements partenaires" icon="handshake" href="/rapports/reglements-partenaires">
+    Contrôlez les reversements aux propriétaires de sites.
+  </Card>
+</CardGroup>

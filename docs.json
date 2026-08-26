@@ -37,23 +37,62 @@
                 ]
               },
               {
-                "group": "Sessions et Paiements",
-                "icon": "credit-card",
+                "group": "Sessions et Recharges",
+                "icon": "bolt",
                 "pages": [
                   "sessions/suivi-sessions",
-                  "sessions/tarifs",
-                  "sessions/paiements-qr-cmi",
                   "sessions/badges-rfid",
-                  "sessions/facturation-residentielle"
+                  {
+                    "group": "Tarifs",
+                    "icon": "tag",
+                    "pages": [
+                      "sessions/tarifs",
+                      "sessions/composants-tarifaires",
+                      "sessions/frais-inactivite",
+                      "sessions/tarifs-groupes",
+                      "sessions/priorite-tarifs"
+                    ]
+                  }
                 ]
               },
               {
-                "group": "Rapports et Revenus",
+                "group": "Paiements",
+                "icon": "credit-card",
+                "pages": [
+                  "sessions/moyens-paiement",
+                  "sessions/paiements-qr-cmi",
+                  "sessions/stripe",
+                  "sessions/cycle-paiement",
+                  "sessions/echecs-paiement",
+                  "sessions/rapprochement"
+                ]
+              },
+              {
+                "group": "Facturation",
+                "icon": "file-invoice",
+                "pages": [
+                  "sessions/comptes-facturation",
+                  "sessions/facturation-residentielle",
+                  "sessions/facturation-entreprises",
+                  "sessions/registre-charges",
+                  "rapports/facturation",
+                  "rapports/cycles-facturation",
+                  "rapports/factures-residents"
+                ]
+              },
+              {
+                "group": "Revenus et Analytique",
                 "icon": "chart-bar",
                 "pages": [
                   "rapports/vue-ensemble",
                   "rapports/revenus",
-                  "rapports/factures-residents",
+                  "rapports/soldes-clients",
+                  "rapports/encaissements",
+                  "rapports/remboursements-avoirs",
+                  "rapports/partage-revenus",
+                  "rapports/reglements-partenaires",
+                  "rapports/marge-energie",
+                  "rapports/analytique-financiere",
                   "rapports/exporter-donnees"
                 ]
               },
@@ -167,23 +206,62 @@
                 ]
               },
               {
-                "group": "Sessions and Payments",
-                "icon": "credit-card",
+                "group": "Sessions and Charging",
+                "icon": "bolt",
                 "pages": [
                   "en/sessions/suivi-sessions",
-                  "en/sessions/tarifs",
-                  "en/sessions/paiements-qr-cmi",
                   "en/sessions/badges-rfid",
-                  "en/sessions/facturation-residentielle"
+                  {
+                    "group": "Tariffs",
+                    "icon": "tag",
+                    "pages": [
+                      "en/sessions/tarifs",
+                      "en/sessions/composants-tarifaires",
+                      "en/sessions/frais-inactivite",
+                      "en/sessions/tarifs-groupes",
+                      "en/sessions/priorite-tarifs"
+                    ]
+                  }
                 ]
               },
               {
-                "group": "Reports and Revenue",
+                "group": "Payments",
+                "icon": "credit-card",
+                "pages": [
+                  "en/sessions/moyens-paiement",
+                  "en/sessions/paiements-qr-cmi",
+                  "en/sessions/stripe",
+                  "en/sessions/cycle-paiement",
+                  "en/sessions/echecs-paiement",
+                  "en/sessions/rapprochement"
+                ]
+              },
+              {
+                "group": "Billing",
+                "icon": "file-invoice",
+                "pages": [
+                  "en/sessions/comptes-facturation",
+                  "en/sessions/facturation-residentielle",
+                  "en/sessions/facturation-entreprises",
+                  "en/sessions/registre-charges",
+                  "en/rapports/facturation",
+                  "en/rapports/cycles-facturation",
+                  "en/rapports/factures-residents"
+                ]
+              },
+              {
+                "group": "Revenue and Analytics",
                 "icon": "chart-bar",
                 "pages": [
                   "en/rapports/vue-ensemble",
                   "en/rapports/revenus",
-                  "en/rapports/factures-residents",
+                  "en/rapports/soldes-clients",
+                  "en/rapports/encaissements",
+                  "en/rapports/remboursements-avoirs",
+                  "en/rapports/partage-revenus",
+                  "en/rapports/reglements-partenaires",
+                  "en/rapports/marge-energie",
+                  "en/rapports/analytique-financiere",
                   "en/rapports/exporter-donnees"
                 ]
               },

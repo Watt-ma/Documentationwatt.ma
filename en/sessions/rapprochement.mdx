@@ -1,0 +1,115 @@
+---
+title: "Reconcile Payments and Bank Collections on watt.ma"
+sidebarTitle: "Reconciliation"
+description: "Reconcile watt.ma payments with your bank account and providers by recording transfers, importing settlement files, and managing discrepancies."
+---
+
+Bank reconciliation in watt.ma lets you link each payment recorded in the platform with the actual entry on your bank account. This step is essential to distinguish billed revenue from collected revenue, identify discrepancies, and produce reliable accounting exports for your accountant.
+
+## Reconciliation Architecture
+
+```text
+watt.ma ledger ↔ Payment provider ↔ Bank account
+```
+
+The watt.ma ledger contains all payments created by the billing engine. The payment provider (CMI or Stripe) transfers funds to your bank account after a settlement delay. Reconciliation consists of matching these three levels and identifying entries not yet explained.
+
+## Record a Bank Transfer
+
+Manual transfers (residents, businesses, syndicates) are recorded in watt.ma by an administrator to update the status of the affected invoices.
+
+<Steps>
+  <Step title="Open the reconciliation ledger">
+    Sign in to [web.watt.ma](https://web.watt.ma), then go to **Reports \> Reconciliation**. The list displays invoices to reconcile, sorted by due date.
+  </Step>
+  <Step title="Select the invoice">
+    Click on the relevant invoice (e.g., Invoice #2026-08-0052, amount 12,500.00 MAD).
+  </Step>
+  <Step title="Enter transfer details">
+    Fill in the following fields:
+
+    - **Amount**: 12,500.00 MAD
+    - **Receipt date**: 2026-08-25
+    - **Bank reference**: `BANK-2026-00217`
+    - **Payment method**: Bank transfer
+    - **Administrator**: your name (pre-filled)
+    - **Notes**: Atlas Logistics transfer, August 2026 settlement
+    - **Linked invoice**: #2026-08-0052 (selected automatically)
+  </Step>
+  <Step title="Validate reconciliation">
+    Click **Reconcile**. The invoice status changes to **Paid** and the entry is timestamped with your identifier.
+  </Step>
+</Steps>
+
+<Note>
+  Every reconciliation action is timestamped with the author, date, IP address, and modifications made. This data forms the complete audit trail and is exportable from **Reports \> Export Data**.
+</Note>
+
+## Reconcile CMI Payments
+
+For CMI QR and Moroccan card payments, watt.ma supports importing the settlement file sent by your bank.
+
+<Steps>
+  <Step title="Import the settlement file">
+    In **Reports \> CMI Reconciliation**, click **Import file**. Select the CSV or Excel file received from your bank. The expected format contains: settlement date, amount, CMI transaction reference, and account number.
+  </Step>
+  <Step title="Automatic matching">
+    watt.ma compares the CMI transaction reference with payments at **Successful** status that have not yet been reconciled. Matches are displayed line by line with a validation status.
+  </Step>
+  <Step title="Validate matches">
+    Check the confirmed lines, then click **Validate batch**. The payments change to **Reconciled** status.
+  </Step>
+  <Step title="Handle exceptions">
+    Lines without automatic matches appear in the **Exceptions** tab. For each exception, you can:
+
+    - Search manually for the matching payment
+    - Create a manual payment if the bank entry does not match any watt.ma invoice
+    - Mark the entry as a dispute and add an explanatory note
+  </Step>
+</Steps>
+
+<Info>
+  The CMI settlement delay is generally J\+2 to J\+5 depending on your merchant bank. Friday payments may appear in the settlement file the following Tuesday.
+</Info>
+
+## Discrepancies and Disputes
+
+<Warning>
+  Never delete a reconciliation entry. If you notice an error, create a new correction entry and document the reason in the notes. Deletion would hide the audit trail.
+</Warning>
+
+## Audit Trail
+
+Every reconciliation action is recorded irreversibly:
+
+- **Timestamp**: exact date and time of the action (Casablanca time zone)
+- **Author**: identifier of the team member who performed the reconciliation
+- **IP address**: address from which the action was initiated
+- **Modification**: before and after value for each edited field
+- **Affected invoices**: list of invoice references linked to the operation
+
+This data is accessible from **Reports \> Audit Trail \> Reconciliations** and exportable in CSV format.
+
+<Tip>
+  Schedule a monthly audit trail export and send it to your accountant with the bank statement. This facilitates management control and tax package preparation.
+</Tip>
+
+## See Also
+
+<CardGroup cols={2}>
+  <Card title="Resident Invoices" icon="file-invoice" href="/en/rapports/factures-residents">
+    Issue and track monthly resident invoices with reminders and payment methods.
+  </Card>
+
+  <Card title="Export Data" icon="download" href="/en/rapports/exporter-donnees">
+    Schedule monthly exports of the audit trail, invoices, and collections.
+  </Card>
+
+  <Card title="Payment Lifecycle" icon="arrows-rotate" href="/en/sessions/cycle-paiement">
+    Understand the statuses of a payment attempt from creation to settlement.
+  </Card>
+
+  <Card title="Payment Failures" icon="triangle-exclamation" href="/en/sessions/echecs-paiement">
+    Manage declines, expired cards, and automatic reminders.
+  </Card>
+</CardGroup>

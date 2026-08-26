@@ -1,0 +1,89 @@
+---
+title: "Priorité entre tarifs sur watt.ma"
+sidebarTitle: "Priorité entre tarifs"
+description: "Comprenez la hiérarchie déterministe de watt.ma pour choisir le tarif appliqué quand plusieurs tarifs peuvent couvrir une même session de recharge."
+---
+
+Plusieurs tarifs peuvent théoriquement s'appliquer à une même session de recharge sur watt.ma. Par exemple, un tarif est rattaché à un site entier, un autre à une borne spécifique, et un troisième à un groupe de conducteurs. Pour éviter toute ambiguïté, watt.ma applique une hiérarchie déterministe du plus spécifique au plus général. Cette page explique cette logique et les cas particuliers à connaître.
+
+## Hiérarchie de priorité
+
+watt.ma évalue les tarifs applicables dans l'ordre suivant. Le premier tarif trouvé à un niveau donné est celui qui est appliqué.
+
+```text
+1. Connecteur (niveau le plus spécifique)
+2. Borne
+3. Site
+4. Groupe de conducteurs
+5. Organisation (niveau le plus général)
+```
+
+**Règle générale :** plus le niveau est proche du matériel ou de l'identité du conducteur, plus il prime sur les niveaux supérieurs.
+
+## Explication de la hiérarchie
+
+| Niveau | Ce qu'il recouvre | Exemple |
+| --- | --- | --- |
+| **Connecteur** | Un connecteur physique précis sur une borne donnée | Le connecteur CCS de la borne `CP-001` |
+| **Borne** | L'ensemble des connecteurs d'une borne | La borne `CP-001` entière |
+| **Site** | Toutes les bornes d'un même site | Green Energy Park |
+| **Groupe de conducteurs** | Un ensemble de conducteurs partageant un profil | Résidents de la Résidence Al Andalous |
+| **Organisation** | Tous les sites et conducteurs du compte watt.ma | L'ensemble de votre déploiement |
+
+Si aucun tarif spécifique n'est trouvé aux niveaux 1 à 4, watt.ma remonte au niveau organisation pour appliquer le tarif par défaut configuré.
+
+## Cas particuliers
+
+### Tarif planifié dans le futur
+
+Un tarif planifié avec une date d'entrée en vigueur future n'est pas appliqué avant cette date, même s'il est plus spécifique qu'un tarif actif. Assurez-vous que la période de validité de vos tarifs ne laisse pas de trou.
+
+### Plusieurs tarifs actifs sur le même périmètre
+
+Si deux tarifs sont actifs sur le même site, la même borne ou le même groupe, **le plus récent** (celui dont la date de création ou de dernière modification est la plus récente) l'emporte. Pour éviter les conflits, nous recommandons de désactiver l'ancien tarif avant d'activer le nouveau.
+
+### Tarifs invités versus enregistrés
+
+Un conducteur non authentifié (recharge par QR code sans compte) ne peut pas appartenir à un groupe de conducteurs. Dans ce cas, watt.ma ignore le niveau "Groupe de conducteurs" et descend directement au niveau "Site" ou "Organisation".
+
+## Exemple concret : Résidence Al Andalous
+
+La Résidence Al Andalous a configuré trois tarifs sur le même site :
+
+| Niveau | Tarif | Prix au kWh |
+| --- | --- | --- |
+| Site | Tarif public | 2,00 MAD/kWh |
+| Groupe "Résidents" | Tarif résident | 1,50 MAD/kWh |
+| Groupe "VIP" | Tarif VIP | 0,00 MAD/kWh |
+
+Quatre scénarios de session :
+
+1. **Conducteur non authentifié** : recharge par QR code sans compte. Le groupe est ignoré. Le tarif du site s'applique : **2,00 MAD/kWh**.
+2. **Résident normal** : identifié par son badge RFID lié au groupe "Résidents". Le groupe prime sur le site. Tarif appliqué : **1,50 MAD/kWh**.
+3. **Résident VIP** : identifié par son badge RFID lié au groupe "VIP". Le groupe prime sur le site. Tarif appliqué : **0,00 MAD/kWh** (gratuité).
+4. **Borne avec tarif spécifique** : si une borne isolée a son propre tarif à 1,80 MAD/kWh, ce tarif borne prime sur le tarif site, même pour un résident. Le résident paiera **1,80 MAD/kWh** sur cette borne et **1,50 MAD/kWh** sur les autres.
+
+## Note sur la spécification produit
+
+La hiérarchie exacte décrite dans cette page est en cours de spécification produit finie. Si vous rencontrez un cas où le tarif appliqué ne correspond pas à l'attendu, ou si vous avez besoin d'une configuration complexe impliquant plusieurs niveaux superposés, contactez le support watt.ma.
+
+- Email : [contact@wattsc.com](mailto:contact@wattsc.com)
+- WhatsApp : \+212 770 238 225
+
+<CardGroup>
+  <Card title="Tarifs" icon="tag" href="/sessions/tarifs">
+    Créez et configurez vos tarifs de base avant de définir la priorité.
+  </Card>
+
+  <Card title="Composants tarifaires" icon="layers" href="/sessions/composants-tarifaires">
+    Détaillez les éléments de prix activés dans chaque tarif.
+  </Card>
+
+  <Card title="Tarifs par groupe" icon="users" href="/sessions/tarifs-groupes">
+    Apprenez à créer des groupes de conducteurs avec des tarifs différenciés.
+  </Card>
+
+  <Card title="Frais d'inactivité" icon="clock" href="/sessions/frais-inactivite">
+    Découvrez comment facturer l'occupation de la borne après la fin de recharge.
+  </Card>
+</CardGroup>

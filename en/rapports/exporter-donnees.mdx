@@ -1,22 +1,42 @@
 ---
 title: "Export charging data from watt.ma"
 sidebarTitle: "Export"
-description: "Export sessions and revenue as CSV, schedule automatic email deliveries, and manage retention of your historical charging data."
+description: "Export your sessions and revenue to CSV, schedule automatic email deliveries, and manage historical data retention."
 ---
 
-watt.ma lets you export all your charging data to integrate into your accounting, internal dashboards, or regulatory reporting obligations. Exports cover charging sessions, revenue, and energy consumption data.
+watt.ma lets you export all your charging data to integrate it into your accounting, internal dashboards, or regulatory reporting obligations. Exports cover charging sessions, revenue, and energy consumption data.
 
-## Export manually as CSV
+## Available export types
+
+watt.ma offers a per-business-entity export so you can extract exactly the data you need. Each file contains a unique primary key and join keys to cross-reference tables in your analysis tool or ERP.
+
+| Export | Primary key | Main join keys |
+| --- | --- | --- |
+| Charging sessions | `session_id` | `charger_id`, `driver_id`, `site_id`, `billing_account_id` |
+| Tariffs | `tariff_id` | `site_id`, `charger_id` |
+| Customers | `customer_id` | `billing_account_id` |
+| Billing accounts | `billing_account_id` | `customer_id` |
+| Invoices | `invoice_id` | `billing_account_id`, `customer_id` |
+| Invoice lines | `invoice_line_id` | `invoice_id`, `session_id` |
+| Payments | `payment_id` | `invoice_id`, `billing_account_id` |
+| Failed payments | `payment_id` | `invoice_id` |
+| Refunds | `refund_id` | `payment_id`, `invoice_id` |
+| Credit notes | `credit_note_id` | `invoice_id`, `billing_account_id` |
+| Partner settlements | `settlement_id` | `site_id`, `partner_id` |
+| Revenue | Aggregated | `site_id`, `charger_id`, period |
+| Energy consumption | Aggregated | `site_id`, `charger_id`, period |
+
+## Export manually in CSV
 
 <Steps>
-  <Step title="Select data type">
-    Sign in to [web.watt.ma](https://web.watt.ma), open the **Reports** section, and select the module you want: Sessions, Revenue, or Energy.
+  <Step title="Choose the data type">
+    Log in to [web.watt.ma](https://web.watt.ma), open the **Reports** section, and select the desired module: Sessions, Revenue, or Energy.
   </Step>
   <Step title="Apply filters">
-    Set the analysis period and apply filters by site or station to limit the export to relevant data.
+    Define the analysis period and apply filters by site or charger to limit the export to relevant data.
   </Step>
-  <Step title="Start the export">
-    Click the **Export** button at the top right of the table. The CSV file automatically downloads to your device.
+  <Step title="Run the export">
+    Click the **Export** button at the top right of the table. The CSV file downloads automatically to your device.
   </Step>
 </Steps>
 
@@ -26,84 +46,53 @@ You can configure periodic report deliveries by email to automate your administr
 
 <Steps>
   <Step title="Open export settings">
-    In the **Reports** section, click **Scheduled exports** in the side menu.
+    In the **Reports** section, click **Scheduled exports** in the sidebar.
   </Step>
   <Step title="Create a rule">
     Click **New scheduled export**. Choose the report type, frequency (daily, weekly, monthly), and email recipients.
   </Step>
-  <Step title="Confirm and activate">
-    Review the settings and activate the rule. The first export will be sent according to the chosen frequency.
+  <Step title="Validate and activate">
+    Check the settings and activate the rule. The first export will be sent according to the chosen frequency.
   </Step>
 </Steps>
 
 <Note>
-  Scheduled exports are available starting with the **Production** plan. The **Startup** plan only supports manual exports from the interface.
+  Scheduled exports are available from the **Production** plan. The **Startup** plan only allows manual exports from the interface.
 </Note>
 
 ## Data retention
 
 <Note>
-  watt.ma keeps your complete session and revenue history with no time limit for the Production and Enterprise plans. The **Startup** plan retains data for the last 12 months. Upgrade to a higher plan to unlock access to your full history.
+  watt.ma retains the complete history of your sessions and revenue with no time limit for the Production and Enterprise plans. The **Startup** plan retains data for the last 12 months. Upgrade to a higher plan to unlock access to your full history.
 </Note>
 
 ## CSV file format
 
-Exported files use CSV format with semicolon separator and UTF-8 encoding. Columns include: session ID, start and end date and time, station, energy delivered in kWh, billed amount, payment method, and transaction status.
+Exported files use CSV format with semicolon separator and UTF-8 encoding. Columns include: session identifier, start and end date and time, affected charger, energy delivered in kWh, invoiced amount, payment method, and transaction status.
+
+## Accounting use cases
+
+watt.ma CSV exports and scheduled deliveries address several common accounting and regulatory needs in Morocco:
+
+- **Bank reconciliation**: reconcile CMI and Stripe collections with corresponding invoices by importing the payment list into your accounting software.
+- **Transmission to accountant**: regularly send your accountant exports of invoices, invoice lines, and payments for formal bookkeeping in MAD.
+- **ERP import**: integrate customer, billing account, and partner settlement files into your ERP via the provided join keys.
+- **Tax audit**: produce session, invoice, and payment files on demand for a fiscal inspection.
+- **VAT calculation**: export invoices and invoice lines to calculate and verify VAT collected at the 20% rate.
+- **Monthly closing**: build each month an aggregated export of revenue and energy consumption for your management reports.
 
 ## Next steps
 
-- [Track your charging revenue](/en/rapports/revenus)
-- [View the reports overview](/en/rapports/vue-ensemble)
-- [Manage your team](/en/compte/gestion-equipe)
+<CardGroup cols={2}>
+  <Card title="Financial Analytics" icon="chart-line" href="/en/rapports/analytique-financiere">
+    Cross-reference your exports to build advanced financial indicators.
+  </Card>
 
-watt.ma lets you export all your charging data to integrate into your accounting, internal dashboards, or regulatory reporting obligations. Exports cover charging sessions, revenue, and energy consumption data.
+  <Card title="Partner Settlements" icon="handshake" href="/en/rapports/reglements-partenaires">
+    Export settlement tables to site owners.
+  </Card>
 
-## Export manually as CSV
-
-<Steps>
-  <Step title="Select data type">
-    Sign in to [web.watt.ma](https://web.watt.ma), open the **Reports** section, and select the module you want: Sessions, Revenue, or Energy.
-  </Step>
-  <Step title="Apply filters">
-    Set the analysis period and apply filters by site or station to limit the export to relevant data.
-  </Step>
-  <Step title="Start the export">
-    Click the **Export** button at the top right of the table. The CSV file automatically downloads to your device.
-  </Step>
-</Steps>
-
-## Schedule automatic exports
-
-You can configure periodic report deliveries by email to automate your administrative follow-up.
-
-<Steps>
-  <Step title="Open export settings">
-    In the **Reports** section, click **Scheduled exports** in the side menu.
-  </Step>
-  <Step title="Create a rule">
-    Click **New scheduled export**. Choose the report type, frequency (daily, weekly, monthly), and email recipients.
-  </Step>
-  <Step title="Confirm and activate">
-    Review the settings and activate the rule. The first export will be sent according to the chosen frequency.
-  </Step>
-</Steps>
-
-<Note>
-  Scheduled exports are available starting with the **Production** plan. The **Startup** plan only supports manual exports from the interface.
-</Note>
-
-## Data retention
-
-<Note>
-  watt.ma keeps your complete session and revenue history with no time limit for the Production and Enterprise plans. The **Startup** plan retains data for the last 12 months. Upgrade to a higher plan to unlock access to your full history.
-</Note>
-
-## CSV file format
-
-Exported files use CSV format with semicolon separator and UTF-8 encoding. Columns include: session ID, start and end date and time, station, energy delivered in kWh, billed amount, payment method, and transaction status.
-
-## Next steps
-
-- [Track your charging revenue](/en/rapports/revenus)
-- [View the reports overview](/en/rapports/vue-ensemble)
-- [Manage your team](/en/compte/gestion-equipe)
+  <Card title="Reconciliation" icon="scale-balanced" href="/en/sessions/rapprochement">
+    Reconcile your collections and invoices in full compliance.
+  </Card>
+</CardGroup>

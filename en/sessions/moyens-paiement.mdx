@@ -1,0 +1,93 @@
+---
+title: "Payment Methods and Providers on watt.ma"
+sidebarTitle: "Payments"
+description: "Explore payment methods on watt.ma: CMI QR, Stripe, card, and bank transfer, with setup and target use cases for each."
+---
+
+The watt.ma billing engine is independent of the payment provider. Whether you connect a CMI account or Stripe, tariff calculation, invoice generation, and revenue tracking follow the same logic. This flexibility lets you activate multiple providers in parallel and assign a payment method per context (public, residential, fleet).
+
+## Payment Architecture
+
+```text
+watt.ma billing engine → Payment provider (CMI, Stripe) → Card network / bank
+```
+
+watt.ma calculates the amount due from the charging session data (kWh, duration, rate). The payment provider receives this instruction and transmits the debit to the banking network. The status feedback (successful, failed, refunded) is synchronized in the watt.ma interface for centralized tracking.
+
+## Supported Payment Methods
+
+<CardGroup cols={2}>
+  <Card title="Single card payment" icon="credit-card">
+    The driver enters their bank card for a one-time payment. The payment method is not saved to the profile. Suitable for visitors and public chargers.
+  </Card>
+
+  <Card title="Saved payment method" icon="id-card">
+    The driver links a card or account to their watt.ma profile. Recurring invoices are debited automatically. Available starting with the Production plan.
+  </Card>
+
+  <Card title="CMI QR code" icon="qrcode" href="/en/sessions/paiements-qr-cmi">
+    Scan a QR code displayed on the charger or phone, pay via the Moroccan banking app. Available now, with native integration into the CMI network.
+  </Card>
+
+  <Card title="Stripe" icon="stripe" href="/en/sessions/stripe">
+    International Visa and Mastercard cards, recurring debit, refunds, and multi-currency support. Integration in progress. Visit the dedicated page to join the pilot program.
+  </Card>
+
+  <Card title="Bank transfer" icon="building-columns" href="/en/sessions/rapprochement">
+    Payment by transfer to the syndicate or operator account. Reconciled manually in watt.ma. Common in co-ownerships and B2B billing.
+  </Card>
+</CardGroup>
+
+## Where Payment Methods Are Used
+
+| Context | Available Payment Methods | Minimum Plan |
+| --- | --- | --- |
+| **Public QR** | CMI QR, Stripe (soon) | Startup |
+| **Recurring invoices** | CMI, Stripe, bank transfer | Production |
+| **Residences** | CMI, bank transfer, charge ledger debit | Startup |
+| **Fleets** | RFID badge \+ grouped invoice, CMI | Production |
+
+## Activate a Payment Provider
+
+<Steps>
+  <Step title="Open Settings > Payments">
+    Sign in to [web.watt.ma](https://web.watt.ma), then go to **Settings \> Payments**. This page lists the available providers for your organization.
+  </Step>
+  <Step title="Choose a provider">
+    Click on the desired provider: **CMI** or **Stripe**. Each provider displays its status (active, pending configuration, unavailable).
+  </Step>
+  <Step title="Enter credentials">
+    Enter the credentials provided by your bank (CMI) or your Stripe Dashboard account (publishable key, secret key, webhook endpoint). In test mode, you can use sandbox keys to validate the flow without a real debit.
+  </Step>
+  <Step title="Assign the provider to a site">
+    For each site, open the configuration and select the default payment provider. You can assign CMI to the public site at the shopping center and Stripe to the destination site for tourists.
+  </Step>
+</Steps>
+
+<Note>
+  Payments are always expressed in Moroccan dirhams (MAD) for CMI flows. Stripe will allow multi-currency support when the integration is finalized. Check the [roadmap](/en/roadmap) for updates.
+</Note>
+
+<Tip>
+  You can activate CMI and Stripe simultaneously within the same watt.ma organization. Assign each provider to different sites or user groups to cover all customer profiles.
+</Tip>
+
+## See Also
+
+<CardGroup cols={2}>
+  <Card title="CMI Payments" icon="qrcode" href="/en/sessions/paiements-qr-cmi">
+    Activate and configure QR code payment with the Centre Monétique Interbancaire.
+  </Card>
+
+  <Card title="Stripe" icon="stripe" href="/en/sessions/stripe">
+    Pilot program, international cards, and recurring debits with Stripe.
+  </Card>
+
+  <Card title="Payment Lifecycle" icon="arrows-rotate" href="/en/sessions/cycle-paiement">
+    Track every status of a payment attempt from creation to settlement.
+  </Card>
+
+  <Card title="Bank Reconciliation" icon="building-columns" href="/en/sessions/rapprochement">
+    Record transfers, reconcile collections, and manage discrepancies.
+  </Card>
+</CardGroup>

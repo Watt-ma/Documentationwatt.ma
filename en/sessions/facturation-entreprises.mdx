@@ -1,0 +1,127 @@
+---
+title: "Bill business and fleet charging on watt.ma"
+sidebarTitle: "Business Billing"
+description: "Invoice fleet and business client charging sessions on watt.ma with monthly consolidated invoices per account."
+---
+
+Business and fleet billing lets you centralize charges from multiple badges and drivers under a single financial owner. This is the right mode for companies paying for their company cars, delivery fleets like Atlas Logistics, or local authorities that want to receive a single payment document per period.
+
+## Overview
+
+When a billing account is configured as a company, all sessions linked to associated badges feed into the charge ledger. watt.ma generates a consolidated invoice covering all sessions for the period, with detail per driver and per session. The company receives a single document with a single payment.
+
+## Use cases
+
+<CardGroup cols={2}>
+  <Card title="Company cars" icon="car">
+    Companies whose managers and sales staff use electric vehicles. All charging sessions are rebilled to the parent company on a grouped invoice.
+  </Card>
+
+  <Card title="Delivery fleets" icon="truck">
+    Logistics, e-commerce, goods transport. Example: Atlas Logistics billed monthly for its twenty drivers.
+  </Card>
+
+  <Card title="Local authorities" icon="landmark">
+    Municipalities and intercommunalities managing service vehicles. Monthly consolidated billing for a municipal fleet.
+  </Card>
+
+  <Card title="Shared utility vehicles" icon="people-arrows">
+    Vehicles shared within a single site or deployed across multiple sites with a single payer.
+  </Card>
+</CardGroup>
+
+## Configuration
+
+<Steps>
+  <Step title="Create a company billing account">
+    In **Sessions \> Billing accounts**, click **New account**. Select the **Company** type and enter the legal name, ICE, billing address, and contact.
+  </Step>
+  <Step title="Attach badges and drivers">
+    Associate each RFID badge with the account as a company badge. Each driver has their charges aggregated under the parent account. You can also import data via CSV.
+  </Step>
+  <Step title="Set a group tariff">
+    Assign a specific tariff to the account (see [Group tariffs](/en/sessions/tarifs-groupes) if available, otherwise use an existing tariff in [Tariffs](/en/sessions/tarifs)). The group tariff lets you set a preferential price for the whole fleet.
+  </Step>
+  <Step title="Choose the billing frequency">
+    Select **Monthly** with a closing date (for example the last day of the month) and a due date (J\+15). You can also choose manual billing.
+  </Step>
+</Steps>
+
+## Example consolidated invoice
+
+The dashboard automatically generates a structured invoice as follows:
+
+```text
+Atlas Logistics — Monthly invoice No. F-2024-0042
+Period: 1 – 30 April 2024
+Due date: 15 May 2024
+
+├── Driver 01 — 312 kWh — 449.20 MAD
+├── Driver 02 — 218 kWh — 313.80 MAD
+├── Driver 03 — 402 kWh — 579.60 MAD
+├── Driver 04 — 185 kWh — 266.80 MAD
+│
+Total excl. tax                  1 350.00 MAD
+VAT 20 %                           270.00 MAD
+TOTAL DUE                        1 620.00 MAD
+```
+
+The full detail per session is attached in the second part of the PDF document.
+
+## Included reporting
+
+The consolidated invoice is accompanied by complementary reports available as detailed tables:
+
+| Dimension | Example |
+| --- | --- |
+| Per driver | Driver 01, Driver 02, Driver 03, Driver 04 |
+| Per vehicle | License plate, model (if provided) |
+| Per department / cost center | If badges are tagged in the system |
+| Per charger | CP-001, CP-002, CP-003 |
+| Per site | Green Energy Park, Parking A |
+| Per billing period | 1 – 30 April 2024 |
+
+These tables let the company allocate costs to its cost centers and let the operator justify each invoiced line.
+
+## Difference with resident billing
+
+| Dimension | Company / Fleet | Resident |
+| --- | --- | --- |
+| Payer | Company (RA) | Resident or property manager |
+| Accounting unit | Badge / Driver | Apartment / Unit |
+| Consolidation | By company | By housing unit |
+| Usage | Company fleet, delivery | Condominium, private parking |
+| Asset fixed | No | Yes: charger linked to a spot |
+
+In residential billing, the goal is to rebill to the housing unit. In business billing, the goal is to centralize billing for the legal entity.
+
+## Permissions
+
+| Action | Admin | Operator | Reader |
+| --- | :-: | :-: | :-: |
+| Create a company account | Yes | No | No |
+| Assign a badge | Yes | Yes | No |
+| Set group tariff | Yes | Yes | No |
+| Edit frequency | Yes | No | No |
+| View invoice | Yes | Yes | Yes |
+| Download PDF | Yes | Yes | Yes |
+
+## See also
+
+<CardGroup cols={2}>
+  <Card title="Billing accounts" icon="user-group" href="/en/sessions/comptes-facturation">
+    Understand the general billing account mechanism.
+  </Card>
+
+  <Card title="Resident invoices" icon="building" href="/en/rapports/factures-residents">
+    View common billing and issuance concepts.
+  </Card>
+
+  <Card title="Tariffs" icon="tag" href="/en/sessions/tarifs">
+    Create and assign tariffs applied to sessions.
+  </Card>
+
+  <Card title="RFID badges" icon="id-card" href="/en/sessions/badges-rfid">
+    Add and assign badges for fleet drivers.
+  </Card>
+</CardGroup>

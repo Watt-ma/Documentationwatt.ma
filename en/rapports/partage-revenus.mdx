@@ -1,0 +1,113 @@
+---
+title: "Configure revenue sharing rules on watt.ma"
+sidebarTitle: "Revenue Sharing"
+description: "Set up automatic revenue split rules between operator and site owner on watt.ma: percentage, fixed amount per kWh, or hybrid model."
+---
+
+Revenue sharing lets a charging operator (CPO) automate the distribution of revenue with the owners or operators of the sites hosting their chargers. Every completed session feeds the calculation, and watt.ma produces statements ready to be settled at the end of each period.
+
+## Overview
+
+Revenue sharing is a **rule**. It defines who receives which share of each session, but does not materialize the payment itself. Actual partner settlement is managed separately on the [Partner Settlements](/en/rapports/reglements-partenaires) page.
+
+<Note>
+  Revenue sharing reports are available from the **Production** plan. See [Plans](/en/compte/forfaits).
+</Note>
+
+## Supported models
+
+<CardGroup cols={3}>
+  <Card title="Percentage" icon="percent">
+    Revenue split by percentage between operator and owner.
+
+    Example: Operator 80%, Owner 20%.
+  </Card>
+
+  <Card title="Fixed amount per kWh" icon="bolt">
+    The owner receives a fixed amount for each kWh delivered.
+
+    Example: 0.50 MAD/kWh paid out.
+  </Card>
+
+  <Card title="Hybrid" icon="layer-group">
+    Combination of both models.
+
+    Example: 10% of revenue \+ 0.20 MAD/kWh.
+  </Card>
+</CardGroup>
+
+## Configure a rule
+
+<Steps>
+  <Step title="Choose the partner and site">
+    In **Reports \> Revenue Sharing**, click **New rule**. Select the partner (landlord, operator, associated brand) and the affected site.
+  </Step>
+  <Step title="Define the model">
+    Choose percentage, fixed amount, or hybrid, then enter the values. You can add a fixed monthly share independent of sessions.
+  </Step>
+  <Step title="Set the scope">
+    Specify the included transaction types: charging only, with or without idle fees, excluding connection fees, etc. Refunds and credit notes are automatically deducted from the sharing base.
+  </Step>
+  <Step title="Set the application period">
+    Enter the effective date and optionally an end date. A new rule on the same site replaces the previous one at its effective date.
+  </Step>
+</Steps>
+
+## Example: Green Energy Park
+
+On the **Green Energy Park** site, the rule Operator 80% / Owner 20% applies to all charging sessions.
+
+```text
+Monthly sessions          500 kWh
+Customer price            2.50 MAD/kWh
+--------------------------------------
+Charging revenue          1,250 MAD
+Adjustments                    0 MAD
+--------------------------------------
+Sharing base              1,250 MAD
+
+Operator share (80%)      1,000 MAD
+Owner share (20%)           250 MAD
+```
+
+The owner share (250 MAD) is carried over to the partner's monthly statement, ready to be settled.
+
+## Rule statuses
+
+| Status | Description |
+| --- | --- |
+| **Scheduled** | Rule created with a future effective date |
+| **Active** | Rule in effect for the current period |
+| **Expired** | End date passed or rule replaced |
+
+## Difference from a settlement
+
+A sharing rule indicates **how** the split is calculated. A partner settlement materializes **when** and **how** money is transferred to the partner, with its own payment status. See the [Partner Settlements](/en/rapports/reglements-partenaires) page for the full cycle.
+
+## Permissions
+
+| Role | Create / edit | View |
+| --- | --- | --- |
+| Admin | Yes | Yes |
+| Operator | No | Yes |
+| Reader | No | Yes |
+
+## See also
+
+<CardGroup cols={2}>
+  <Card title="Partner Settlements" icon="handshake" href="/en/rapports/reglements-partenaires">
+    Materialize payment to property owners and landlords.
+  </Card>
+
+  <Card title="Revenue" icon="chart-line" href="/en/rapports/revenus">
+    Analyze gross revenue before sharing.
+  </Card>
+
+  <Card title="Financial Analytics" icon="chart-mixed" href="/en/rapports/analytique-financiere">
+    View the owner share in the consolidated dashboard.
+  </Card>
+
+  <Card title="Plans" icon="rocket" href="/en/compte/forfaits">
+    Revenue sharing is included from the Production plan.
+  </Card>
+</CardGroup>

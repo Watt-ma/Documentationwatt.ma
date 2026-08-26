@@ -1,0 +1,93 @@
+---
+title: "Moyens de paiement et fournisseurs sur watt.ma"
+sidebarTitle: "Paiements"
+description: "Découvrez les moyens de paiement acceptés sur watt.ma : QR CMI, Stripe, carte et virement, avec leur configuration et leurs cas d'usage cibles."
+---
+
+Le moteur de facturation watt.ma est indépendant du fournisseur de paiement. Que vous rattachiez un compte CMI ou Stripe, le calcul des tarifs, la génération des factures et le suivi des revenus suivent la même logique. Cette flexibilité vous permet d'activer plusieurs fournisseurs en parallèle et d'affecter un moyen de paiement par contexte (public, résidence, flotte).
+
+## Architecture du paiement
+
+```text
+Moteur de facturation watt.ma → Fournisseur de paiement (CMI, Stripe) → Réseau carte / banque
+```
+
+watt.ma calcule le montant dû à partir des données de la session de recharge (kWh, durée, tarif). Le fournisseur de paiement récupère cette instruction et transmet le débit au réseau bancaire. Le retour d'état (réussi, échoué, remboursé) est synchronisé dans l'interface watt.ma pour un suivi centralisé.
+
+## Moyens de paiement supportés
+
+<CardGroup cols={2}>
+  <Card title="Paiement carte unique" icon="credit-card">
+    Le conducteur saisit sa carte bancaire pour un paiement ponctuel. Le moyen de paiement n'est pas enregistré dans le profil. Adapté aux visiteurs et aux bornes publiques.
+  </Card>
+
+  <Card title="Moyen de paiement enregistré" icon="id-card">
+    Le conducteur associe une carte ou un compte à son profil watt.ma. Les factures récurrentes sont prélevées automatiquement. Disponible dès le forfait Production.
+  </Card>
+
+  <Card title="QR code CMI" icon="qrcode" href="/sessions/paiements-qr-cmi">
+    Scan d'un QR code affiché sur la borne ou le téléphone, paiement via l'application bancaire marocaine. Disponible aujourd'hui, intégration native avec le réseau CMI.
+  </Card>
+
+  <Card title="Stripe" icon="stripe" href="/sessions/stripe">
+    Cartes internationales Visa et Mastercard, prélèvement récurrent, remboursements et multi-devises. En cours d'intégration. Consultez la page dédiée pour rejoindre le programme pilote.
+  </Card>
+
+  <Card title="Virement bancaire" icon="building-columns" href="/sessions/rapprochement">
+    Paiement par virement sur le compte du syndic ou de l'opérateur. Rapproché manuellement dans watt.ma. Fréquent en copropriété et en facturation B2B.
+  </Card>
+</CardGroup>
+
+## Où sont utilisés les moyens de paiement
+
+| Contexte | Moyens de paiement possibles | Forfait minimal |
+| --- | --- | --- |
+| **QR public** | QR CMI, Stripe (bientôt) | Startup |
+| **Factures récurrentes** | CMI, Stripe, virement | Production |
+| **Résidences** | CMI, virement, prélèvement sur charges | Startup |
+| **Flottes** | Badge RFID \+ facture groupée, CMI | Production |
+
+## Activer un fournisseur de paiement
+
+<Steps>
+  <Step title="Ouvrir Paramètres > Paiements">
+    Connectez-vous à [web.watt.ma](https://web.watt.ma), puis allez dans **Paramètres \> Paiements**. Cette page liste les fournisseurs disponibles pour votre organisation.
+  </Step>
+  <Step title="Choisir un fournisseur">
+    Cliquez sur le fournisseur souhaité : **CMI** ou **Stripe**. Chaque fournisseur affiche son statut (actif, en attente de configuration, indisponible).
+  </Step>
+  <Step title="Renseigner les identifiants">
+    Saisissez les identifiants transmis par votre banque (CMI) ou par votre compte Stripe Dashboard (clé publique, clé secrète, endpoint webhook). En mode test, vous pouvez utiliser les clés sandbox pour valider le flux sans débit réel.
+  </Step>
+  <Step title="Affecter le fournisseur à un site">
+    Pour chaque site, ouvrez la configuration et sélectionnez le fournisseur de paiement par défaut. Vous pouvez attribuer CMI au site public du centre commercial et Stripe au site destination pour touristes.
+  </Step>
+</Steps>
+
+<Note>
+  Les paiements sont toujours exprimés en dirhams marocains (MAD) pour les flux CMI. Stripe permettra le multi-devises lorsque l'intégration sera finalisée. Consultez la [roadmap](/roadmap) pour suivre les avancées.
+</Note>
+
+<Tip>
+  Vous pouvez activer CMI et Stripe simultanément sur la même organisation watt.ma. Affectez chaque fournisseur à des sites ou groupes d'utilisateurs différents pour couvrir tous les profils de clients.
+</Tip>
+
+## Voir aussi
+
+<CardGroup cols={2}>
+  <Card title="Paiements CMI" icon="qrcode" href="/sessions/paiements-qr-cmi">
+    Activez et configurez le paiement par QR code avec le Centre Monétique Interbancaire.
+  </Card>
+
+  <Card title="Stripe" icon="stripe" href="/sessions/stripe">
+    Programme pilote, cartes internationales et prélèvements récurrents avec Stripe.
+  </Card>
+
+  <Card title="Cycle de vie d'un paiement" icon="arrows-rotate" href="/sessions/cycle-paiement">
+    Suivez chaque statut d'une tentative de paiement de la création au règlement.
+  </Card>
+
+  <Card title="Rapprochement bancaire" icon="building-columns" href="/sessions/rapprochement">
+    Enregistrez les virements, rapprochez les encaissements et gérez les écarts.
+  </Card>
+</CardGroup>

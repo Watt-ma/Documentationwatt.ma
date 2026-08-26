@@ -1,0 +1,145 @@
+---
+title: "Registre des charges : tracabilité des sessions sur watt.ma"
+sidebarTitle: "Registre Charges"
+description: "Le registre des charges lie les sessions financières aux documents comptables sur watt.ma, avec audit, litiges et corrections comptables."
+---
+
+Le registre des charges est le ciment entre le monde opérationnel des sessions de recharge et le monde financier des factures et paiements. Chaque session génère une ou plusieurs lignes de charge dans le registre, et ces lignes ne sont jamais modifiées, même si une facture est corrigée ou un remboursement est effectué. Cette immutabilité garantit l'auditabilité complète et la fiabilité des données pour la comptabilité comme pour les litiges.
+
+## Vue d'ensemble
+
+Dans le backbone financier de watt.ma, le registre des charges se situe juste après le calcul du montant d'une session et avant la constitution du solde client. Il conserve toutes les mutations financières qui concernent une session:
+
+```text
+Session de recharge → Données compteur → Tarif applicable → Calcul du montant
+→ Registre des charges → Solde du client → Facture ou reçu → Encaissement
+→ Rapprochement → Partage des revenus → Règlement partenaire → Export comptable
+```
+
+Une charge est créée lors du calcul du montant. Elle est ensuite référencée par les factures, les paiements, les remboursements et les avoirs sans jamais changer elle-même.
+
+## Types d'événements
+
+| Type d'événement | Description |
+| --- | --- |
+| **Energy charge** | Montant calculé sur la base des kWh consommés et du tarif applicable |
+| **Connection fee** | Frais fixes déclenchés au démarrage de la session |
+| **Time charge** | Montant basé sur la durée de branchement, en heures |
+| **Idle fee** | Frais d'inoccupation du connecteur après la fin de la recharge |
+| **Boost surcharge** | Supplément appliqué sur une borne à recharge rapide |
+| **Monthly subscription** | Abonnement mensuel fixe rattaché au compte |
+| **Discount** | Remise manuelle ou automatique appliquée à une charge |
+| **Tax** | TVA de 20 % calculée sur les montants imposables |
+| **Credit** | Crédit comptable accordé au client |
+| **Adjustment** | Correction comptable manuelle par un administrateur |
+| **Refund** | Remboursement partiel ou total d'une charge payée |
+| **Credit note (avoir)** | Annulation d'une partie ou de la totalité d'une facture |
+
+<Note>
+  Certaines lignes comme **idle fee** et **boost surcharge** dépendent de la configuration du site et du tarif. Consultez la page [Tarifs](/sessions/tarifs) pour configurer ces options.
+</Note>
+
+## Exemple de registre
+
+Considérons la session WAT-000183 sur la borne CP-003 du site Green Energy Park :
+
+```text
+Session #WAT-000183
+Conducteur : Driver 02 (badge RFID)
+Site : Green Energy Park
+Borne : CP-003 — Connecteur 1
+Horodatage : 2024-04-15 14:32:07
+
+Energy                  +61,25 MAD
+Connection fee           +5,00 MAD
+Employee discount       -10,00 MAD
+----------------------------------
+Charge total             56,25 MAD
+TVA 20 %                +11,25 MAD
+----------------------------------
+Montant total TTC        67,50 MAD
+```
+
+Ce total impacte directement le solde du compte de facturation entreprise, ici Atlas Logistics. Les avoirs et remboursements ultérieurs ne modifient pas cette ligne : ils créent des lignes de correction séparées.
+
+## Références conservées par entrée
+
+Chaque ligne du registre porte les références suivantes, garantissant la traçabilité de bout en bout :
+
+| Référence | Description |
+| --- | --- |
+| **Session** | Identifiant unique de la session, par exemple WAT-000183 |
+| **Client** | Compte de facturation auquel la charge est imputée |
+| **Conducteur** | Badge ou utilisateur ayant déclenché la session |
+| **Site** | Site de recharge concerné |
+| **Borne** | Identifiant de la borne OCPP |
+| **Connecteur** | Numéro du connecteur physique |
+| **Tarif** | Tarif appliqué au moment de la session |
+| **Horodatage** | Date et heure de création de l'entrée |
+| **Devise** | MAD pour toutes les transactions |
+
+## Cas d'utilisation
+
+<CardGroup cols={2}>
+  <Card title="Auditabilité" icon="magnifying-glass">
+    Un comptable ou un auditeur peut reconstruire l'intégralité des flux financiers à partir du registre, sans avoir besoin d'accéder aux factures.
+  </Card>
+
+  <Card title="Litiges clients" icon="scale-balanced">
+    En cas de contestation sur une session, consultez le registre pour justifier chaque ligne : kWh, tarif, remise, frais.
+  </Card>
+
+  <Card title="Corrections comptables" icon="pen-to-square">
+    Un ajustement ou un avoir est enregistré comme une nouvelle ligne négative, préservant l'historique original.
+  </Card>
+
+  <Card title="Contrôle fiscal" icon="building-columns">
+    Les données du registre peuvent être exportées vers votre outil comptable pour vérifier la cohérence des montants déclarés.
+  </Card>
+</CardGroup>
+
+## Piste d'audit
+
+Pour chaque entrée, watt.ma conserve une piste d'audit comportant :
+
+| Attribut | Description |
+| --- | --- |
+| **Auteur** | Identifiant de l'utilisateur ou du système ayant créé la ligne |
+| **Action** | Type d'opération : création, correction, remboursement, annulation |
+| **Horodatage** | Date et heure précises de l'opération |
+| **Ancienne valeur** | Le cas échéant, ancien montant avant correction |
+| **Motif** | Commentaire obligatoire pour toute modification manuelle |
+
+<Warning>
+  La modification directe d'une entrée du registre est impossible. Seule la création d'une ligne d'ajustement ou d'avoir est autorisée. Les lignes du registre des charges de sessions passées sont immuables.
+</Warning>
+
+## Permissions
+
+| Action | Admin | Opérateur | Lecteur |
+| --- | :-: | :-: | :-: |
+| Consulter le registre | Oui | Oui | Oui |
+| Exporter le registre | Oui | Oui | Non |
+| Créer un ajustement | Oui | Non | Non |
+| Créer un avoir | Oui | Non | Non |
+| Modifier une ligne existante | Non | Non | Non |
+
+## Voir aussi
+
+<CardGroup cols={2}>
+  <Card title="Suivi des sessions" icon="bolt" href="/sessions/suivi-sessions">
+    Retrouvez le cycle de vie complet d'une session de recharge.
+  </Card>
+
+  <Card title="Comptes de facturation" icon="user-group" href="/sessions/comptes-facturation">
+    Liez les charges aux comptes clients.
+  </Card>
+
+  <Card title="Rapports de facturation" icon="file-invoice" href="/rapports/facturation">
+    Passez des charges à la création de factures.
+  </Card>
+
+  <Card title="Facturation entreprises" icon="truck" href="/sessions/facturation-entreprises">
+    Comprenez comment les charges alimentent les factures de flotte.
+  </Card>
+</CardGroup>

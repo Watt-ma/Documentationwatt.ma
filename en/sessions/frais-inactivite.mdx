@@ -1,0 +1,99 @@
+---
+title: "watt.ma idle fees after charging"
+sidebarTitle: "Idle fees"
+description: "Learn how to configure idle fees on watt.ma: grace period, time billing, driver notifications, and use cases to free up chargers faster."
+---
+
+Idle fees are applied after a charge ends when a vehicle remains plugged in to the charger without consuming energy. This feature encourages drivers to move their vehicle quickly, freeing the charger for the next user and improving the utilization rate of your fleet.
+
+<Note>
+  Idle fees are currently in beta. Their behavior may change. To follow the roadmap, see the [Roadmap](/en/roadmap) page.
+</Note>
+
+## How it works
+
+Here is the chronological flow of a session that generates idle fees:
+
+```text
+Charge completed → Grace period: 15 min → Vehicle still plugged in → Idle fees begin
+```
+
+1. The charging session ends when the vehicle reaches its target state of charge or the driver stops it.
+2. A configurable grace period begins. During this time, no idle fees are applied.
+3. If the vehicle remains plugged in beyond this period, idle fees start accruing at the configured rate.
+4. Fees accumulate until the vehicle is unplugged or a cap is reached.
+
+## Configuration
+
+In the **Sessions \> Idle fees** menu, click **New rule**. Fill in the following parameters:
+
+| Parameter | Description | Example |
+| --- | --- | --- |
+| **Grace period** | Duration before fees begin, in minutes. | 15 minutes |
+| **Amount per minute** | Unit rate applied each minute of idleness. | 1.00 MAD/min |
+| **Amount per hour** | Alternative: hourly rate, calculated pro rata per minute. | 50.00 MAD/h |
+| **Cap** | Maximum amount billed for this idle period. | 30.00 MAD |
+| **Notification before trigger** | Send an alert to the driver X minutes before the grace period ends. | 5 minutes before |
+
+You can apply a rule at the level of a site, a specific charger, or a driver group. For example, you can grant a longer grace period to residents than to public customers.
+
+## Use cases
+
+Idle fees are particularly useful in the following contexts:
+
+- **Improve charger availability**: by encouraging quick unplugging, you reduce unnecessary occupation time.
+- **Reduce spot blocking**: ideal in parking lots with a limited number of charging spots.
+- **Optimize fleet utilization**: revenue reports distinguish energy revenue from idle revenue, letting you adjust your pricing policy.
+
+## Driver notifications
+
+Before fees are triggered, watt.ma can notify the driver by SMS or mobile push. Configure the notification delay in the rule. The message indicates the remaining time before fees begin and the per-minute amount.
+
+**Example notification:**
+
+> Your charge is complete. Unplug within 5 minutes to avoid idle fees of 1.00 MAD/min. Green Energy Park
+
+## Concrete example: Green Energy Park
+
+Take a session on charger `CP-001` at the Green Energy Park site:
+
+- Active charge: 40 minutes, 18 kWh at 2.50 MAD/kWh = 45.00 MAD
+- Grace period after charge ends: 15 minutes (free)
+- Time remained plugged in beyond grace period: 25 minutes
+- Idle fee rate: 1.00 MAD/min, cap 30.00 MAD
+
+Idle fee calculation: 25 minutes x 1.00 MAD = 25.00 MAD (under the cap)
+
+**Session total:** 45.00 MAD \+ 25.00 MAD = **70.00 MAD**
+
+## Idle period statuses
+
+A session with idle fees goes through the following states:
+
+| Status | Explanation |
+| --- | --- |
+| **Grace period** | The charge is complete, the vehicle is still plugged in, but no fees are accruing yet. |
+| **Active billing** | The grace period has elapsed. Idle fees are accumulating minute by minute. |
+| **Session closed** | The vehicle has been unplugged. The idle charge is finalized and added to the session total. |
+
+<Tip>
+  In the revenue report, idle fees appear as a separate line from the energy charge. This lets you evaluate the share of revenue coming from idleness compared to the energy sold.
+</Tip>
+
+<CardGroup>
+  <Card title="Tariffs" icon="tag" href="/en/sessions/tarifs">
+    Create and configure your base tariffs, energy and time.
+  </Card>
+
+  <Card title="Pricing components" icon="layers" href="/en/sessions/composants-tarifaires">
+    Discover all the elements that make up a watt.ma tariff.
+  </Card>
+
+  <Card title="Tariff priority" icon="arrow-down-up" href="/en/sessions/priorite-tarifs">
+    Understand how watt.ma chooses which tariff to apply when several are available.
+  </Card>
+
+  <Card title="Roadmap" icon="map" href="/en/roadmap">
+    Check the roadmap to see the progress of the idle fees feature.
+  </Card>
+</CardGroup>

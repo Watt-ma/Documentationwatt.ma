@@ -1,0 +1,148 @@
+---
+title: "Remboursements et avoirs sur watt.ma"
+sidebarTitle: "Remboursements"
+description: "Distinguez les remboursements des avoirs sur watt.ma, suivez les motifs et statuts, et gérez les corrections comptables sans supprimer l'historique."
+---
+
+Le module Remboursements et avoirs de watt.ma gère les situations où un client a payé ou a été facturé pour un montant qu'il ne devait pas. Cette page clarifie la distinction fondamentale entre ces deux concepts et expose les workflows, les motifs courants et les permissions associées pour que chaque correction soit traçable et conforme.
+
+## Vue d'ensemble : remboursement et avoir
+
+watt.ma distingue strictement deux types de corrections financières :
+
+- **Remboursement** : argent physiquement renvoyé au client après un paiement réussi. Un remboursement implique un mouvement de trésorerie sortant sur le compte bancaire ou le compte marchand du fournisseur de paiement. Le client reçoit l'argent sur son compte.
+- **Avoir** : correction comptable qui réduit un montant précédemment facturé sans transfert d'argent. Un avoir diminue la créance du client mais ne génère pas nécessairement un virement. Il est compensé contre une facture existante ou future.
+
+<Warning>
+  Ne confondez jamais un avoir avec une annulation de facture. Un avoir conserve l'historique de la transaction initiale et crée un document comptable distinct. L'annulation masquerait la piste d'audit.
+</Warning>
+
+## Motifs courants
+
+Les remboursements et avoirs peuvent être initiés pour plusieurs raisons opérationnelles et commerciales :
+
+| Motif | Type | Description |
+| --- | --- | --- |
+| **Borne défaillante** | Avoir ou Remboursement | La session a été facturée mais la borne CP-003 a interrompu la recharge sans délivrer l'énergie promise. |
+| **Erreur de facturation** | Avoir | Un tarif incorrect a été appliqué à l'ensemble d'un cycle, générant un excédent de facturation. |
+| **Tarif incorrect appliqué** | Avoir | Un badge non éligible a bénéficié d'un tarif préférentiel résidentiel par erreur. |
+| **Double paiement** | Remboursement | Le client a payé deux fois pour la même session, par exemple via QR et badge simultanément. |
+| **Litige client** | Avoir ou Remboursement | Le client conteste le montant facturé suite à une panne constatée et prouvée. |
+| **Geste commercial** | Avoir | L'opérateur accorde une remise a posteriori pour un retournement d'expérience négatif. |
+
+<Note>
+  Le motif est obligatoire dans watt.ma. Il apparaît sur le document d'avoir ou dans la note de remboursement et alimente les rapports d'analyse des causes de correction.
+</Note>
+
+## Workflow d'un remboursement
+
+Le processus de remboursement suit un chemin linéaire depuis le paiement original jusqu'à la mise à jour du compte client :
+
+```text
+Paiement original → Demande de remboursement → Total ou partiel
+→ Prestataire de paiement → Registre watt.ma → Compte client mis à jour
+```
+
+<Steps>
+  <Step title="Identifier le paiement original">
+    Dans **Rapports \> Encaissements** ou dans le détail de la session concernée, repérez le paiement à rembourser. Notez son ID et le moyen de paiement utilisé.
+  </Step>
+  <Step title="Créer la demande de remboursement">
+    Cliquez sur **Demander un remboursement**. Choisissez le montant (total ou partiel) et sélectionnez le motif dans la liste. Ajoutez une note explicative si nécessaire.
+  </Step>
+  <Step title="Soumettre pour validation">
+    L'Admin reçoit une notification de demande. L'Opérateur peut remplir le formulaire mais ne pas valider. Le statut passe à **Demandé**.
+  </Step>
+  <Step title="Valider et transmettre au fournisseur">
+    L'Admin approuve la demande. watt.ma initie le remboursement via l'API du fournisseur de paiement (CMI ou Stripe). Le statut passe à **En cours**.
+  </Step>
+  <Step title="Confirmer le remboursement">
+    Une fois le fournisseur confirmé, le statut passe à **Remboursé**. Le compte client est mis à jour et une note comptable est générée.
+  </Step>
+</Steps>
+
+## Règle d'or : jamais supprimer un enregistrement historique
+
+watt.ma ne permet pas la suppression d'un paiement, d'une facture ou d'une charge. Toute correction se fait par ajout d'un ajustement comptable :
+
+- Un avoir crée une ligne négative dans le registre du compte client.
+- Un remboursement crée une ligne de sortie de trésorerie liée au paiement original.
+- Une note d'explication est attachée à chaque opération.
+
+Cette règle garantit que l'historique comptable reste complet et auditable pour la DGI et votre expert-comptable.
+
+<Warning>
+  Ne jamais tenter d'annuler une facture pour la recréer. Utilisez toujours un avoir ou un remboursement pour corriger le montant. L'annulation casserait la continuité de la numérotation fiscale.
+</Warning>
+
+## Exemple d'avoir
+
+Voici un exemple concret d'avoir appliqué suite à une panne de borne :
+
+```text
+Facture F-2026-08-0054          300,00 MAD
+Avoir A-2026-08-0012            -50,00 MAD  (Motif : borne défaillante CP-003)
+----------------------------------------
+Solde à payer                   250,00 MAD
+```
+
+La facture originale de 300 MAD reste inchangée dans le système. L'avoir A-2026-08-0012 est émis en référence à la session WAT-000205 sur la borne CP-003, qui a subi une interruption. Le client doit régler 250 MAD au lieu de 300 MAD. La TVA ajustée est automatiquement recalculée.
+
+## Exemple de remboursement
+
+Voici un exemple de remboursement total d'un paiement CMI :
+
+```text
+Paiement original                87,50 MAD  (QR CMI, session WAT-000198)
+Remboursement                    -87,50 MAD (CMI, ref RMB-2026-0089)
+----------------------------------------
+Solde client                      0,00 MAD
+Statut                          Remboursé
+```
+
+Le client a payé 87,50 MAD par QR CMI pour une session qui a finalement été annulée pour panne système. Le remboursement total de 87,50 MAD est effectué via CMI avec le statut **Remboursé**. Aucun avoir n'est nécessaire car le paiement a déjà été encaissé et doit être physiquement restitué.
+
+## Statuts d'un remboursement
+
+| Statut | Définition |
+| --- | --- |
+| **Demandé** | L'opérateur a rempli le formulaire de demande, en attente de validation Admin. |
+| **Approuvé** | L'administrateur a validé la demande. En attente de transmission au fournisseur. |
+| **En cours** | La demande a été transmise au fournisseur de paiement (CMI ou Stripe). Délai de traitement chez le fournisseur. |
+| **Remboursé** | Le fournisseur a confirmé le remboursement et les fonds ont été restitués au client. |
+| **Rejeté** | L'administrateur a refusé la demande ou le fournisseur a rejeté le remboursement. Une note explicative est obligatoire. |
+
+## Permissions
+
+| Action | Admin | Opérateur | Lecteur |
+| --- | :-: | :-: | :-: |
+| Demander un remboursement | Oui | Oui | Non |
+| Valider un remboursement | Oui | Non | Non |
+| Demander un avoir | Oui | Oui | Non |
+| Valider un avoir | Oui | Non | Non |
+| Consulter les remboursements | Oui | Oui | Oui |
+| Consulter les avoirs | Oui | Oui | Oui |
+
+<Note>
+  L'Opérateur peut initier la démarche mais ne peut pas la finaliser. Cette séparation des responsabilités réduit le risque d'erreur et protège la trésorerie.
+</Note>
+
+## Voir aussi
+
+<CardGroup cols={2}>
+  <Card title="Échecs de paiement" icon="triangle-exclamation" href="/sessions/echecs-paiement">
+    Gérez les refus de carte et relancez les clients avant d'envisager un remboursement.
+  </Card>
+
+  <Card title="Rapprochement bancaire" icon="building-columns" href="/sessions/rapprochement">
+    Enregistrez les virements et suivez la correspondance entre encaissements et compte bancaire.
+  </Card>
+
+  <Card title="Facturation" icon="file-invoice" href="/rapports/facturation">
+    Comprenez le cycle de vie complet des factures auxquelles s'appliquent les avoirs.
+  </Card>
+
+  <Card title="Soldes clients" icon="scale-unbalanced" href="/rapports/soldes-clients">
+    Consultez l'impact des avoirs et remboursements sur le solde de chaque compte.
+  </Card>
+</CardGroup>

@@ -1,0 +1,148 @@
+---
+title: "Manage refunds and credit notes on watt.ma"
+sidebarTitle: "Refunds"
+description: "Distinguish refunds from credit notes on watt.ma, track reasons and statuses, and manage accounting corrections without deleting history."
+---
+
+The Refunds and Credit Notes module on watt.ma handles situations where a customer paid or was invoiced for an amount they did not owe. This page clarifies the fundamental distinction between these two concepts and exposes the workflows, common reasons, and associated permissions so every correction is traceable and compliant.
+
+## Overview: refund and credit note
+
+watt.ma strictly distinguishes between two types of financial corrections:
+
+- **Refund**: money physically returned to the customer after a successful payment. A refund involves an outgoing cash movement on the operator's bank account or payment provider account. The customer receives the money in their account.
+- **Credit note**: an accounting correction that reduces a previously invoiced amount without transferring money. A credit note reduces the customer's receivable but does not necessarily generate a wire transfer. It is offset against an existing or future invoice.
+
+<Warning>
+  Never confuse a credit note with an invoice cancellation. A credit note preserves the history of the original transaction and creates a separate accounting document. Cancellation would break the audit trail.
+</Warning>
+
+## Common reasons
+
+Refunds and credit notes can be initiated for several operational and commercial reasons:
+
+| Reason | Type | Description |
+| --- | --- | --- |
+| **Charger failure** | Credit note or Refund | The session was invoiced but charger CP-003 interrupted charging without delivering the promised energy. |
+| **Billing error** | Credit note | An incorrect tariff was applied to an entire billing cycle, generating an overcharge. |
+| **Incorrect tariff applied** | Credit note | A non-eligible badge received a preferred residential tariff by mistake. |
+| **Double payment** | Refund | The customer paid twice for the same session, for example via QR and badge simultaneously. |
+| **Customer dispute** | Credit note or Refund | The customer disputes the invoiced amount following a proven malfunction. |
+| **Commercial gesture** | Credit note | The operator grants a retroactive discount for a negative experience. |
+
+<Note>
+  The reason is mandatory in watt.ma. It appears on the credit note document or in the refund note and feeds correction analysis reports.
+</Note>
+
+## Refund workflow
+
+The refund process follows a linear path from the original payment to the update of the customer account:
+
+```text
+Original payment → Refund request → Full or partial
+→ Payment provider → watt.ma ledger → Customer account updated
+```
+
+<Steps>
+  <Step title="Identify the original payment">
+    In **Reports \> Collections** or in the affected session details, locate the payment to refund. Note its ID and the payment method used.
+  </Step>
+  <Step title="Create the refund request">
+    Click **Request a refund**. Choose the amount (full or partial) and select the reason from the list. Add an explanatory note if needed.
+  </Step>
+  <Step title="Submit for validation">
+    The Admin receives a request notification. The Operator can fill the form but cannot validate. Status changes to **Requested**.
+  </Step>
+  <Step title="Validate and hand to the provider">
+    The Admin approves the request. watt.ma initiates the refund via the payment provider's API (CMI or Stripe). Status changes to **In progress**.
+  </Step>
+  <Step title="Confirm the refund">
+    Once the provider confirms, status changes to **Refunded**. The customer account is updated and an accounting note is generated.
+  </Step>
+</Steps>
+
+## Golden rule: never delete a historical record
+
+watt.ma does not allow deletion of a payment, invoice, or charge. Every correction is made by adding an accounting adjustment:
+
+- A credit note creates a negative line in the customer account ledger.
+- A refund creates an outgoing cash line linked to the original payment.
+- An explanatory note is attached to every operation.
+
+This rule guarantees that the accounting history remains complete and auditable for the tax authorities and your accountant.
+
+<Warning>
+  Never attempt to cancel an invoice and recreate it. Always use a credit note or a refund to correct the amount. Cancellation would break the continuity of fiscal numbering.
+</Warning>
+
+## Credit note example
+
+Here is a concrete example of a credit note applied after a charger malfunction:
+
+```text
+Invoice F-2026-08-0054          300.00 MAD
+Credit note A-2026-08-0012      -50.00 MAD  (Reason: charger failure CP-003)
+----------------------------------------
+Amount to pay                   250.00 MAD
+```
+
+The original invoice of 300 MAD remains unchanged in the system. Credit note A-2026-08-0012 is issued in reference to session WAT-000205 on charger CP-003, which suffered an interruption. The customer must pay 250 MAD instead of 300 MAD. Adjusted VAT is automatically recalculated.
+
+## Refund example
+
+Here is an example of a full CMI payment refund:
+
+```text
+Original payment                87.50 MAD  (CMI QR, session WAT-000198)
+Refund                          -87.50 MAD (CMI, ref RMB-2026-0089)
+----------------------------------------
+Customer balance                 0.00 MAD
+Status                          Refunded
+```
+
+The customer paid 87.50 MAD by CMI QR for a session that was ultimately cancelled due to a system failure. The full refund of 87.50 MAD is processed via CMI with status **Refunded**. No credit note is necessary because the payment had already been collected and must be physically returned.
+
+## Refund statuses
+
+| Status | Definition |
+| --- | --- |
+| **Requested** | The operator filled the request form, awaiting Admin validation. |
+| **Approved** | The administrator validated the request. Pending transfer to the provider. |
+| **In progress** | The request has been forwarded to the payment provider (CMI or Stripe). Provider processing time. |
+| **Refunded** | The provider has confirmed the refund and funds have been returned to the customer. |
+| **Rejected** | The administrator refused the request or the provider rejected the refund. An explanatory note is mandatory. |
+
+## Permissions
+
+| Action | Admin | Operator | Reader |
+| --- | :-: | :-: | :-: |
+| Request a refund | Yes | Yes | No |
+| Validate a refund | Yes | No | No |
+| Request a credit note | Yes | Yes | No |
+| Validate a credit note | Yes | No | No |
+| View refunds | Yes | Yes | Yes |
+| View credit notes | Yes | Yes | Yes |
+
+<Note>
+  The Operator can initiate the process but cannot complete it. This separation of responsibilities reduces the risk of error and protects cash flow.
+</Note>
+
+## See also
+
+<CardGroup cols={2}>
+  <Card title="Payment Failures" icon="triangle-exclamation" href="/en/sessions/echecs-paiement">
+    Handle card refusals and retry with customers before considering a refund.
+  </Card>
+
+  <Card title="Bank Reconciliation" icon="building-columns" href="/en/sessions/rapprochement">
+    Register wire transfers and track the match between collections and bank account.
+  </Card>
+
+  <Card title="Invoicing" icon="file-invoice" href="/en/rapports/facturation">
+    Understand the full invoice lifecycle to which credit notes apply.
+  </Card>
+
+  <Card title="Customer Balances" icon="scale-unbalanced" href="/en/rapports/soldes-clients">
+    Check the impact of credit notes and refunds on each account's balance.
+  </Card>
+</CardGroup>

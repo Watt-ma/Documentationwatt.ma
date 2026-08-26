@@ -1,0 +1,132 @@
+---
+title: "Gérer les échecs de paiement sur watt.ma"
+sidebarTitle: "Échecs"
+description: "Identifiez les causes d'échec de paiement sur watt.ma, relancez les clients et appliquez les mesures correctives selon votre rôle."
+---
+
+Les échecs de paiement font partie du cycle de vie des revenus sur watt.ma. Une carte refusée, un solde insuffisant ou une erreur réseau ne doivent pas bloquer la compréhension de votre situation financière. watt.ma conserve chaque tentative dans l'historique, vous offre des leviers d'action par rôle et notifie automatiquement le client pour faciliter le règlement.
+
+## Causes possibles d'échec
+
+<CardGroup cols={2}>
+  <Card title="Carte refusée" icon="credit-card">
+    La banque émettrice refuse le débit sans motif détaillé. Fréquent sur les premières transactions d'une carte nouvelle.
+  </Card>
+
+  <Card title="Carte expirée" icon="calendar-xmark">
+    Le moyen de paiement enregistré a dépassé sa date de validité. Le prélèvement récurrent échoue systématiquement.
+  </Card>
+
+  <Card title="Solde insuffisant" icon="money-bill-wave">
+    Le compte du client ne dispose pas du montant nécessaire au moment du débit.
+  </Card>
+
+  <Card title="Erreur fournisseur" icon="server">
+    Panne temporaire du réseau CMI ou de l'API Stripe. Le paiement peut être relancé une fois le service rétabli.
+  </Card>
+
+  <Card title="Moyen de paiement révoqué" icon="ban">
+    Le client a bloqué sa carte ou fermé son compte entre la création de la facture et la tentative de débit.
+  </Card>
+
+  <Card title="Échec d'authentification" icon="shield-xmark">
+    L'authentification 3D Secure ou bancaire n'a pas été complétée par le client dans le délai imparti.
+  </Card>
+</CardGroup>
+
+## Cycle de vie d'un échec et de sa résolution
+
+```text
+Tentative de paiement → Échec → Facture reste impayée → Notification client → Nouvelle tentative → Paiement réussi → Facture payée
+```
+
+## Actions administrateur
+
+Selon votre rôle, vous disposez d'actions différentes pour traiter un échec.
+
+| Action | Description | Rôle requis |
+| --- | --- | --- |
+| **Relancer** | Envoyez une nouvelle demande de paiement au client avec le moyen existant ou un lien de règlement. | Opérateur ou Admin |
+| **Demander la mise à jour du moyen** | Envoie un email au client pour qu'il enregistre un nouveau moyen de paiement. | Opérateur ou Admin |
+| **Enregistrer un virement** | Marque la facture comme payée par virement bancaire avec référence. | Admin |
+| **Appliquer un avoir** | Crédite un montant sur le compte client pour compenser l'impayé. | Admin |
+| **Exonérer** | Annule le montant dû sans encaissement. Utilisé pour des gestes commerciaux ou des litiges. | Admin |
+| **Suspendre la recharge** | Bloque le badge ou le compte du client jusqu'à régularisation. | Admin |
+
+<Warning>
+  L'exonération définitive d'une facture est une action comptable irréversible. Documentez toujours la raison dans les notes du paiement pour la traçabilité. Seuls les administrateurs peuvent exonérer.
+</Warning>
+
+## Historique des tentatives
+
+Chaque tentative de paiement reste dans l'historique de watt.ma. On n'écrase jamais un paiement échoué avec un succès. Lorsqu'une relance aboutit, un nouvel enregistrement est créé avec son propre ID de paiement.
+
+| Paiement | ID | Montant | Statut | Date |
+| --- | --- | --- | --- | --- |
+| Tentative 1 | WAT-000183-PAY-01 | 87,50 MAD | Échoué | 2026-08-20 14:32 |
+| Tentative 2 | WAT-000183-PAY-02 | 87,50 MAD | Réussi | 2026-08-21 09:15 |
+
+Cette conservation garantit la piste d'audit complète. Vous pouvez exporter l'historique des échecs depuis **Rapports \> Encaissements** au format CSV.
+
+## Notifications automatiques au client
+
+watt.ma envoie automatiquement les notifications suivantes en cas d'échec :
+
+- **Email** : envoyé immédiatement après le statut **Échoué**, avec la raison d'échec et un lien de mise à jour du moyen de paiement.
+- **SMS** : rappel envoyé à J\+1 et J\+7 si le paiement reste impayé. Le SMS contient un lien vers le portail de règlement.
+- **WhatsApp** : si l'option reçu WhatsApp est activée, un message est envoyé à J\+3 pour les factures récurrentes.
+
+<Tip>
+  Connectez-vous à [web.watt.ma](https://web.watt.ma) et allez dans **Paramètres \> Notifications** pour personnaliser le ton et le contenu des messages de relance. Vous pouvez ajouter une signature personnalisée ou un délai de grâce.
+</Tip>
+
+## Permissions
+
+| Rôle | Relancer | Demander mise à jour | Enregistrer virement | Exonérer | Suspendre |
+| --- | --- | --- | --- | --- | --- |
+| **Admin** | Oui | Oui | Oui | Oui | Oui |
+| **Opérateur** | Oui | Oui | Non | Non | Non |
+| **Lecteur** | Non | Non | Non | Non | Non |
+
+## Exemple concret
+
+La facture mensuelle de Résidence Al Andalous pour l'unité 5B s'élève à 412,00 MAD. Le prélèvement CMI échoue le 5 du mois avec le motif **Carte expirée**.
+
+<Steps>
+  <Step title="Détection de l'échec">
+    Le statut du paiement passe à **Échoué**. Le client reçoit un email avec le motif et un lien pour mettre à jour sa carte.
+  </Step>
+  <Step title="Relance automatique">
+    À J\+3, aucune mise à jour n'a été faite. Le client reçoit un SMS de relance. À J\+7, le statut reste impayé.
+  </Step>
+  <Step title="Intervention administrateur">
+    L'opérateur du site contacte le résident par téléphone. Le résident met à jour sa carte depuis le lien reçu.
+  </Step>
+  <Step title="Relance manuelle et succès">
+    L'opérateur clique sur **Relancer** depuis le détail de la facture. La nouvelle tentative WAT-000184-PAY-02 passe au statut **Réussi**. Le reçu est généré.
+  </Step>
+</Steps>
+
+<Info>
+  Pour les factures récurrentes des résidences, watt.ma tente automatiquement un nouveau prélèvement à J\+3 et J\+7 avant de passer la facture en impayé définitif. Vous pouvez désactiver cette option dans la configuration du cycle de facturation.
+</Info>
+
+## Voir aussi
+
+<CardGroup cols={2}>
+  <Card title="Cycle de paiement" icon="arrows-rotate" href="/sessions/cycle-paiement">
+    Comprenez chaque statut d'une tentative de paiement de la création au règlement.
+  </Card>
+
+  <Card title="Rapprochement bancaire" icon="building-columns" href="/sessions/rapprochement">
+    Enregistrez les virements et rapprochez les encaissements avec votre compte bancaire.
+  </Card>
+
+  <Card title="Badges RFID" icon="id-card" href="/sessions/badges-rfid">
+    Gérez les badges nominatifs et suspendez l'accès en cas de défaut de paiement.
+  </Card>
+
+  <Card title="Factures résidents" icon="file-invoice" href="/rapports/factures-residents">
+    Émettez et suivez les factures mensuelles des résidents avec relances automatiques.
+  </Card>
+</CardGroup>

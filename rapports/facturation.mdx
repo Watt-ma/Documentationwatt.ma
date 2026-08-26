@@ -1,0 +1,170 @@
+---
+title: "Facturer tous types de clients sur watt.ma"
+sidebarTitle: "Facturation"
+description: "Générez et suivez les factures pour tous les types de comptes clients sur watt.ma : particuliers, résidents, entreprises et collectivités."
+---
+
+La facturation est le processus qui transforme les charges enregistrées dans le registre en documents exigibles et en encaissements. watt.ma couvre le cycle complet, depuis la constitution des charges non facturées jusqu'au rapprochement des paiements, pour tous les types de comptes : particuliers, résidents, entreprises, flottes et collectivités.
+
+## Vue d'ensemble
+
+Le cycle de vie d'une facture suit une progression linéaire avec un chemin d'échec documenté :
+
+```text
+Charges non facturées → Génération de facture → Facture émise → Tentative de paiement → Payée
+```
+
+En cas d'échec :
+
+```text
+Facture émise → Paiement échoué → Solde impayé → Nouvelle tentative / paiement externe → Payée
+```
+
+<Note>
+  Ce module fait office de page générale pour tous les types de comptes. Pour la facturation spécifique des copropriétés, consultez la page [Factures résidents](/rapports/factures-residents).
+</Note>
+
+## Statuts de facture
+
+| Statut | Signification |
+| --- | --- |
+| **Brouillon** | Facture en cours d'édition, non encore visible par le client |
+| **Émise** | Facture validée par l'administrateur, envoi en attente |
+| **Envoyée** | Facture transmise au client par email ou portail |
+| **Payée** | Encaissement intégral confirmé |
+| **Partiellement payée** | Une partie du montant a été reçue, un reliquat reste dû |
+| **En retard** | La date d'échéance est dépassée et le solde n'est pas nul |
+| **Annulée** | Facture annulée sans avoir ; rare, réservée aux erreurs de génération |
+| **Créditée** | Facture intégralement compensée par un avoir |
+
+## Champs de la facture
+
+Chaque facture générée par watt.ma contient les sections suivantes :
+
+### Fournisseur
+
+| Champ | Exemple |
+| --- | --- |
+| Raison sociale | Clean Charge Morocco SARL |
+| Adresse | 12, bd Mohamed VI, 20000 Casablanca |
+| Logo | Logo configuré dans le compte opérateur |
+| ICE | 001234567000089 |
+| IF | 12345678 |
+| Contact | contact@ example.com |
+
+### Client
+
+| Champ | Exemple |
+| --- | --- |
+| Nom | Atlas Logistics SARL |
+| Adresse de facturation | 45, zone industrielle Sidi Ghanem, Marrakech |
+| Compte de facturation | CF-042-ATLAS |
+| ICE | 009876543000012 |
+
+### Métadonnées
+
+| Champ | Exemple |
+| --- | --- |
+| Numéro | F-2024-0042 |
+| Date d'émission | 15/04/2024 |
+| Période | 01/04/2024 – 30/04/2024 |
+| Date d'échéance | 30/04/2024 |
+| Devise | MAD |
+| Statut | Payée |
+
+## Récapitulatif type
+
+Voici l'apparence du tableau récapitulatif d'une facture mensuelle typique :
+
+```text
+Solde précédent                120,00 MAD
+Abonnement                      50,00 MAD
+Sessions                       318,40 MAD
+Frais de connexion              10,00 MAD
+Frais d'inactivité              25,00 MAD
+Remises                        -20,00 MAD
+Avoirs                         -15,00 MAD
+----------------------------------------
+SOUS-TOTAL HT          388,40 MAD
+TVA (20 %)              77,68 MAD
+----------------------------------------
+TOTAL À PAYER          466,08 MAD
+```
+
+## Lignes de facture détaillées
+
+Pour chaque session, la facture affiche un niveau de détail permettant au client de contrôler chaque charge :
+
+| Colonne | Exemple |
+| --- | --- |
+| **Session** | WAT-000183 |
+| **Site** | Green Energy Park |
+| **Borne** | CP-001 |
+| **Connecteur** | 1 |
+| **Conducteur** | Driver 02 |
+| **Véhicule** | Renault Zoe (si disponible) |
+| **Début** | 15/04/2024 14:32 |
+| **Fin** | 15/04/2024 17:45 |
+| **Durée branchement** | 3h13 |
+| **Énergie** | 48,7 kWh |
+| **Prix / kWh** | 2,50 MAD |
+| **Montant énergie** | 121,75 MAD |
+| **Frais de connexion** | 5,00 MAD |
+| **Temps inactif** | 0h30 |
+| **Frais d'inactivité** | 0,00 MAD |
+| **Remise** | -10,00 MAD |
+| **Taxe** | 23,35 MAD |
+| **Total ligne** | 140,10 MAD |
+
+<Note>
+  Les frais d'inactivité et les remises dépendent de la configuration du tarif et du site. Consultez [Tarifs](/sessions/tarifs) pour paramétrer ces lignes.
+</Note>
+
+## Distinction facture et reçu
+
+watt.ma distingue les deux documents :
+
+- **Facture** : document comptable obligatoire pour tout professionnel au Maroc, avec ICE, IF, numérotation continue et TVA de 20 %. Destinée à la comptabilité et à la déclaration fiscale.
+- **Reçu** : document simplifié généré immédiatement après un paiement QR ou RFID. Le reçu QR public peut suffire pour un client ne demandant pas de facture formelle. Il ne contient pas les mentions fiscales complètes.
+
+Pour les paiements immédiats de particuliers, le reçu est souvent suffisant. Pour les comptes entreprises et résidents, la facture formelle est obligatoire.
+
+## Conformité DGI marocaine
+
+watt.ma garantit que chaque facture émise est conforme aux exigences de la Direction Générale des Impôts :
+
+- **ICE** (Identifiant Commun de l'Entreprise) : mentionné dans l'en-tête
+- **IF** (Identifiant fiscal) : requis pour toute personne morale
+- **Numérotation continue** : chaque numéro de facture suit une séquence séquentielle sans interruption
+- **TVA 20 %** : appliquée et détaillée sur toutes les prestations imposables
+
+## Permissions
+
+| Action | Admin | Opérateur | Lecteur |
+| --- | :-: | :-: | :-: |
+| Créer une facture brouillon | Oui | Oui | Non |
+| Émettre une facture | Oui | Non | Non |
+| Annuler une facture | Oui | Non | Non |
+| Envoyer une facture | Oui | Oui | Non |
+| Consulter les factures | Oui | Oui | Oui |
+| Télécharger le PDF | Oui | Oui | Oui |
+
+## Voir aussi
+
+<CardGroup cols={2}>
+  <Card title="Factures résidents" icon="building" href="/rapports/factures-residents">
+    Découvrez les spécificités de la facturation en copropriété.
+  </Card>
+
+  <Card title="Cycles de facturation" icon="calendar" href="/rapports/cycles-facturation">
+    Gérez les dates de clôture, d'échéance et les modes d'encaissement automatique.
+  </Card>
+
+  <Card title="Registre des charges" icon="receipt" href="/sessions/registre-charges">
+    Retracez chaque ligne facturée à sa session d'origine.
+  </Card>
+
+  <Card title="Exporter les données" icon="download" href="/rapports/exporter-donnees">
+    Récupérez les factures et détails comptables au format CSV ou Excel.
+  </Card>
+</CardGroup>

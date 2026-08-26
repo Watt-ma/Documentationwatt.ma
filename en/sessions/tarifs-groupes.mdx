@@ -1,0 +1,100 @@
+---
+title: "watt.ma driver group tariffs"
+sidebarTitle: "Group tariffs"
+description: "Create driver groups and apply differentiated tariffs on watt.ma: discounts, alternative tariffs, and free charging based on profiles."
+---
+
+Group tariffs let you apply different prices depending on the driver profile. You can reward residents, employees, or fleet subscribers while maintaining a standard public tariff on the same chargers. watt.ma associates each driver with a group and automatically applies the corresponding pricing rule.
+
+## Use cases
+
+Driver groups address various needs:
+
+- **Public**: occasional drivers paying the full tariff, often via CMI QR code.
+- **Employees**: discount for employees of a company with chargers on the parking lot.
+- **Residents**: preferential tariff for inhabitants of a residence equipped with shared chargers.
+- **Company fleet**: specific tariff, sometimes tracked by a centralized billing account for internal invoicing.
+- **VIP**: free or heavily reduced tariff for partners or privileged customers.
+
+## Example group tariff table
+
+Here is a typical pricing policy for a mixed site such as Residence Al Andalous:
+
+| Group | Price per kWh | Rule type |
+| --- | --- | --- |
+| **Public** | 3.00 MAD/kWh | Base tariff |
+| **Employees** | 1.80 MAD/kWh | 40% discount |
+| **Residents** | 2.00 MAD/kWh | Alternative tariff |
+| **Fleet** | 1.70 MAD/kWh | Alternative tariff |
+| **VIP** | 0.00 MAD/kWh | 100% free |
+
+## Types of group rules
+
+When you create a group rule, you choose from four modes:
+
+| Rule type | Description |
+| --- | --- |
+| **Percentage discount** | Reduction applied on the base tariff. For example, -40% off the public price. |
+| **Fixed discount** | Amount deducted from the total charge. For example, -20.00 MAD per session. |
+| **Alternative tariff** | A complete tariff replaces the default tariff for this group. |
+| **100% free** | The session generates no charge for the driver. |
+
+## Create a group and associate drivers
+
+To set up a group tariff, follow these steps:
+
+<Steps>
+  <Step title="Create the group">
+    Go to **Sessions \> Group tariffs** and click **New group**. Name it explicitly: "Atlas Logistics Employees", "Parking A Residents", etc.
+  </Step>
+  <Step title="Choose the rule type and amount">
+    Select the rule type (percentage discount, fixed discount, alternative tariff, or free) and enter the amount or complete tariff.
+  </Step>
+  <Step title="Associate RFID badges">
+    Link the group to one or more [RFID badges](/en/sessions/badges-rfid). When a driver presents their badge, watt.ma identifies them and applies the group tariff. You can also link a badge to a specific billing account.
+  </Step>
+  <Step title="Link to billing accounts">
+    If you have enabled residential or enterprise billing, associate the group with a [billing account](/en/sessions/comptes-facturation) so that charges are grouped on a single periodic invoice.
+  </Step>
+</Steps>
+
+## Example: Atlas Logistics
+
+Atlas Logistics has four drivers who regularly use the site chargers. The configuration is as follows:
+
+- Site public tariff: 2.80 MAD/kWh
+- Group "Atlas Fleet": alternative tariff at 1.70 MAD/kWh
+- The four drivers each have an RFID badge associated with the group "Atlas Fleet"
+
+Result: when an Atlas Logistics employee presents their badge on charger `CP-003`, watt.ma identifies the group and applies 1.70 MAD/kWh instead of 2.80 MAD/kWh.
+
+## Group statuses
+
+| Status | Meaning |
+| --- | --- |
+| **Active** | The group and its rule are applied to new sessions. |
+| **Inactive** | The group exists but no longer applies a pricing rule. |
+
+## Permissions
+
+- **Admin**: can create, modify, delete groups and associate drivers.
+- **Operator**: can create and modify groups, associate existing badges.
+- **Reader**: can view the list of groups and their tariffs, with no ability to modify.
+
+<CardGroup>
+  <Card title="Tariffs" icon="tag" href="/en/sessions/tarifs">
+    Create the base tariffs that will serve as the reference for group discounts.
+  </Card>
+
+  <Card title="Pricing components" icon="layers" href="/en/sessions/composants-tarifaires">
+    Discover all the elements that make up a watt.ma tariff.
+  </Card>
+
+  <Card title="RFID badges" icon="nfc" href="/en/sessions/badges-rfid">
+    Learn how to create and associate RFID badges with your driver groups.
+  </Card>
+
+  <Card title="Tariff priority" icon="arrow-down-up" href="/en/sessions/priorite-tarifs">
+    Understand how watt.ma chooses the tariff when several rules overlap.
+  </Card>
+</CardGroup>

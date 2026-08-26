@@ -1,0 +1,104 @@
+---
+title: "Comptes de facturation sur watt.ma"
+sidebarTitle: "Comptes Facturation"
+description: "Créez et gérez les comptes de facturation sur watt.ma pour facturer les recharges des individus, résidents, entreprises, flottes et collectivités."
+---
+
+Un compte de facturation identifie le responsable financier des recharges groupées, qu'il s'agisse d'une entreprise, d'une copropriété, d'une collectivité ou d'un particulier. Ce compte est le point central qui rassemble les charges des sessions, conserve le solde du client et gouverne le rythme d'émission des factures.
+
+## Vue d'ensemble
+
+Dans watt.ma, chaque session de recharge génère une charge dans le registre du compte de facturation correspondant. Ce mécanisme permet de piloter la facturation en masse et de gérer les relations commerciales avec des structures complexes comme des flottes ou des immeubles, sans manipuler les sessions une par une.
+
+Exemple : Atlas Logistics dispose d'un compte de facturation unique. Chaque conducteur utilise son propre badge, mais c'est la société qui reçoit la facture consolidée. Toutes les charges sont adossées au même compte.
+
+```text
+Atlas Logistics
+├── Driver 01 — 312 kWh
+├── Driver 02 — 218 kWh
+├── Driver 03 — 402 kWh
+└── Driver 04 — 185 kWh
+```
+
+L'ensemble est facturé sur un seul document, avec un détail par badge et par session.
+
+## Champs du compte de facturation
+
+Chaque compte de facturation comprend les informations suivantes :
+
+| Champ | Description |
+| --- | --- |
+| **ID compte** | Identifiant unique généré par watt.ma |
+| **Nom d'affichage** | Nom court visible dans les listes et rapports |
+| **Raison sociale** | Nom légal complet |
+| **Adresse de facturation** | Adresse postale reprise sur les factures |
+| **Email de facturation** | Adresse destinée à la réception des factures |
+| **Téléphone** | Numéro de contact lié au compte |
+| **ICE** | Identifiant Commun de l'Entreprise (Maroc) |
+| **IF** | Identifiant fiscal |
+| **Devise** | Toujours MAD pour le marché marocain |
+| **Fréquence de facturation** | Immédiate, mensuelle ou manuelle |
+| **Mode de facturation** | Consolidé, par badge ou par session |
+| **Moyen de paiement** | CMI, virement ou prélèvement (quand disponible) |
+| **Encaissement automatique** | Active ou désactive le prélèvement automatique |
+| **Solde courant** | Total des charges moins paiements et avoirs |
+| **Solde impayé** | Part échue et non encore réglée |
+| **Solde créditeur** | Montant en excès versé par le client |
+| **Mode d'envoi de facture** | Email, portail, ou les deux |
+
+<Note>
+  Le numéro ICE est obligatoire pour toute facture envoyée à un client professionnel au Maroc. watt.ma le reprend automatiquement dans les mentions obligatoires de la facture.
+</Note>
+
+## Types de comptes
+
+| Type | Description | Cas d'usage |
+| --- | --- | --- |
+| **Individuel** | Compte lié directement à un conducteur unique | Stations publiques, paiement immédiat |
+| **Résident** | Compte lié à une unité de copropriété ou immeuble | Syndic, copropriété, résidences services |
+| **Entreprise / Flotte** | Compte consolidé pour plusieurs badges et véhicules | Flottes de livraison, véhicules de fonction |
+| **Municipalité** | Compte pour des véhicules et bornes communales | Collectivités territoriales, services publics |
+| **Exploitant d'immeuble** | Compte pour les charges d'énergie facturées à un gestionnaire | Parkings d'immeuble, centres commerciaux |
+
+Pour configurer la facturation des résidents, consultez la page [Facturation résidentielle](/sessions/facturation-residentielle). Pour les entreprises, consultez [Facturation entreprises et flottes](/sessions/facturation-entreprises).
+
+## Statuts du compte
+
+| Statut | Signification |
+| --- | --- |
+| **Actif** | Le compte peut charger et recevoir des factures normalement |
+| **Suspendu** | Nouvelles sessions interdites, factures existantes toujours payables. Déclenché manuellement ou automatiquement après un seuil d'impayés |
+| **Fermé** | Compte clos. Plus de nouvelles sessions. Historique conservé à des fins comptables |
+
+Un compte suspendu peut être réactivé par un Admin. Un compte fermé l'est définitivement.
+
+## Permissions
+
+| Action | Admin | Opérateur | Lecteur |
+| --- | :-: | :-: | :-: |
+| Créer un compte de facturation | Oui | Non | Non |
+| Modifier les informations | Oui | Non | Non |
+| Consulter le solde | Oui | Oui | Oui |
+| Suspendre / Réactiver | Oui | Non | Non |
+| Fermer un compte | Oui | Non | Non |
+| Exporter le registre | Oui | Oui | Non |
+
+## Voir aussi
+
+<CardGroup cols={2}>
+  <Card title="Facturation résidentielle" icon="building" href="/sessions/facturation-residentielle">
+    Configurez la refacturation en copropriété et immeuble.
+  </Card>
+
+  <Card title="Facturation entreprises" icon="truck" href="/sessions/facturation-entreprises">
+    Montez des comptes consolidés pour flottes et sociétés.
+  </Card>
+
+  <Card title="Registre des charges" icon="receipt" href="/sessions/registre-charges">
+    Comprenez comment les charges sont tracées et auditées.
+  </Card>
+
+  <Card title="Rapports de facturation" icon="file-invoice" href="/rapports/facturation">
+    Consultez le cycle de vie complet des factures.
+  </Card>
+</CardGroup>

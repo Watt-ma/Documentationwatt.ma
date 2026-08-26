@@ -1,0 +1,95 @@
+---
+title: "Intégrer Stripe pour les paiements internationaux"
+sidebarTitle: "Stripe"
+description: "Rejoignez le programme pilote Stripe sur watt.ma pour accepter les cartes internationales, gérer les prélèvements récurrents et automatiser les remboursements."
+---
+
+Stripe étend la capacité de paiement de watt.ma aux cartes internationales et aux opérateurs multi-sites. Cette intégration est particulièrement utile pour les sites touristiques, les hôtels et les flottes transfrontalières qui accueillent des conducteurs munis de cartes émises hors du Maroc.
+
+<Note>
+  **Bêta.** L'intégration Stripe est en cours de finalisation. Contactez [contact@wattsc.com](mailto:contact@wattsc.com) pour rejoindre le programme pilote et obtenir un accès anticipé.
+</Note>
+
+## Cas d'utilisation
+
+<CardGroup cols={2}>
+  <Card title="Cartes internationales" icon="credit-card">
+    Acceptez les cartes Visa et Mastercard émises hors du Maroc. Indispensable pour les sites situés près des aéroports, des ports et des zones touristiques comme Ifrane ou Marrakech.
+  </Card>
+
+  <Card title="Recharge de touristes" icon="plane">
+    Les conducteurs étrangers n'ont pas toujours de compte bancaire marocain. Stripe leur permet de payer directement avec leur carte habituelle, sans inscription préalable.
+  </Card>
+
+  <Card title="Opérateurs pan-africains" icon="globe">
+    Pour les CPO qui déploient des bornes dans plusieurs pays africains, Stripe offre une infrastructure de paiement unifiée avant l'intégration des systèmes locaux.
+  </Card>
+
+  <Card title="Abonnements et flottes" icon="car">
+    Prélèvement récurrent sur les comptes flotte et gestion des abonnements mensuels avec reçu automatique.
+  </Card>
+</CardGroup>
+
+## Fonctionnalités prévues
+
+| Fonctionnalité | Description | Disponibilité |
+| --- | --- | --- |
+| **Moyens de paiement client** | Enregistrement sécurisé de carte dans le profil watt.ma | Bêta |
+| **Paiement carte unique** | Paiement immédiat sans enregistrement du moyen | Bêta |
+| **Confirmation** | Retour asynchrone du statut de paiement via webhook | Bêta |
+| **Prélèvement récurrent** | Débit automatique à échéance de la facture | Bientôt disponible |
+| **Remboursements** | Remboursement total ou partiel depuis l'interface | Bêta |
+| **Statut de paiement** | Suivi en temps réel dans le tableau de bord watt.ma | Bêta |
+| **Synchronisation par webhooks** | Mise à jour automatique du statut côté watt.ma | Bêta |
+
+## Configuration prévue
+
+<Steps>
+  <Step title="Créer un compte Stripe">
+    Ouvrez un compte sur le [Dashboard Stripe](https://dashboard.stripe.com) et complétez la vérification KYC pour le Maroc ou la juridiction de votre siège social.
+  </Step>
+  <Step title="Renseigner les clés API">
+    Dans watt.ma, allez dans **Paramètres \> Paiements \> Stripe**. Saisissez votre clé publique (publishable key) et votre clé secrète (secret key). Sélectionnez le mode **Test** pour valider le flux sans débit réel.
+  </Step>
+  <Step title="Configurer le webhook">
+    Dans le Dashboard Stripe, créez un endpoint webhook pointant vers l'URL fournie par watt.ma. Cette URL recevra les événements `payment_intent.succeeded`, `payment_intent.payment_failed` et `charge.refunded`.
+  </Step>
+  <Step title="Tester un paiement">
+    Lancez une session de test sur une borne et sélectionnez le fournisseur Stripe. Utilisez les numéros de carte de test Stripe (ex. `4242 4242 4242 4242`) pour simuler un succès ou un échec.
+  </Step>
+</Steps>
+
+<Info>
+  Le webhook est indispensable pour que watt.ma reçoive les confirmations de paiement en temps réel. Sans webhook, le statut du paiement restera bloqué sur **En attente** même après un débit réussi.
+</Info>
+
+## Différences avec CMI
+
+| Critère | CMI | Stripe |
+| --- | --- | --- |
+| **Monnaie** | MAD uniquement | Multi-devises (MAD, EUR, USD) |
+| **Cartes acceptées** | Cartes marocaines | Visa, Mastercard internationales |
+| **3D Secure** | Obligatoire sur le réseau CMI | Configurable selon le pays et le montant |
+| **Disputes** | Gérées par la banque commerçante | Gérées dans le Dashboard Stripe |
+| **Délai de règlement** | J\+2 à J\+5 selon la banque | J\+7 en moyenne pour le Maroc |
+| **Frais** | Négociés avec la banque | Commission Stripe standard \+ frais de conversion |
+
+<Tip>
+  Vous pouvez activer les deux fournisseurs en parallèle. Affectez CMI aux sites publics au Maroc et Stripe aux sites accueillant une clientèle internationale.
+</Tip>
+
+## Voir aussi
+
+<CardGroup cols={2}>
+  <Card title="Paiements CMI" icon="qrcode" href="/sessions/paiements-qr-cmi">
+    Activez le paiement par QR code pour les applications bancaires marocaines.
+  </Card>
+
+  <Card title="Cycle de paiement" icon="arrows-rotate" href="/sessions/cycle-paiement">
+    Comprenez les statuts d'une tentative de paiement de la création au règlement.
+  </Card>
+
+  <Card title="Roadmap" icon="map" href="/roadmap">
+    Suivez l'avancement de l'intégration Stripe et les prochaines fonctionnalités de la plateforme.
+  </Card>
+</CardGroup>

@@ -1,0 +1,108 @@
+---
+title: "Analyser la marge énergétique de recharge sur watt.ma"
+sidebarTitle: "Marge Énergie"
+description: "Distinguez coût d'acquisition et prix client sur watt.ma : configurez le coût d'énergie par site, mesurez la marge brute et pilotez votre rentabilité."
+---
+
+L'analyse de marge énergétique compare le coût d'acquisition de l'électricité et le prix facturé au conducteur. Elle permet à un opérateur de recharge (CPO) ou à un gestionnaire de site de savoir ce que chaque kWh délivré rapporte réellement, indépendamment du prix affiché à la borne.
+
+## Vue d'ensemble
+
+Le prix client visible sur la borne ne dit rien de la rentabilité. Pour la mesurer, watt.ma compare le prix client au coût d'acquisition de l'électricité configuré sur le site :
+
+```text
+Coût énergie              1,20 MAD/kWh
+Prix client               2,50 MAD/kWh
+Marge énergie             1,30 MAD/kWh
+```
+
+<Warning>
+  La marge énergie n'est pas le bénéfice net. Elle ne déduit ni les frais de paiement, ni la maintenance, ni les autres charges opérationnelles. Consultez [Analytique financière](/rapports/analytique-financiere) pour une vue consolidée.
+</Warning>
+
+## Configurer un coût de revient
+
+<Steps>
+  <Step title="Ouvrir la fiche du site">
+    Dans **Bornes \> Sites**, ouvrez le site concerné et cliquez sur l'onglet **Coût énergie**.
+  </Step>
+  <Step title="Saisir le tarif fournisseur">
+    Renseignez le coût moyen en MAD/kWh. Ce coût peut correspondre au tarif ONEE applicable, à un tarif Green Energy Park pour une centrale solaire, ou à un tarif négocié avec un fournisseur alternatif.
+  </Step>
+  <Step title="Configurer des plages horaires">
+    Optionnel. Si votre fournisseur applique des heures creuses et pleines, définissez plusieurs coûts par plage horaire. watt.ma applique automatiquement le coût correspondant à l'heure de la session.
+  </Step>
+  <Step title="Enregistrer et valider">
+    Enregistrez. Le coût s'applique aux sessions à partir de la date d'effet choisie et alimente immédiatement le rapport de marge.
+  </Step>
+</Steps>
+
+## Exemple avec heures creuses
+
+Le site **Green Energy Park** achète l'énergie à deux tarifs :
+
+| Plage horaire | Coût énergie | Prix client | Marge |
+| --- | --- | --- | --- |
+| 00:00 - 06:00 | 0,80 MAD/kWh | 1,50 MAD/kWh | 0,70 MAD/kWh |
+| 06:00 - 22:00 | 1,50 MAD/kWh | 2,50 MAD/kWh | 1,00 MAD/kWh |
+| 22:00 - 00:00 | 1,00 MAD/kWh | 2,00 MAD/kWh | 1,00 MAD/kWh |
+
+Une session nocturne de 30 kWh entre 01:00 et 05:00 génère donc :
+
+```text
+Revenu client    30 × 1,50 = 45 MAD
+Coût énergie     30 × 0,80 = 24 MAD
+Marge brute                = 21 MAD
+```
+
+## Rapport disponible
+
+Le rapport **Marge énergie** affiche pour la période sélectionnée :
+
+- Énergie délivrée (kWh)
+- Coût d'acquisition
+- Revenu client (avant TVA)
+- Marge brute de recharge
+- Taux de marge (%)
+
+Filtrez par site, par borne ou par période pour comparer les points de fourniture.
+
+## Cas d'usage
+
+<CardGroup cols={2}>
+  <Card title="Négocier avec ONEE" icon="handshake">
+    Documentez la rentabilité de chaque site pour négocier un tarif électricité adapté aux CPO.
+  </Card>
+
+  <Card title="Ajuster les tarifs" icon="tag">
+    Identifiez les sites où le prix client ne couvre pas les coûts et ajustez les tarifs. Voir [Composants tarifaires](/sessions/composants-tarifaires).
+  </Card>
+
+  <Card title="Piloter le mix solaire" icon="sun">
+    Comparez la marge sur électricité réseau et sur production photovoltaïque locale.
+  </Card>
+
+  <Card title="Reporting investisseurs" icon="chart-column">
+    Présentez une marge brute cohérente et auditable dans vos rapports financiers.
+  </Card>
+</CardGroup>
+
+## Voir aussi
+
+<CardGroup cols={2}>
+  <Card title="Revenus" icon="chart-line" href="/rapports/revenus">
+    Revenu de recharge avant déduction des coûts.
+  </Card>
+
+  <Card title="Analytique financière" icon="chart-mixed" href="/rapports/analytique-financiere">
+    Tableau de bord financier consolidé.
+  </Card>
+
+  <Card title="Composants tarifaires" icon="layer-group" href="/sessions/composants-tarifaires">
+    Ajustez la marge en modifiant les composants du prix.
+  </Card>
+
+  <Card title="Tarifs" icon="tag" href="/sessions/tarifs">
+    Revenez à la configuration des tarifs.
+  </Card>
+</CardGroup>

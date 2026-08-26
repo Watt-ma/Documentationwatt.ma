@@ -1,30 +1,73 @@
 ---
-title: "Set Charging Pricing and Rates on watt.ma"
-sidebarTitle: "Pricing"
-description: "Create custom charging rates on watt.ma: per kWh, per hour, or flat fee, with off-peak hours and assignment by site or station."
+title: "watt.ma pricing: define charging rates"
+sidebarTitle: "Tariffs"
+description: "Create and assign customized charging tariffs on watt.ma: per kWh, per hour, or flat rate, with off-peak hours and assignment by site or charger."
 ---
 
-Pricing management lets you define the price policy applied to each charging session. You can set rates per kilowatt-hour, per hour of connection, or as flat fees, then assign these rates at the level of a site, a station, or a user group.
+The watt.ma pricing engine lets you build each charging price from multiple components: energy, connection fees, time, idle fees, and discounts. You can charge per kilowatthour, per hour of connection, or offer fixed-rate packages, then assign these tariffs at the level of a site, a charger, or a user group. This page guides you through creating a complete tariff.
 
 <Steps>
-  <Step title="Create a new rate">
-    In the sidebar menu, go to **Sessions \> Pricing**, then click **New rate**. Enter a recognizable name (for example "Hotel guest rate" or "Residence off-peak").
+  <Step title="Create a new tariff">
+    In the sidebar, go to **Sessions \> Tariffs**, then click **New tariff**. Enter a recognizable name (for example, "Hotel guest tariff" or "Residence off-peak").
   </Step>
-  <Step title="Choose the pricing model">
+  <Step title="Choose a pricing mode">
     Select one of the three modes:
 
-    - **Per kWh**: price per kilowatt-hour consumed, the most common for public charging
+    - **Per kWh**: price per kilowatthour consumed, the most common for public charging
     - **Per hour**: fixed price per hour of connection, suitable for long-term parking
-    - **Flat fee**: fixed amount per session, regardless of duration or energy
+    - **Flat rate**: fixed amount per session, regardless of duration or energy
   </Step>
-  <Step title="Configure tiered pricing (optional)">
-    Enable the **Off-peak / peak hours** option to apply two distinct prices depending on the time of day. Define the corresponding time ranges. This feature is useful to encourage charging during periods of low electricity demand.
+  <Step title="Configure differentiated pricing (optional)">
+    Enable the **Off-peak / peak hours** option to apply two different prices depending on the time period. Define the corresponding time windows. This feature is useful for encouraging charging during periods of low electricity demand.
   </Step>
-  <Step title="Assign the rate to stations or sites">
-    Once the rate is saved, click **Assign**. Select the sites or specific stations to which this rate applies. You can associate multiple rates to different contexts (public, residential, fleet).
+  <Step title="Assign the tariff to chargers or sites">
+    Once the tariff is saved, click **Assign**. Select the sites or specific chargers this tariff applies to. You can associate several tariffs with different contexts (public, residential, fleet).
   </Step>
 </Steps>
 
+## Pricing components
+
+Each tariff is a sum of components that you activate or leave inactive depending on your business model:
+
+| Component | Description |
+| --- | --- |
+| **Energy price** | Amount per kWh delivered during the charge. |
+| **Connection fee** | Fixed amount applied once, at the start of the session. |
+| **Time pricing** | Amount based on the charge duration, connection duration, or parking duration. |
+| **Off-peak / peak hours** | Differentiated prices based on configurable time windows. |
+| **Idle fees** | Amount charged after a grace period once the charge ends. |
+| **Discounts and groups** | Reductions applied based on the driver group (residents, employees, fleet). |
+| **Price cap** | Maximum limit on the total charge or the unit price. |
+| **Monthly subscription** | Recurring flat fee covering part or all of the charging sessions. |
+
+To explore each component in detail, see the [Pricing components](/en/sessions/composants-tarifaires) page.
+
+## Tariff priority
+
+When several tariffs could apply to the same session, watt.ma follows a deterministic hierarchy from the most specific to the most general. For example, a tariff attached to a connector takes priority over a tariff attached to the entire site. If you configure overlapping tariffs, it is advisable to understand this logic before going live.
+
+To learn more, see [Tariff priority](/en/sessions/priorite-tarifs).
+
 <Note>
-  Amounts displayed in watt.ma are expressed in Moroccan dirhams (MAD). The applicable VAT in Morocco for electric vehicle charging services is 20 %. You must configure the VAT rate in your account billing settings so that receipts and reports correctly reflect amounts including tax.
+  Amounts shown in watt.ma are expressed in Moroccan dirhams (MAD). The applicable VAT in Morocco for electric charging services is 20%. You must configure the VAT rate in your account billing settings so that receipts and reports reflect the correct amounts including tax.
 </Note>
+
+### See also
+
+<CardGroup>
+  <Card title="Pricing components" icon="layers" href="/en/sessions/composants-tarifaires">
+    Explore each pricing component: energy, connection, time, idle fees, discounts, and caps.
+  </Card>
+
+  <Card title="Idle fees" icon="clock" href="/en/sessions/frais-inactivite">
+    Configure fees after the charge ends to free up chargers faster.
+  </Card>
+
+  <Card title="Group tariffs" icon="users" href="/en/sessions/tarifs-groupes">
+    Apply discounts or dedicated tariffs based on the driver group.
+  </Card>
+
+  <Card title="Tariff priority" icon="arrow-down-up" href="/en/sessions/priorite-tarifs">
+    Understand how watt.ma chooses which tariff to apply when several are available.
+  </Card>
+</CardGroup>

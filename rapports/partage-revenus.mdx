@@ -1,0 +1,113 @@
+---
+title: "Configurer le partage de revenus sur watt.ma"
+sidebarTitle: "Partage Revenus"
+description: "Définissez les règles de partage automatique entre opérateur et propriétaire de site sur watt.ma : pourcentage, montant fixe par kWh ou modèle hybride."
+---
+
+Le partage de revenus permet à un opérateur de recharge (CPO) d'automatiser la répartition des recettes avec les propriétaires ou exploitants des sites qui accueillent ses bornes. Chaque session terminée alimente le calcul, et watt.ma produit des relevés prêts à être réglés en fin de période.
+
+## Vue d'ensemble
+
+Le partage de revenus est une **règle**. Il définit qui reçoit quelle part de chaque session, mais ne matérialise pas le paiement. Le règlement effectif au partenaire est géré séparément dans la page [Règlements partenaires](/rapports/reglements-partenaires).
+
+<Note>
+  Les rapports de partage de revenus sont disponibles à partir du forfait **Production**. Voir [Forfaits](/compte/forfaits).
+</Note>
+
+## Modèles supportés
+
+<CardGroup cols={3}>
+  <Card title="Pourcentage" icon="percent">
+    Répartition en pourcentage entre opérateur et propriétaire.
+
+    Exemple : Opérateur 80 %, Propriétaire 20 %.
+  </Card>
+
+  <Card title="Montant fixe par kWh" icon="bolt">
+    Le propriétaire reçoit un montant fixe pour chaque kWh délivré.
+
+    Exemple : 0,50 MAD/kWh reversé.
+  </Card>
+
+  <Card title="Hybride" icon="layer-group">
+    Combinaison des deux modèles.
+
+    Exemple : 10 % du revenu \+ 0,20 MAD/kWh.
+  </Card>
+</CardGroup>
+
+## Configuration d'une règle
+
+<Steps>
+  <Step title="Choisir le partenaire et le site">
+    Dans **Rapports \> Partage de revenus**, cliquez sur **Nouvelle règle**. Sélectionnez le partenaire (bailleur, exploitant, marque associée) et le site concerné.
+  </Step>
+  <Step title="Définir le modèle">
+    Choisissez pourcentage, montant fixe ou hybride, puis renseignez les valeurs. Vous pouvez ajouter une part fixe mensuelle indépendante des sessions.
+  </Step>
+  <Step title="Préciser la portée">
+    Indiquez les types de transactions inclus : recharge uniquement, avec ou sans frais d'inactivité, hors frais de connexion, etc. Les remboursements et les avoirs sont automatiquement déduits de la base de partage.
+  </Step>
+  <Step title="Définir la période d'application">
+    Renseignez la date d'effet et éventuellement une date de fin. Une nouvelle règle sur le même site remplace la précédente à sa date d'effet.
+  </Step>
+</Steps>
+
+## Exemple : Green Energy Park
+
+Sur le site **Green Energy Park**, la règle Opérateur 80 % / Propriétaire 20 % s'applique à toutes les sessions de recharge.
+
+```text
+Sessions du mois          500 kWh
+Prix client               2,50 MAD/kWh
+--------------------------------------
+Revenu recharge           1 250 MAD
+Ajustements                    0 MAD
+--------------------------------------
+Base de partage           1 250 MAD
+
+Part opérateur (80 %)     1 000 MAD
+Part propriétaire (20 %)    250 MAD
+```
+
+La part propriétaire (250 MAD) est reportée dans le relevé mensuel du partenaire, prête à être réglée.
+
+## Statuts d'une règle
+
+| Statut | Description |
+| --- | --- |
+| **Planifié** | Règle créée avec une date d'effet future |
+| **Actif** | Règle en vigueur pour la période courante |
+| **Expiré** | Date de fin dépassée ou règle remplacée |
+
+## Différence avec un règlement
+
+Une règle de partage indique **comment** la répartition est calculée. Un règlement partenaire matérialise **quand** et **comment** l'argent est versé au partenaire, avec un statut de paiement propre. Consultez la page [Règlements partenaires](/rapports/reglements-partenaires) pour le cycle complet.
+
+## Permissions
+
+| Rôle | Créer / modifier | Consulter |
+| --- | --- | --- |
+| Admin | Oui | Oui |
+| Opérateur | Non | Oui |
+| Lecteur | Non | Oui |
+
+## Voir aussi
+
+<CardGroup cols={2}>
+  <Card title="Règlements partenaires" icon="handshake" href="/rapports/reglements-partenaires">
+    Matérialisez le paiement aux propriétaires et bailleurs.
+  </Card>
+
+  <Card title="Revenus" icon="chart-line" href="/rapports/revenus">
+    Analysez le revenu brut avant partage.
+  </Card>
+
+  <Card title="Analytique financière" icon="chart-mixed" href="/rapports/analytique-financiere">
+    Visualisez la part propriétaire dans le tableau consolidé.
+  </Card>
+
+  <Card title="Forfaits" icon="rocket" href="/compte/forfaits">
+    Le partage de revenus est inclus dès le forfait Production.
+  </Card>
+</CardGroup>

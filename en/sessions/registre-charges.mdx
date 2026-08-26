@@ -1,0 +1,145 @@
+---
+title: "Charge ledger: session traceability on watt.ma"
+sidebarTitle: "Charge Ledger"
+description: "The charge ledger links financial sessions to accounting documents on watt.ma, with audit, disputes, and accounting corrections."
+---
+
+The charge ledger is the bridge between the operational world of charging sessions and the financial world of invoices and payments. Each session generates one or more charge lines in the ledger, and these lines are never modified, even if an invoice is corrected or a refund is processed. This immutability guarantees complete auditability and data reliability for accounting as well as for disputes.
+
+## Overview
+
+In the financial backbone of watt.ma, the charge ledger sits right after the session amount calculation and before the customer balance compilation. It keeps all financial mutations related to a session:
+
+```text
+Charging session → Meter data → Applicable tariff → Amount calculation
+→ Charge ledger → Customer balance → Invoice or receipt → Collection
+→ Reconciliation → Revenue share → Partner settlement → Accounting export
+```
+
+A charge is created during amount calculation. It is then referenced by invoices, payments, refunds, and credit notes without ever changing itself.
+
+## Event types
+
+| Event type | Description |
+| --- | --- |
+| **Energy charge** | Amount calculated based on kWh consumed and applicable tariff |
+| **Connection fee** | Fixed fee triggered at session start |
+| **Time charge** | Amount based on plugging duration, in hours |
+| **Idle fee** | Occupancy fee for the connector after charging ends |
+| **Boost surcharge** | Surcharge applied on a fast charging station |
+| **Monthly subscription** | Fixed monthly subscription attached to the account |
+| **Discount** | Manual or automatic discount applied to a charge |
+| **Tax** | VAT 20 % calculated on taxable amounts |
+| **Credit** | Accounting credit granted to the customer |
+| **Adjustment** | Manual accounting correction by an administrator |
+| **Refund** | Partial or full refund of a paid charge |
+| **Credit note (avoir)** | Cancellation of part or all of an invoice |
+
+<Note>
+  Some lines like **idle fee** and **boost surcharge** depend on site and tariff configuration. See the page [Tariffs](/en/sessions/tarifs) to configure these options.
+</Note>
+
+## Ledger example
+
+Consider session WAT-000183 on charger CP-003 at Green Energy Park:
+
+```text
+Session #WAT-000183
+Driver: Driver 02 (RFID badge)
+Site: Green Energy Park
+Charger: CP-003 — Connector 1
+Timestamp: 2024-04-15 14:32:07
+
+Energy                  +61.25 MAD
+Connection fee           +5.00 MAD
+Employee discount       -10.00 MAD
+----------------------------------
+Charge total             56.25 MAD
+VAT 20 %                +11.25 MAD
+----------------------------------
+Total amount incl. tax   67.50 MAD
+```
+
+This total directly impacts the balance of the company billing account, here Atlas Logistics. Subsequent credit notes and refunds do not modify this line: they create separate correction lines.
+
+## References kept per entry
+
+Each ledger line carries the following references, ensuring end-to-end traceability:
+
+| Reference | Description |
+| --- | --- |
+| **Session** | Unique session identifier, for example WAT-000183 |
+| **Client** | Billing account to which the charge is posted |
+| **Driver** | Badge or user who triggered the session |
+| **Site** | Charging site concerned |
+| **Charger** | OCPP charger identifier |
+| **Connector** | Physical connector number |
+| **Tariff** | Tariff applied at the time of the session |
+| **Timestamp** | Date and time of entry creation |
+| **Currency** | MAD for all transactions |
+
+## Use cases
+
+<CardGroup cols={2}>
+  <Card title="Auditability" icon="magnifying-glass">
+    An accountant or auditor can rebuild the entirety of financial flows from the ledger, without needing access to invoices.
+  </Card>
+
+  <Card title="Customer disputes" icon="scale-balanced">
+    In case of a dispute over a session, consult the ledger to justify each line: kWh, tariff, discount, fees.
+  </Card>
+
+  <Card title="Accounting corrections" icon="pen-to-square">
+    An adjustment or credit note is recorded as a new negative line, preserving the original history.
+  </Card>
+
+  <Card title="Tax control" icon="building-columns">
+    Ledger data can be exported to your accounting tool to verify the consistency of declared amounts.
+  </Card>
+</CardGroup>
+
+## Audit trail
+
+For each entry, watt.ma keeps an audit trail containing:
+
+| Attribute | Description |
+| --- | --- |
+| **Author** | Identifier of the user or system that created the line |
+| **Action** | Operation type: creation, correction, refund, cancellation |
+| **Timestamp** | Precise date and time of the operation |
+| **Old value** | If applicable, previous amount before correction |
+| **Reason** | Mandatory comment for any manual modification |
+
+<Warning>
+  Direct modification of a ledger entry is impossible. Only the creation of an adjustment or credit note line is allowed. Ledger lines from past sessions are immutable.
+</Warning>
+
+## Permissions
+
+| Action | Admin | Operator | Reader |
+| --- | :-: | :-: | :-: |
+| View ledger | Yes | Yes | Yes |
+| Export ledger | Yes | Yes | No |
+| Create adjustment | Yes | No | No |
+| Create credit note | Yes | No | No |
+| Edit existing line | No | No | No |
+
+## See also
+
+<CardGroup cols={2}>
+  <Card title="Session tracking" icon="bolt" href="/en/sessions/suivi-sessions">
+    Find the complete lifecycle of a charging session.
+  </Card>
+
+  <Card title="Billing accounts" icon="user-group" href="/en/sessions/comptes-facturation">
+    Link charges to customer accounts.
+  </Card>
+
+  <Card title="Billing reports" icon="file-invoice" href="/en/rapports/facturation">
+    Move from charges to invoice creation.
+  </Card>
+
+  <Card title="Business billing" icon="truck" href="/en/sessions/facturation-entreprises">
+    Understand how charges feed fleet invoices.
+  </Card>
+</CardGroup>

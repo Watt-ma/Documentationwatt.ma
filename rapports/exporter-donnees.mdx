@@ -6,17 +6,57 @@ description: "Exportez vos sessions et revenus en CSV, programmez des envois aut
 
 watt.ma vous permet d'exporter l'ensemble de vos données de recharge pour les intégrer dans votre comptabilité, vos tableaux de bord internes ou vos obligations de reporting réglementaire. Les exports couvrent les sessions de recharge, les revenus et les données de consommation énergétique.
 
+## Types d'exports disponiblesTypes d'exports disponibles
+
+watt.ma propose un export par entité métier pour vous permettre d'extraire exactement les données dont vous avez besoin. Chaque fichier contient une clé primaire unique et des clés de jointure pour croiser les tables dans votre outil d'analyse ou votre ERP.
+
+| Export | Clé primaire | Clés de jointure principales |
+| --- | --- | --- |
+| Sessions de recharge | `session_id` | `charger_id`, `driver_id`, `site_id`, `billing_account_id` |
+| Tarifs | `tariff_id` | `site_id`, `charger_id` |
+| Clients | `customer_id` | `billing_account_id` |
+| Comptes de facturation | `billing_account_id` | `customer_id` |
+| Factures | `invoice_id` | `billing_account_id`, `customer_id` |
+| Lignes de facture | `invoice_line_id` | `invoice_id`, `session_id` |
+| Paiements | `payment_id` | `invoice_id`, `billing_account_id` |
+| Paiements échoués | `payment_id` | `invoice_id` |
+| Remboursements | `refund_id` | `payment_id`, `invoice_id` |
+| Avoirs | `credit_note_id` | `invoice_id`, `billing_account_id` |
+| Règlements partenaires | `settlement_id` | `site_id`, `partner_id` |
+| Revenus | Agrégé | `site_id`, `charger_id`, période |
+| Consommation énergie | Agrégé | `site_id`, `charger_id`, période |
+
+## Exporter manuellement en CSV
+
+watt.ma propose un export par entité métier pour vous permettre d'extraire exactement les données dont vous avez besoin. Chaque fichier contient une clé primaire unique et des clés de jointure pour croiser les tables dans votre outil d'analyse ou votre ERP.
+
+| Export | Clé primaire | Clés de jointure principales |
+| --- | --- | --- |
+| Sessions de recharge | `session_id` | `charger_id`, `driver_id`, `site_id`, `billing_account_id` |
+| Tarifs | `tariff_id` | `site_id`, `charger_id` |
+| Clients | `customer_id` | `billing_account_id` |
+| Comptes de facturation | `billing_account_id` | `customer_id` |
+| Factures | `invoice_id` | `billing_account_id`, `customer_id` |
+| Lignes de facture | `invoice_line_id` | `invoice_id`, `session_id` |
+| Paiements | `payment_id` | `invoice_id`, `billing_account_id` |
+| Paiements échoués | `payment_id` | `invoice_id` |
+| Remboursements | `refund_id` | `payment_id`, `invoice_id` |
+| Avoirs | `credit_note_id` | `invoice_id`, `billing_account_id` |
+| Règlements partenaires | `settlement_id` | `site_id`, `partner_id` |
+| Revenus | Agrégé | `site_id`, `charger_id`, période |
+| Consommation énergie | Agrégé | `site_id`, `charger_id`, période |
+
 ## Exporter manuellement en CSV
 
 <Steps>
-  <Step title="Choisir le type de données">
-    Connectez-vous à [web.watt.ma](https://web.watt.ma), ouvrez la section **Rapports** et sélectionnez le module souhaité : Sessions, Revenus ou Énergie.
+  <Step title="Choisir le type de donnéesChoisir le type de données">
+    Connectez-vous à [web.watt.ma](https://web.watt.ma), ouvrez la section **Rapports** et sélectionnez le module souhaité : Sessions, Revenus ou ÉnergieConnectez-vous à [web.watt.ma](https://web.watt.ma), ouvrez la section **Rapports** et sélectionnez le module souhaité : Sessions, Revenus ou Énergie.
   </Step>
-  <Step title="Appliquer les filtres">
-    Définissez la période d'analyse et appliquez les filtres par site ou par borne pour limiter l'export aux données pertinentes.
+  <Step title="Appliquer les filtresAppliquer les filtres">
+    Définissez la période d'analyse et appliquez les filtres par site ou par borne pour limiter l'export aux données pertinentesDéfinissez la période d'analyse et appliquez les filtres par site ou par borne pour limiter l'export aux données pertinentes.
   </Step>
-  <Step title="Lancer l'export">
-    Cliquez sur le bouton **Exporter** en haut à droite du tableau. Le fichier CSV se télécharge automatiquement sur votre appareil.
+  <Step title="Lancer l'exportLancer l'export">
+    Cliquez sur le bouton **Exporter** en haut à droite du tableau. Le fichier CSV se télécharge automatiquement sur votre appareilCliquez sur le bouton **Exporter** en haut à droite du tableau. Le fichier CSV se télécharge automatiquement sur votre appareil.
   </Step>
 </Steps>
 
@@ -50,8 +90,86 @@ Vous pouvez configurer des envois périodiques de vos rapports par email pour au
 
 Les fichiers exportés utilisent le format CSV avec séparateur point-virgule et encodage UTF-8. Les colonnes incluent : identifiant de session, date et heure de début et de fin, borne concernée, énergie délivrée en kWh, montant facturé, méthode de paiement et statut de la transaction.
 
+## Cas d'utilisation comptables
+
+Les exports CSV et les envois programmés de watt.ma répondent à plusieurs besoins comptables et réglementaires courants au Maroc :
+
+- **Rapprochement bancaire** : rapprochez les encaissements CMI et Stripe avec les factures correspondantes en important la liste des paiements dans votre logiciel comptable.
+- **Transmission au comptable** : transmettez régulièrement votre comptable les exports de factures, de lignes de facture et de paiements pour la tenue de la comptabilité formalisée en MAD.
+- **Importation ERP** : intégrez les fichiers clients, comptes de facturation et règlements partenaires dans votre ERP via les clés de jointure fournies.
+- **Contrôle DGI** : produisez à la demande les fichiers de sessions, de factures et de paiements pour un contrôle fiscal.
+- **Calcul de TVA** : exportez les factures et lignes de facture pour calculer et vérifier la TVA collectée au taux de 20 %.
+- **Arrêté mensuel** : constituez chaque mois un export agrégé des revenus et de la consommation énergie pour vos arrêtés de gestion.
+
 ## Prochaines étapes
 
-- [Suivre vos revenus de recharge](/rapports/revenus)
-- [Consulter la vue d'ensemble des rapports](/rapports/vue-ensemble)
-- [Gérer votre équipe](/compte/gestion-equipe)
+<CardGroup cols={2}>
+  <Card title="Analytique financière" icon="chart-line" href="/rapports/analytique-financiere">
+    Croisez vos exports pour construire des indicateurs financiers avancés.
+  </Card>
+
+  <Card title="Règlements partenaires" icon="handshake" href="/rapports/reglements-partenaires">
+    Exportez les tableaux de reversements aux propriétaires de sites.
+  </Card>
+
+  <Card title="Rapprochement" icon="scale-balanced" href="/sessions/rapprochement">
+    Rapprochez vos encaissements et vos factures en toute conformité.
+  </Card>
+</CardGroup>
+
+## Programmer des exports automatiques
+
+Vous pouvez configurer des envois périodiques de vos rapports par email pour automatiser votre suivi administratif.
+
+<Steps>
+  <Step title="Ouvrir les paramètres d'export">
+    Dans la section **Rapports**, cliquez sur **Exports programmés** dans le menu latéral.
+  </Step>
+  <Step title="Créer une règle">
+    Cliquez sur **Nouvel export programmé**. Choisissez le type de rapport, la fréquence (quotidienne, hebdomadaire, mensuelle) et les destinataires email.
+  </Step>
+  <Step title="Valider et activer">
+    Vérifiez les paramètres et activez la règle. Le premier export sera envoyé selon la fréquence choisie.
+  </Step>
+</Steps>
+
+<Note>
+  Les exports programmés sont disponibles à partir du forfait **Production**. Le forfait **Startup** permet uniquement les exports manuels depuis l'interface.
+</Note>
+
+## Rétention des données
+
+<Note>
+  watt.ma conserve l'historique complet de vos sessions et de vos revenus sans limite de durée pour les forfaits Production et Entreprise. Le forfait **Startup** conserve les données sur les 12 derniers mois. Passez à un forfait supérieur pour débloquer l'accès à l'intégralité de votre historique.
+</Note>
+
+## Format des fichiers CSV
+
+Les fichiers exportés utilisent le format CSV avec séparateur point-virgule et encodage UTF-8. Les colonnes incluent : identifiant de session, date et heure de début et de fin, borne concernée, énergie délivrée en kWh, montant facturé, méthode de paiement et statut de la transaction.
+
+## Cas d'utilisation comptables
+
+Les exports CSV et les envois programmés de watt.ma répondent à plusieurs besoins comptables et réglementaires courants au Maroc :
+
+- **Rapprochement bancaire** : rapprochez les encaissements CMI et Stripe avec les factures correspondantes en important la liste des paiements dans votre logiciel comptable.
+- **Transmission au comptable** : transmettez régulièrement votre comptable les exports de factures, de lignes de facture et de paiements pour la tenue de la comptabilité formalisée en MAD.
+- **Importation ERP** : intégrez les fichiers clients, comptes de facturation et règlements partenaires dans votre ERP via les clés de jointure fournies.
+- **Contrôle DGI** : produisez à la demande les fichiers de sessions, de factures et de paiements pour un contrôle fiscal.
+- **Calcul de TVA** : exportez les factures et lignes de facture pour calculer et vérifier la TVA collectée au taux de 20 %.
+- **Arrêté mensuel** : constituez chaque mois un export agrégé des revenus et de la consommation énergie pour vos arrêtés de gestion.
+
+## Prochaines étapes
+
+<CardGroup cols={2}>
+  <Card title="Analytique financière" icon="chart-line" href="/rapports/analytique-financiere">
+    Croisez vos exports pour construire des indicateurs financiers avancés.
+  </Card>
+
+  <Card title="Règlements partenaires" icon="handshake" href="/rapports/reglements-partenaires">
+    Exportez les tableaux de reversements aux propriétaires de sites.
+  </Card>
+
+  <Card title="Rapprochement" icon="scale-balanced" href="/sessions/rapprochement">
+    Rapprochez vos encaissements et vos factures en toute conformité.
+  </Card>
+</CardGroup>

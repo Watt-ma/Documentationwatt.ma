@@ -1,0 +1,95 @@
+---
+title: "Integrate Stripe for International Payments on watt.ma"
+sidebarTitle: "Stripe"
+description: "Join the Stripe pilot program on watt.ma to accept international cards, manage recurring debits, and automate refunds."
+---
+
+Stripe extends watt.ma's payment capacity to international cards and multi-site operators. This integration is particularly useful for tourist sites, hotels, and cross-border fleets that welcome drivers holding cards issued outside Morocco.
+
+<Note>
+  **Beta.** The Stripe integration is being finalized. Contact [contact@wattsc.com](mailto:contact@wattsc.com) to join the pilot program and get early access.
+</Note>
+
+## Use Cases
+
+<CardGroup cols={2}>
+  <Card title="International cards" icon="credit-card">
+    Accept Visa and Mastercard cards issued outside Morocco. Essential for sites near airports, ports, and tourist areas like Ifrane or Marrakech.
+  </Card>
+
+  <Card title="Tourist charging" icon="plane">
+    Foreign drivers do not always have a Moroccan bank account. Stripe lets them pay directly with their usual card, without prior registration.
+  </Card>
+
+  <Card title="Pan-african operators" icon="globe">
+    For CPOs deploying chargers in several African countries, Stripe offers a unified payment infrastructure before local systems are integrated.
+  </Card>
+
+  <Card title="Subscriptions and fleets" icon="car">
+    Recurring debit on fleet accounts and monthly subscription management with automatic receipt.
+  </Card>
+</CardGroup>
+
+## Planned Features
+
+| Feature | Description | Availability |
+| --- | --- | --- |
+| **Customer payment methods** | Secure card saving in the watt.ma profile | Beta |
+| **Single card payment** | Immediate payment without saving the method | Beta |
+| **Confirmation** | Asynchronous payment status feedback via webhook | Beta |
+| **Recurring debit** | Automatic debit at invoice due date | Coming soon |
+| **Refunds** | Full or partial refund from the interface | Beta |
+| **Payment status** | Real-time tracking in the watt.ma dashboard | Beta |
+| **Webhook synchronization** | Automatic status update on the watt.ma side | Beta |
+
+## Planned Configuration
+
+<Steps>
+  <Step title="Create a Stripe account">
+    Open an account on the [Stripe Dashboard](https://dashboard.stripe.com) and complete KYC verification for Morocco or your headquarters jurisdiction.
+  </Step>
+  <Step title="Enter API keys">
+    In watt.ma, go to **Settings \> Payments \> Stripe**. Enter your publishable key and your secret key. Select **Test** mode to validate the flow without a real debit.
+  </Step>
+  <Step title="Configure the webhook">
+    In the Stripe Dashboard, create a webhook endpoint pointing to the URL provided by watt.ma. This URL will receive the `payment_intent.succeeded`, `payment_intent.payment_failed`, and `charge.refunded` events.
+  </Step>
+  <Step title="Test a payment">
+    Start a test session on a charger and select Stripe as the provider. Use Stripe test card numbers (e.g., `4242 4242 4242 4242`) to simulate a success or a failure.
+  </Step>
+</Steps>
+
+<Info>
+  The webhook is essential for watt.ma to receive payment confirmations in real time. Without a webhook, the payment status will remain stuck on **Pending** even after a successful debit.
+</Info>
+
+## Differences with CMI
+
+| Criterion | CMI | Stripe |
+| --- | --- | --- |
+| **Currency** | MAD only | Multi-currency (MAD, EUR, USD) |
+| **Accepted cards** | Moroccan cards | Visa, Mastercard international |
+| **3D Secure** | Mandatory on the CMI network | Configurable by country and amount |
+| **Disputes** | Handled by the merchant bank | Handled in the Stripe Dashboard |
+| **Settlement delay** | J\+2 to J\+5 depending on the bank | J\+7 on average for Morocco |
+| **Fees** | Negotiated with the bank | Standard Stripe commission \+ conversion fees |
+
+<Tip>
+  You can activate both providers in parallel. Assign CMI to public sites in Morocco and Stripe to sites welcoming international customers.
+</Tip>
+
+## See Also
+
+<CardGroup cols={2}>
+  <Card title="CMI Payments" icon="qrcode" href="/en/sessions/paiements-qr-cmi">
+    Activate QR code payment for Moroccan banking apps.
+  </Card>
+
+  <Card title="Payment Lifecycle" icon="arrows-rotate" href="/en/sessions/cycle-paiement">
+    Understand the statuses of a payment attempt from creation to settlement.
+  </Card>
+
+  <Card title="Roadmap" icon="map" href="/en/roadmap">
+    Follow Stripe integration progress and upcoming platform features.
+  </Card>
+</CardGroup>

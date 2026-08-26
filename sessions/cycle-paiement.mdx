@@ -1,0 +1,116 @@
+---
+title: "Comprendre le cycle de vie d'un paiement sur watt.ma"
+sidebarTitle: "Cycle de Paiement"
+description: "Suivez chaque statut d'une tentative de paiement sur watt.ma : création, attente, réussite, échec, remboursement et synchronisation avec le fournisseur."
+---
+
+Chaque tentative de paiement sur watt.ma suit un cycle de vie clair et traçable. Que le règlement passe par CMI, Stripe ou virement bancaire, le statut est centralisé dans une interface unique. Cette transparence permet aux administrateurs de suivre les encaissements en temps réel et de réagir rapidement en cas d'anomalie.
+
+## Statuts du cycle de vie
+
+```text
+Créé → En attente → Réussi
+```
+
+Alternatives possibles depuis **En attente** :
+
+```text
+En attente → Échoué
+En attente → Annulé
+Réussi → Remboursé
+Réussi → Partiellement remboursé
+```
+
+## Description des statuts
+
+| Statut | Description | Action requise |
+| --- | --- | --- |
+| **Créé** | La demande de paiement est générée par le moteur de facturation watt.ma suite à une session ou une facture. | Aucune. Le paiement est en attente de transmission au fournisseur. |
+| **En attente** | Le fournisseur de paiement a reçu la demande. L'utilisateur est en train d'authentifier son moyen de paiement ou le débit est en cours de traitement. | Attendre le retour du fournisseur. Si le délai excède 15 minutes, consulter l'historique. |
+| **Réussi** | Le débit est confirmé par le fournisseur. Le montant est crédité sur le compte de facturation de l'utilisateur ou du site. | Le reçu ou la facture est marquée comme payée. |
+| **Échoué** | Le fournisseur a refusé le débit (carte refusée, solde insuffisant, erreur réseau). La facture reste impayée. | Relancer le paiement ou mettre à jour le moyen de paiement. Consultez la page [Échecs de paiement](/sessions/echecs-paiement). |
+| **Annulé** | L'utilisateur ou un administrateur a interrompu la tentative avant confirmation du fournisseur. | Aucun débit n'a eu lieu. Relancer si nécessaire. |
+| **Remboursé** | Le montant total a été restitué au client. Le paiement d'origine est conservé dans l'historique avec un statut distinct. | Vérifier que le remboursement figure bien sur le relevé du fournisseur. |
+| **Partiellement remboursé** | Seule une partie du montant initial a été restituée. Le solde reste crédité. | Consigner la raison du remboursement partiel dans les notes du paiement. |
+
+## Champs conservés pour chaque paiement
+
+watt.ma conserve l'intégralité des données de chaque tentative pour assurer la traçabilité comptable :
+
+- **ID paiement watt.ma** : référence interne unique (ex. `WAT-000183-PAY`)
+- **ID transaction fournisseur** : identifiant retourné par CMI ou Stripe
+- **Montant** et **devise** : exprimés en MAD (ou en devise Stripe lorsque l'intégration multi-devises sera active)
+- **Facture liée** : référence de la facture ou du reçu associé
+- **Compte de facturation** : client ou syndic ciblé par le débit
+- **Moyen de paiement** : carte, QR CMI, virement
+- **Horodatage** : date et heure de création, mise à jour et confirmation
+- **Statut** : l'un des statuts listés ci-dessus
+
+<Note>
+  Un paiement au statut **Réussi** ne signifie pas encore que l'argent est sur votre compte bancaire. Le délai de règlement dépend du fournisseur : J\+2 à J\+5 pour CMI, J\+7 pour Stripe. Consultez la page [Rapprochement](/sessions/rapprochement) pour lier l'encaissement bancaire au paiement.
+</Note>
+
+## Différence entre autorisation, capture et confirmation
+
+| Terme | Définition | Contexte d'usage |
+| --- | --- | --- |
+| **Autorisation** | Le fournisseur vérifie que le moyen de paiement est valide et réserve le montant sans le débiter. | Sessions longues ou pré-paiement pour recharges publiques. |
+| **Capture** | Le montant réservé est réellement débité sur le compte du client. | À la fin de la session, le montant finalisé est capturé. |
+| **Confirmation** | Le fournisseur notifie watt.ma que le débit est effectif. | Enregistrement du statut **Réussi** et génération du reçu. |
+
+<Tip>
+  Pour les paiements QR CMI, l'autorisation et la capture se font en une seule étape lors du scan. Le client paie le montant exact calculé par le moteur de facturation avant le démarrage de la session.
+</Tip>
+
+## Exemple concret : paiement CMI QR
+
+watt.ma génère le paiement pour la session `WAT-000183` sur la borne `CP-001` du site Green Energy Park. Le montant calculé est 87,50 MAD (TTC 20 %).
+
+<Steps>
+  <Step title="Génération du QR code">
+    Le moteur de facturation crée un paiement au statut **Créé** avec l'ID `WAT-000183-PAY`. Un QR code unique est affiché sur l'écran de la borne.
+  </Step>
+  <Step title="Scan par le client">
+    Le conducteur scanne le QR avec son application bancaire. Le statut passe à **En attente**.
+  </Step>
+  <Step title="Confirmation CMI">
+    CMI confirme le débit. Le statut passe à **Réussi**. watt.ma génère le reçu PDF et envoie une copie WhatsApp si l'option est activée.
+  </Step>
+  <Step title="Rapprochement bancaire">
+    Deux jours plus tard, le virement CMI arrive sur le compte bancaire. L'administrateur rapproche le paiement `WAT-000183-PAY` avec le virement BANK-2026-00217 dans l'interface [Rapprochement](/sessions/rapprochement).
+  </Step>
+</Steps>
+
+## Cas particuliers
+
+### Rejeu et idempotence
+
+Si une tentative échoue à cause d'une erreur réseau, watt.ma permet de la relancer. L'ID de paiement d'origine est conservé et une nouvelle tentative est créée avec un ID distinct pour éviter tout double débit. Le moteur refuse toute capture en double pour un même paiement.
+
+### Double débit apparent
+
+Un client peut penser avoir été débité deux fois si le statut affiché dans watt.ma n'est pas encore mis à jour. Cela arrive lorsque le retour du fournisseur est retardé. L'antidote est de vérifier l'ID transaction fournisseur dans le détail du paiement avant d'autoriser un remboursement.
+
+### Délai fournisseur
+
+Certains échecs temporaires sont dus au réseau bancaire et non à la carte du client. watt.ma propose un délai de grâce de 15 minutes avant de basculer le statut en **Échoué** définitif. Pendant cette fenêtre, le fournisseur peut encore confirmer un succès.
+
+## Voir aussi
+
+<CardGroup cols={2}>
+  <Card title="Paiements CMI" icon="qrcode" href="/sessions/paiements-qr-cmi">
+    Activez le paiement par QR code pour les clients marocains.
+  </Card>
+
+  <Card title="Stripe" icon="stripe" href="/sessions/stripe">
+    Programme pilote pour les cartes internationales et les prélèvements récurrents.
+  </Card>
+
+  <Card title="Échecs de paiement" icon="triangle-exclamation" href="/sessions/echecs-paiement">
+    Gérez les refus, les cartes expirées et les relances automatiques.
+  </Card>
+
+  <Card title="Rapprochement bancaire" icon="building-columns" href="/sessions/rapprochement">
+    Enregistrez les virements et rapprochez les paiements avec votre compte bancaire.
+  </Card>
+</CardGroup>

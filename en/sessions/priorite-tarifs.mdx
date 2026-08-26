@@ -1,0 +1,89 @@
+---
+title: "watt.ma tariff priority explained"
+sidebarTitle: "Tariff priority"
+description: "Understand the deterministic hierarchy watt.ma uses to pick the applied tariff when several tariffs could cover the same charging session."
+---
+
+Several tariffs can theoretically apply to the same charging session on watt.ma. For example, one tariff is attached to an entire site, another to a specific charger, and a third to a driver group. To avoid any ambiguity, watt.ma applies a deterministic hierarchy from the most specific to the most general. This page explains that logic and the special cases to know.
+
+## Priority hierarchy
+
+watt.ma evaluates applicable tariffs in the following order. The first tariff found at a given level is the one that is applied.
+
+```text
+1. Connector (most specific level)
+2. Charger
+3. Site
+4. Driver group
+5. Organization (most general level)
+```
+
+**General rule:** the closer the level is to the hardware or the driver identity, the higher it takes precedence over upper levels.
+
+## Hierarchy explanation
+
+| Level | What it covers | Example |
+| --- | --- | --- |
+| **Connector** | A specific physical connector on a given charger | The CCS connector on charger `CP-001` |
+| **Charger** | All connectors of a charger | Charger `CP-001` as a whole |
+| **Site** | All chargers at the same site | Green Energy Park |
+| **Driver group** | A set of drivers sharing a profile | Residents of Residence Al Andalous |
+| **Organization** | All sites and drivers of the watt.ma account | Your entire deployment |
+
+If no specific tariff is found at levels 1 through 4, watt.ma falls back to the organization level to apply the configured default tariff.
+
+## Special cases
+
+### Future planned tariff
+
+A planned tariff with a future effective date is not applied before that date, even if it is more specific than an active tariff. Make sure the validity period of your tariffs does not leave a gap.
+
+### Several active tariffs on the same scope
+
+If two tariffs are active on the same site, the same charger, or the same group, **the most recent** (the one with the most recent creation or last modification date) takes precedence. To avoid conflicts, we recommend deactivating the old tariff before activating the new one.
+
+### Guest versus registered tariffs
+
+An unauthenticated driver (charging by QR code without an account) cannot belong to a driver group. In this case, watt.ma ignores the "Driver group" level and falls back directly to the "Site" or "Organization" level.
+
+## Concrete example: Residence Al Andalous
+
+Residence Al Andalous has configured three tariffs on the same site:
+
+| Level | Tariff | Price per kWh |
+| --- | --- | --- |
+| Site | Public tariff | 2.00 MAD/kWh |
+| Group "Residents" | Resident tariff | 1.50 MAD/kWh |
+| Group "VIP" | VIP tariff | 0.00 MAD/kWh |
+
+Four session scenarios:
+
+1. **Unauthenticated driver**: charging by QR code without an account. The group is ignored. The site tariff applies: **2.00 MAD/kWh**.
+2. **Standard resident**: identified by their RFID badge linked to the "Residents" group. The group takes precedence over the site. Applied tariff: **1.50 MAD/kWh**.
+3. **VIP resident**: identified by their RFID badge linked to the "VIP" group. The group takes precedence over the site. Applied tariff: **0.00 MAD/kWh** (free).
+4. **Charger with specific tariff**: if an isolated charger has its own tariff at 1.80 MAD/kWh, this charger tariff takes precedence over the site tariff, even for a resident. The resident will pay **1.80 MAD/kWh** on this charger and **1.50 MAD/kWh** on the others.
+
+## Note on product specification
+
+The exact hierarchy described in this page is currently undergoing final product specification. If you encounter a case where the applied tariff does not match expectations, or if you need a complex configuration involving several overlapping levels, contact watt.ma support.
+
+- Email: [contact@wattsc.com](mailto:contact@wattsc.com)
+- WhatsApp: \+212 770 238 225
+
+<CardGroup>
+  <Card title="Tariffs" icon="tag" href="/en/sessions/tarifs">
+    Create and configure your base tariffs before defining priority.
+  </Card>
+
+  <Card title="Pricing components" icon="layers" href="/en/sessions/composants-tarifaires">
+    Detail the price elements activated in each tariff.
+  </Card>
+
+  <Card title="Group tariffs" icon="users" href="/en/sessions/tarifs-groupes">
+    Learn how to create driver groups with differentiated tariffs.
+  </Card>
+
+  <Card title="Idle fees" icon="clock" href="/en/sessions/frais-inactivite">
+    Discover how to bill charger occupation after the charge ends.
+  </Card>
+</CardGroup>

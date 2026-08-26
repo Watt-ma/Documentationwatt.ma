@@ -1,0 +1,123 @@
+---
+title: "Rapprocher les paiements et les encaissements bancaires"
+sidebarTitle: "Rapprochement"
+description: "Rapprochez les paiements watt.ma avec votre compte bancaire et vos fournisseurs en enregistrant les virements, en important les fichiers de règlement et en gérant les écarts."
+---
+
+Le rapprochement bancaire dans watt.ma vous permet de lier chaque paiement enregistré dans la plateforme avec l'entrée effective sur votre compte bancaire. Cette étape est indispensable pour distinguer le revenu facturé du revenu encaissé, identifier les écarts et produire un export comptable fiable pour votre expert-comptable.
+
+## Architecture du rapprochement
+
+```text
+Registre watt.ma ↔ Fournisseur de paiement ↔ Compte bancaire
+```
+
+Le registre watt.ma contient l'ensemble des paiements créés par le moteur de facturation. Le fournisseur de paiement (CMI ou Stripe) transmet les fonds sur votre compte bancaire après un délai de règlement. Le rapprochement consiste à faire correspondre ces trois niveaux et à identifier les entrées non encore expliquées.
+
+## Enregistrer un virement bancaire
+
+Les virements manuels (résidents, entreprises, syndics) sont enregistrés dans watt.ma par un administrateur pour mettre à jour le statut des factures concernées.
+
+<Steps>
+  <Step title="Ouvrir le registre de rapprochement">
+    Connectez-vous à [web.watt.ma](https://web.watt.ma), puis allez dans **Rapports \> Rapprochement**. La liste affiche les factures à rapprocher, triées par date d'échéance.
+  </Step>
+  <Step title="Sélectionner la facture">
+    Cliquez sur la facture concernée (ex. Facture #2026-08-0052, montant 12 500,00 MAD).
+  </Step>
+  <Step title="Renseigner les informations du virement">
+    Saisissez les champs suivants :
+
+    - **Montant** : 12 500,00 MAD
+    - **Date de réception** : 2026-08-25
+    - **Référence bancaire** : `BANK-2026-00217`
+    - **Moyen de paiement** : Virement bancaire
+    - **Administrateur** : votre nom (pré-rempli)
+    - **Notes** : Virement Atlas Logistics, régularisation août 2026
+    - **Facture liée** : #2026-08-0052 (sélectionnée automatiquement)
+  </Step>
+  <Step title="Valider le rapprochement">
+    Cliquez sur **Rapprocher**. Le statut de la facture passe à **Payée** et l'enregistrement est horodaté avec votre identifiant.
+  </Step>
+</Steps>
+
+<Note>
+  Chaque action de rapprochement est horodatée avec l'auteur, la date, l'adresse IP et les modifications apportées. Ces données forment la piste d'audit complète et sont exportables depuis **Rapports \> Exporter les données**.
+</Note>
+
+## Rapprocher les paiements CMI
+
+Pour les paiements par QR CMI et cartes marocaines, watt.ma supporte l'import du fichier de règlement transmis par votre banque.
+
+<Steps>
+  <Step title="Importer le fichier de règlement">
+    Dans **Rapports \> Rapprochement CMI**, cliquez sur **Importer fichier**. Sélectionnez le fichier CSV ou Excel reçu de votre banque. Le format attendu contient : date de règlement, montant, référence transaction CMI et numéro de compte.
+  </Step>
+  <Step title="Correspondance automatique">
+    watt.la compare la référence transaction CMI avec les paiements au statut **Réussi** et non encore rapprochés. Les correspondances sont affichées ligne par ligne avec un statut de validation.
+  </Step>
+  <Step title="Valider les correspondances">
+    Cochez les lignes confirmées, puis cliquez sur **Valider le lot**. Les paiements passent au statut **Rapproché**.
+  </Step>
+  <Step title="Traiter les exceptions">
+    Les lignes sans correspondance automatique apparaissent dans l'onglet **Exceptions**. Pour chaque exception, vous pouvez :
+
+    - Chercher manuellement le paiement correspondant
+    - Créer un paiement manuel si l'entrée bancaire ne correspond à aucune facture watt.ma
+    - Marquer l'entrée comme litige et ajouter une note explicative
+  </Step>
+</Steps>
+
+<Info>
+  Le délai de règlement CMI est généralement de J\+2 à J\+5 selon votre banque commerçante. Les paiements du vendredi peuvent apparaître dans le fichier de règlement du mardi suivant.
+</Info>
+
+## Écarts et litiges
+
+|
+|
+|
+|
+|
+|
+|
+
+<Warning>
+  Ne supprimez jamais un enregistrement de rapprochement. Si vous constatez une erreur, créez un nouvel enregistrement de correction et documentez la raison dans les notes. La suppression masquerait la piste d'audit.
+</Warning>
+
+## Piste d'audit
+
+Chaque action de rapprochement est enregistrée de manière irréversible :
+
+- **Horodatage** : date et heure exacte de l'action (fuseau horaire de Casablanca)
+- **Auteur** : identifiant du membre de l'équipe ayant effectué le rapprochement
+- **Adresse IP** : adresse depuis laquelle l'action a été initiée
+- **Modification** : valeur avant et après pour chaque champ édité
+- **Factures impactées** : liste des références de facture liées à l'opération
+
+Ces données sont consultables depuis **Rapports \> Piste d'audit \> Rapprochements** et exportables au format CSV.
+
+<Tip>
+  Programmez un export mensuel de la piste d'audit et transmettez-le à votre comptable avec le relevé bancaire. Cela facilite le contrôle de gestion et la préparation de la liasse fiscale.
+</Tip>
+
+## Voir aussi
+
+<CardGroup cols={2}>
+  <Card title="Factures résidents" icon="file-invoice" href="/rapports/factures-residents">
+    Émettez et suivez les factures mensuelles des résidents avec relances et modes de paiement.
+  </Card>
+
+  <Card title="Exporter les données" icon="download" href="/rapports/exporter-donnees">
+    Planifiez des exports mensuels de la piste d'audit, des factures et des encaissements.
+  </Card>
+
+  <Card title="Cycle de paiement" icon="arrows-rotate" href="/sessions/cycle-paiement">
+    Comprenez les statuts d'une tentative de paiement de la création au règlement.
+  </Card>
+
+  <Card title="Échecs de paiement" icon="triangle-exclamation" href="/sessions/echecs-paiement">
+    Gérez les refus, les cartes expirées et les relances automatiques.
+  </Card>
+</CardGroup>

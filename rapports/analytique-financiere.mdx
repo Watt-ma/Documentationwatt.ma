@@ -1,0 +1,114 @@
+---
+title: "Analytique financière de la plateforme watt.ma"
+sidebarTitle: "Analytique"
+description: "Consolidez les métriques financières watt.ma : revenu, encaissements, marge, règlements et KPIs de pilotage avec filtres par site, borne et période."
+---
+
+L'analytique financière consolide en un seul tableau de bord les indicateurs qui pilotent l'activité d'un opérateur de recharge : revenu, encaissements, remboursements, marge, part propriétaire et règlements. Chaque métrique renvoie au rapport détaillé correspondant pour permettre l'analyse fine.
+
+## Vue d'ensemble
+
+Contrairement aux rapports individuels (revenus, encaissements, soldes), l'analytique financière propose une vision transverse sur une période donnée. Elle est conçue pour la direction financière, les investisseurs et les rapports mensuels de pilotage.
+
+## Métriques disponibles
+
+| Métrique | Description | Origine |
+| --- | --- | --- |
+| **Sessions** | Nombre de sessions terminées | [Suivi des sessions](/sessions/suivi-sessions) |
+| **kWh délivrés** | Énergie totale sur la période | Compteurs OCPP 1.6J |
+| **Revenu brut de recharge** | Valeur générée par les sessions | [Revenus](/rapports/revenus) |
+| **Montant facturé** | Total des factures émises | [Facturation](/rapports/facturation) |
+| **Montant encaissé** | Argent effectivement reçu | [Encaissements](/rapports/encaissements) |
+| **Solde en attente** | Factures émises non payées | [Soldes clients](/rapports/soldes-clients) |
+| **Solde en retard** | Factures échues et impayées | [Soldes clients](/rapports/soldes-clients) |
+| **Remboursements** | Sommes retournées aux clients | [Remboursements](/rapports/remboursements-avoirs) |
+| **Avoirs** | Crédits comptables émis | [Remboursements](/rapports/remboursements-avoirs) |
+| **Coût électricité** | Coût d'acquisition de l'énergie | [Marge énergie](/rapports/marge-energie) |
+| **Marge brute** | Revenu recharge moins coût électricité | [Marge énergie](/rapports/marge-energie) |
+| **Frais de paiement** | Commissions CMI ou Stripe si disponibles | [Encaissements](/rapports/encaissements) |
+| **Part propriétaire** | Cumul des parts partenaires | [Partage de revenus](/rapports/partage-revenus) |
+| **Règlements à payer** | Montant dû aux partenaires | [Règlements](/rapports/reglements-partenaires) |
+| **Règlements payés** | Montant déjà versé aux partenaires | [Règlements](/rapports/reglements-partenaires) |
+
+## KPIs de pilotage
+
+<CardGroup cols={2}>
+  <Card title="Revenu par kWh" icon="bolt">
+    Revenu de recharge divisé par kWh délivrés. Mesure l'efficacité tarifaire moyenne.
+  </Card>
+
+  <Card title="Taux d'encaissement" icon="percent">
+    Encaissé sur Facturé. Indique la qualité du recouvrement.
+  </Card>
+
+  <Card title="DSO" icon="clock">
+    Days Sales Outstanding. Délai moyen entre l'émission d'une facture et son encaissement.
+  </Card>
+
+  <Card title="Taux de remboursement" icon="rotate-left">
+    Remboursements sur Encaissé. Signale la qualité opérationnelle des sites.
+  </Card>
+
+  <Card title="Marge par site" icon="location-dot">
+    Marge brute par site. Identifie les points de fourniture les plus rentables.
+  </Card>
+
+  <Card title="Part propriétaire moyenne" icon="handshake">
+    Poids des règlements partenaires sur le revenu total.
+  </Card>
+</CardGroup>
+
+## Filtres
+
+Le tableau supporte les filtres suivants, combinables :
+
+- Période (jour, semaine, mois, année, plage personnalisée)
+- Organisation
+- Compte de facturation
+- Site
+- Borne
+- Moyen de paiement (QR CMI, virement, Stripe)
+- Groupe de clients (voir [Tarifs par groupe](/sessions/tarifs-groupes))
+- Statut de facturation
+
+## Distinguer les notions financières
+
+L'analytique financière expose côte à côte des chiffres qui ne se confondent pas :
+
+- **Revenu facturé** ≠ **Revenu encaissé** ≠ **Revenu à régler** ≠ **Marge de l'opérateur**
+
+<Note>
+  Consultez la page [Revenus](/rapports/revenus) pour la définition précise de chaque notion. Les mélanger dans un rapport de direction est la principale source d'erreur d'interprétation financière.
+</Note>
+
+## Export
+
+Le tableau consolidé peut être exporté au format CSV ou PDF pour transmission au comptable ou intégration dans un ERP. Consultez [Exporter les données](/rapports/exporter-donnees) pour les schémas de colonnes et les identifiants de jointure.
+
+## Permissions
+
+| Rôle | Consulter | Exporter |
+| --- | --- | --- |
+| Admin | Oui | Oui |
+| Opérateur | Oui | Oui |
+| Lecteur | Oui | Non |
+
+## Voir aussi
+
+<CardGroup cols={2}>
+  <Card title="Revenus" icon="chart-line" href="/rapports/revenus">
+    Vue centrée sur le revenu brut et le partage.
+  </Card>
+
+  <Card title="Encaissements" icon="wallet" href="/rapports/encaissements">
+    Suivi de trésorerie et rapprochement.
+  </Card>
+
+  <Card title="Marge énergie" icon="bolt" href="/rapports/marge-energie">
+    Coût d'acquisition et marge brute de recharge.
+  </Card>
+
+  <Card title="Exporter" icon="download" href="/rapports/exporter-donnees">
+    Formats CSV et jointures pour la comptabilité.
+  </Card>
+</CardGroup>

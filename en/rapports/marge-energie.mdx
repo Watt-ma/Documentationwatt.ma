@@ -1,0 +1,108 @@
+---
+title: "Analyze your energy margin on watt.ma"
+sidebarTitle: "Energy Margin"
+description: "Distinguish acquisition cost from customer price on watt.ma: configure energy cost per site, measure gross margin, and steer profitability."
+---
+
+The energy margin analysis compares the electricity acquisition cost with the price billed to the driver. It lets a charging operator (CPO) or site manager know what each kWh delivered actually earns, regardless of the price displayed at the charger.
+
+## Overview
+
+The customer price visible at the charger says nothing about profitability. To measure it, watt.ma compares the customer price to the electricity acquisition cost configured on the site:
+
+```text
+Energy cost               1.20 MAD/kWh
+Customer price            2.50 MAD/kWh
+Energy margin             1.30 MAD/kWh
+```
+
+<Warning>
+  Energy margin is not net profit. It does not deduct payment fees, maintenance, or other operating expenses. See [Financial Analytics](/en/rapports/analytique-financiere) for a consolidated view.
+</Warning>
+
+## Configure a cost of energy
+
+<Steps>
+  <Step title="Open the site record">
+    In **Chargers \> Sites**, open the affected site and click the **Energy cost** tab.
+  </Step>
+  <Step title="Enter the provider tariff">
+    Enter the average cost in MAD/kWh. This cost can correspond to the applicable ONEE tariff, a Green Energy Park tariff for a solar plant, or a tariff negotiated with an alternative supplier.
+  </Step>
+  <Step title="Configure time ranges">
+    Optional. If your provider applies off-peak and peak hours, define multiple costs per time range. watt.ma automatically applies the cost matching the session time.
+  </Step>
+  <Step title="Save and validate">
+    Save. The cost applies to sessions from the chosen effective date and immediately feeds the margin report.
+  </Step>
+</Steps>
+
+## Example with off-peak hours
+
+The **Green Energy Park** site buys energy at two tariffs:
+
+| Time range | Energy cost | Customer price | Margin |
+| --- | --- | --- | --- |
+| 00:00 - 06:00 | 0.80 MAD/kWh | 1.50 MAD/kWh | 0.70 MAD/kWh |
+| 06:00 - 22:00 | 1.50 MAD/kWh | 2.50 MAD/kWh | 1.00 MAD/kWh |
+| 22:00 - 00:00 | 1.00 MAD/kWh | 2.00 MAD/kWh | 1.00 MAD/kWh |
+
+A nighttime session of 30 kWh between 01:00 and 05:00 therefore generates:
+
+```text
+Customer revenue  30 × 1.50 = 45 MAD
+Energy cost       30 × 0.80 = 24 MAD
+Gross margin                = 21 MAD
+```
+
+## Available report
+
+The **Energy Margin** report displays for the selected period:
+
+- Energy delivered (kWh)
+- Acquisition cost
+- Customer revenue (before VAT)
+- Gross charging margin
+- Margin rate (%)
+
+Filter by site, by charger, or by period to compare points of delivery.
+
+## Use cases
+
+<CardGroup cols={2}>
+  <Card title="Negotiate with ONEE" icon="handshake">
+    Document the profitability of each site to negotiate an electricity tariff adapted to CPOs.
+  </Card>
+
+  <Card title="Adjust tariffs" icon="tag">
+    Identify sites where the customer price does not cover costs and adjust tariffs. See [Tariff Components](/en/sessions/composants-tarifaires).
+  </Card>
+
+  <Card title="Steer solar mix" icon="sun">
+    Compare margin on grid electricity versus local photovoltaic production.
+  </Card>
+
+  <Card title="Investor reporting" icon="chart-column">
+    Present a consistent and auditable gross margin in your financial reports.
+  </Card>
+</CardGroup>
+
+## See also
+
+<CardGroup cols={2}>
+  <Card title="Revenue" icon="chart-line" href="/en/rapports/revenus">
+    Charging revenue before cost deduction.
+  </Card>
+
+  <Card title="Financial Analytics" icon="chart-mixed" href="/en/rapports/analytique-financiere">
+    Consolidated financial dashboard.
+  </Card>
+
+  <Card title="Tariff Components" icon="layer-group" href="/en/sessions/composants-tarifaires">
+    Adjust margin by modifying price components.
+  </Card>
+
+  <Card title="Tariffs" icon="tag" href="/en/sessions/tarifs">
+    Return to tariff configuration.
+  </Card>
+</CardGroup>

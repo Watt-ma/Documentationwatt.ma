@@ -1,0 +1,116 @@
+---
+title: "Règlements partenaires et bailleurs sur watt.ma"
+sidebarTitle: "Règlements"
+description: "Générez, approuvez et suivez les règlements dus aux propriétaires de sites, bailleurs et partenaires commerciaux dans watt.ma, avec relevés détaillés."
+---
+
+Un règlement partenaire matérialise l'argent que watt.ma doit verser à un tiers pour une période donnée : bailleur immobilier, exploitant de parking, opérateur commercial associé ou partenaire d'affichage. Chaque règlement s'appuie sur les règles de partage de revenus configurées et sur les sessions effectivement réalisées.
+
+## Vue d'ensemble
+
+Le règlement est distinct du rapport de revenus. Le [rapport de revenus](/rapports/revenus) mesure l'activité et la valeur générée. Le règlement organise le paiement au partenaire, avec ses propres statuts, sa piste d'audit et sa procédure d'approbation.
+
+## Cycle de vie d'un règlement
+
+```text
+Ouvert → Calculé → Approuvé → À payer → Payé → Rapproché
+```
+
+| Statut | Description |
+| --- | --- |
+| **Ouvert** | Période en cours, les sessions continuent d'alimenter la base |
+| **Calculé** | Période clôturée, base de partage figée |
+| **Approuvé** | Un administrateur a validé le montant |
+| **À payer** | En attente d'exécution du paiement au partenaire |
+| **Payé** | Virement ou chèque émis |
+| **Rapproché** | Paiement confirmé sur le compte bancaire |
+
+<Note>
+  Ces états reflètent le modèle cible du produit. L'implémentation actuelle peut regrouper certains statuts. Contactez le support pour l'état exact de votre déploiement.
+</Note>
+
+## Exemple de relevé mensuel
+
+```text
+Période                  Août 2026
+Site                     Parking A
+Partenaire               Sté Parking Al Amal
+
+Sessions                 412
+Énergie                  8 421 kWh
+
+Revenu recharge          21 420 MAD
+Remboursements             -220 MAD
+Ajustements                -100 MAD
+-----------------------------------
+Base partage             21 100 MAD
+
+Part propriétaire 20 %    4 220 MAD
+
+Montant du règlement      4 220 MAD
+Mode                     Virement bancaire
+Référence                SETL-2026-08-017
+Statut                   À payer
+```
+
+## Contenu du relevé
+
+Chaque relevé mentionne :
+
+- Partenaire et site
+- Période couverte
+- Nombre de sessions et kWh délivrés
+- Revenu brut de recharge
+- Ajustements (remboursements, avoirs, corrections manuelles)
+- Base de partage après ajustements
+- Part propriétaire appliquée
+- Statut, mode de règlement (virement, chèque), référence bancaire
+
+## Actions administrateur
+
+<Steps>
+  <Step title="Calculer et approuver">
+    À la clôture de la période, le règlement passe au statut Calculé. L'administrateur vérifie les chiffres et clique sur **Approuver**.
+  </Step>
+  <Step title="Émettre le paiement">
+    Enregistrez le virement bancaire ou le chèque avec sa référence. Le règlement passe au statut Payé.
+  </Step>
+  <Step title="Rapprocher le paiement">
+    Lorsque le débit apparaît sur le compte bancaire, cliquez sur **Rapprocher**. Le règlement est alors clos et archivé. Consultez [Rapprochement](/sessions/rapprochement) pour la procédure complète.
+  </Step>
+  <Step title="Exporter le relevé">
+    Chaque relevé peut être exporté en PDF pour envoi au partenaire ou en CSV pour la comptabilité. Voir [Exporter les données](/rapports/exporter-donnees).
+  </Step>
+</Steps>
+
+## Piste d'audit
+
+Chaque changement de statut est horodaté avec l'auteur et conservé dans l'historique du règlement. Les montants approuvés ne peuvent être modifiés a posteriori : toute correction passe par un ajustement sur la période suivante.
+
+## Permissions
+
+| Rôle | Approuver | Marquer payé | Consulter |
+| --- | --- | --- | --- |
+| Admin | Oui | Oui | Oui |
+| Opérateur | Non | Non | Oui |
+| Lecteur | Non | Non | Oui |
+
+## Voir aussi
+
+<CardGroup cols={2}>
+  <Card title="Partage de revenus" icon="percent" href="/rapports/partage-revenus">
+    Configurez la règle qui alimente les règlements.
+  </Card>
+
+  <Card title="Rapprochement" icon="scale-balanced" href="/sessions/rapprochement">
+    Rapprochez le règlement avec le compte bancaire.
+  </Card>
+
+  <Card title="Revenus" icon="chart-line" href="/rapports/revenus">
+    Suivez l'activité brute avant partage.
+  </Card>
+
+  <Card title="Exporter" icon="download" href="/rapports/exporter-donnees">
+    Exportez les relevés pour la comptabilité.
+  </Card>
+</CardGroup>

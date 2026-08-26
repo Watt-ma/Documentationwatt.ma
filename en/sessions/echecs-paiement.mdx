@@ -1,0 +1,132 @@
+---
+title: "Manage Payment Failures on watt.ma"
+sidebarTitle: "Failures"
+description: "Identify causes of payment failure on watt.ma, retry customer charges, and apply corrective actions based on your role."
+---
+
+Payment failures are part of the revenue lifecycle on watt.ma. A declined card, insufficient balance, or network error should not block your understanding of your financial situation. watt.ma keeps every attempt in the history, gives you action levers by role, and automatically notifies the customer to facilitate settlement.
+
+## Possible Causes of Failure
+
+<CardGroup cols={2}>
+  <Card title="Card declined" icon="credit-card">
+    The issuing bank refuses the debit without detailed reason. Common on first transactions with a new card.
+  </Card>
+
+  <Card title="Card expired" icon="calendar-xmark">
+    The saved payment method has passed its expiration date. Recurring debit fails systematically.
+  </Card>
+
+  <Card title="Insufficient balance" icon="money-bill-wave">
+    The customer's account does not have the necessary amount at the time of debit.
+  </Card>
+
+  <Card title="Provider error" icon="server">
+    Temporary outage of the CMI network or Stripe API. The payment can be retried once the service is restored.
+  </Card>
+
+  <Card title="Payment method revoked" icon="ban">
+    The customer blocked their card or closed their account between invoice creation and debit attempt.
+  </Card>
+
+  <Card title="Authentication failure" icon="shield-xmark">
+    The 3D Secure or bank authentication was not completed by the customer within the allotted time.
+  </Card>
+</CardGroup>
+
+## Failure Lifecycle and Resolution
+
+```text
+Payment attempt → Failure → Invoice remains unpaid → Customer notification → New attempt → Payment successful → Invoice paid
+```
+
+## Administrator Actions
+
+Depending on your role, you have different actions to handle a failure.
+
+| Action | Description | Required Role |
+| --- | --- | --- |
+| **Retry** | Send a new payment request to the customer with the existing method or a settlement link. | Operator or Admin |
+| **Request method update** | Send an email to the customer so they register a new payment method. | Operator or Admin |
+| **Record a transfer** | Mark the invoice as paid by bank transfer with reference. | Admin |
+| **Apply a credit note** | Credit an amount to the customer account to offset the unpaid balance. | Admin |
+| **Write off** | Cancel the amount due without collection. Used for commercial gestures or disputes. | Admin |
+| **Suspend charging** | Block the customer's badge or account until settlement. | Admin |
+
+<Warning>
+  Definitive write-off of an invoice is an irreversible accounting action. Always document the reason in the payment notes for traceability. Only administrators can write off.
+</Warning>
+
+## Attempt History
+
+Every payment attempt remains in the watt.ma history. A failed payment is never overwritten with a success. When a retry succeeds, a new record is created with its own payment ID.
+
+| Payment | ID | Amount | Status | Date |
+| --- | --- | --- | --- | --- |
+| Attempt 1 | WAT-000183-PAY-01 | 87.50 MAD | Failed | 2026-08-20 14:32 |
+| Attempt 2 | WAT-000183-PAY-02 | 87.50 MAD | Successful | 2026-08-21 09:15 |
+
+This preservation guarantees a complete audit trail. You can export the failure history from **Reports \> Collections** in CSV format.
+
+## Automatic Customer Notifications
+
+watt.ma automatically sends the following notifications in case of failure:
+
+- **Email**: sent immediately after the **Failed** status, with the failure reason and a link to update the payment method.
+- **SMS**: reminder sent at D\+1 and D\+7 if the payment remains unpaid. The SMS contains a link to the settlement portal.
+- **WhatsApp**: if the WhatsApp receipt option is enabled, a message is sent at D\+3 for recurring invoices.
+
+<Tip>
+  Sign in to [web.watt.ma](https://web.watt.ma) and go to **Settings \> Notifications** to customize the tone and content of reminder messages. You can add a custom signature or a grace period.
+</Tip>
+
+## Permissions
+
+| Role | Retry | Request Update | Record Transfer | Write Off | Suspend |
+| --- | --- | --- | --- | --- | --- |
+| **Admin** | Yes | Yes | Yes | Yes | Yes |
+| **Operator** | Yes | Yes | No | No | No |
+| **Reader** | No | No | No | No | No |
+
+## Concrete Example
+
+The monthly invoice for Residence Al Andalous for unit 5B amounts to 412.00 MAD. The CMI debit fails on the 5th of the month with the reason **Card expired**.
+
+<Steps>
+  <Step title="Failure detection">
+    The payment status changes to **Failed**. The customer receives an email with the reason and a link to update their card.
+  </Step>
+  <Step title="Automatic reminder">
+    At D\+3, no update has been made. The customer receives an SMS reminder. At D\+7, the status remains unpaid.
+  </Step>
+  <Step title="Administrator intervention">
+    The site operator calls the resident by phone. The resident updates their card from the received link.
+  </Step>
+  <Step title="Manual retry and success">
+    The operator clicks **Retry** from the invoice detail. The new attempt WAT-000184-PAY-02 changes to **Successful** status. The receipt is generated.
+  </Step>
+</Steps>
+
+<Info>
+  For recurring residence invoices, watt.ma automatically attempts a new debit at D\+3 and D\+7 before marking the invoice as definitively unpaid. You can disable this option in the billing cycle configuration.
+</Info>
+
+## See Also
+
+<CardGroup cols={2}>
+  <Card title="Payment Lifecycle" icon="arrows-rotate" href="/en/sessions/cycle-paiement">
+    Understand every status of a payment attempt from creation to settlement.
+  </Card>
+
+  <Card title="Bank Reconciliation" icon="building-columns" href="/en/sessions/rapprochement">
+    Record transfers and reconcile collections with your bank account.
+  </Card>
+
+  <Card title="RFID Badges" icon="id-card" href="/en/sessions/badges-rfid">
+    Manage named badges and suspend access in case of payment default.
+  </Card>
+
+  <Card title="Resident Invoices" icon="file-invoice" href="/en/rapports/factures-residents">
+    Issue and track monthly resident invoices with automatic reminders.
+  </Card>
+</CardGroup>

@@ -1,0 +1,127 @@
+---
+title: "Facturer les recharges des entreprises et flottes sur watt.ma"
+sidebarTitle: "Facturation Entreprises"
+description: "Facturez les sessions de recharge de vos flottes et clients entreprise sur watt.ma avec des factures mensuelles consolidées par compte."
+---
+
+La facturation entreprises et flottes permet de centraliser les charges de plusieurs badges et conducteurs sous un unique responsable financier. C'est le mode adapté aux entreprises qui règlent les recharges de leurs véhicules de fonction, aux flottes de livraison comme Atlas Logistics, ou aux collectivités territoriales qui souhaitent recevoir un seul document de paiement par période.
+
+## Vue d'ensemble
+
+Lorsqu'un compte de facturation est configuré comme entreprise, toutes les sessions rattachées aux badges associés y alimentent le registre des charges. watt.ma génère une facture consolidée couvrant toutes les sessions de la période, avec un détail par conducteur et par session. L'entreprise reçoit un document unique à règlement unique.
+
+## Cas d'utilisation
+
+<CardGroup cols={2}>
+  <Card title="Véhicules de fonction" icon="car">
+    Entreprises dont les cadres et commerciaux utilisent des véhicules électriques. toutes les recharges sont refacturées à la maison-mère sur une facture groupée.
+  </Card>
+
+  <Card title="Flottes de livraison" icon="truck">
+    Logistique, e-commerce, transport de marchandises. Exemple : Atlas Logistics facturée mensuellement pour ses vingt conducteurs.
+  </Card>
+
+  <Card title="Collectivités territoriales" icon="landmark">
+    Municipalités et intercommunalités gérant des véhicules de service. Facturation consolidée mensuelle d'une flotte municipale.
+  </Card>
+
+  <Card title="Utilitaires partagés" icon="people-arrows">
+    Véhicules partagés au sein d'un même site ou déployés sur plusieurs sites avec un seul payeur.
+  </Card>
+</CardGroup>
+
+## Configuration
+
+<Steps>
+  <Step title="Créer un compte de facturation entreprise">
+    Dans **Sessions \> Comptes de facturation**, cliquez sur **Nouveau compte**. Sélectionnez le type **Entreprise** et renseignez la raison sociale, l'ICE, l'adresse de facturation et le contact.
+  </Step>
+  <Step title="Rattacher les badges et conducteurs">
+    Associez chaque badge RFID au compte en tant que badge d'entreprise. Chaque conducteur voit ses charges agrégées sous le compte parent. Vous pouvez aussi importer les données via CSV.
+  </Step>
+  <Step title="Définir un tarif de groupe">
+    Affectez un tarif spécifique au compte (voir [Tarifs de groupe](/sessions/tarifs-groupes) si disponible, sinon utilisez un tarif existant dans [Tarifs](/sessions/tarifs)). Le tarif de groupe permet de définir un prix préférentiel pour toute la flotte.
+  </Step>
+  <Step title="Choisir la fréquence de facturation">
+    Sélectionnez **Mensuelle** avec une date de clôture (par exemple le dernier jour du mois) et une date d'échéance (J\+15). Vous pouvez aussi choisir la facturation manuelle.
+  </Step>
+</Steps>
+
+## Exemple de facture consolidée
+
+Le tableau de bord génère automatiquement une facture structurée comme suit :
+
+```text
+Atlas Logistics — Facture mensuelle N° F-2024-0042
+Période : 1er – 30 avril 2024
+Échéance : 15 mai 2024
+
+├── Driver 01 — 312 kWh — 449,20 MAD
+├── Driver 02 — 218 kWh — 313,80 MAD
+├── Driver 03 — 402 kWh — 579,60 MAD
+├── Driver 04 — 185 kWh — 266,80 MAD
+│
+Total HT                           1 350,00 MAD
+TVA 20 %                             270,00 MAD
+TOTAL À PAYER                      1 620,00 MAD
+```
+
+Le détail complet par session est annexé en deuxième partie du document PDF.
+
+## Reporting inclus
+
+La facture consolidée est accompagnée de rapports complémentaires disponibles sous forme de tableaux détaillés :
+
+| Dimension | Exemple |
+| --- | --- |
+| Par conducteur | Driver 01, Driver 02, Driver 03, Driver 04 |
+| Par véhicule | Immatriculation, modèle (si renseignée) |
+| Par département / centre de coût | Si les badges sont tagués dans le système |
+| Par borne | CP-001, CP-002, CP-003 |
+| Par site | Green Energy Park, Parking A |
+| Par période de facturation | 1er – 30 avril 2024 |
+
+Ces tableaux permettent à l'entreprise de répercuter les frais sur ses centres de coût et à l'opérateur de justifier chaque ligne facturée.
+
+## Différence avec la facturation résidentielle
+
+| Dimension | Entreprise / Flotte | Résidentiel |
+| --- | --- | --- |
+| Payeur | Entreprise (RA) | Résident ou syndic |
+| Unité comptable | Badge / Conducteur | Appartement / Lot |
+| Consolidation | Par société | Par unité d'habitation |
+| Usage | Flotte de fonction, livraison | Copropriété, parking privé |
+| Immobilisation | Non | Oui : borne liée à une place |
+
+Dans le résidentiel, l'objectif est de refacturer à l'unité d'habitation. En entreprise, l'objectif est de centraliser la facturation pour l'entité juridique.
+
+## Permissions
+
+| Action | Admin | Opérateur | Lecteur |
+| --- | :-: | :-: | :-: |
+| Créer un compte entreprise | Oui | Non | Non |
+| Affecter un badge | Oui | Oui | Non |
+| Définir le tarif de groupe | Oui | Oui | Non |
+| Modifier la fréquence | Oui | Non | Non |
+| Consulter la facture | Oui | Oui | Oui |
+| Télécharger le PDF | Oui | Oui | Oui |
+
+## Voir aussi
+
+<CardGroup cols={2}>
+  <Card title="Comptes de facturation" icon="user-group" href="/sessions/comptes-facturation">
+    Comprenez le mécanisme général des comptes de facturation.
+  </Card>
+
+  <Card title="Factures résidents" icon="building" href="/rapports/factures-residents">
+    Consultez les concepts communs de facturation et d'émission.
+  </Card>
+
+  <Card title="Tarifs" icon="tag" href="/sessions/tarifs">
+    Créez et affectez les tarifs appliqués aux sessions.
+  </Card>
+
+  <Card title="Badges RFID" icon="id-card" href="/sessions/badges-rfid">
+    Ajoutez et affectez les badges des conducteurs de la flotte.
+  </Card>
+</CardGroup>

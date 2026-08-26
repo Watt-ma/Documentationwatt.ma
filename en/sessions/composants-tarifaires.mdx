@@ -1,0 +1,120 @@
+---
+title: "watt.ma charging pricing components"
+sidebarTitle: "Pricing components"
+description: "Explore watt.ma pricing components: energy, connection, time, off-peak hours, caps, margins, and subscriptions to refine your pricing policy."
+---
+
+A watt.ma tariff is not a single amount. It is a sum of components that you activate and combine according to your business model. Each charging session produces one charge line per active component, and the total collected from the customer is the sum of these lines. This page details each component with concrete examples in Moroccan dirhams.
+
+## Energy price
+
+The most common component. You define a price per kWh and watt.ma multiplies that price by the energy actually delivered during the session.
+
+**Example:** a session of 24 kWh at 2.50 MAD/kWh generates a charge of 60.00 MAD.
+
+This mode is recommended for public charging where the customer pays for what they consume.
+
+## Connection fee
+
+Fixed amount applied once, at the start of the session. This fee covers the operational costs of each charging event, regardless of the energy exchanged.
+
+**Example:** a session with an energy charge of 60.00 MAD and a connection fee of 5.00 MAD gives a total of 65.00 MAD.
+
+Typical use cases are:
+
+- Public chargers paid by CMI QR code, where the connection fee partly compensates for bank commissions.
+- Short sessions with low consumption, to avoid derisory charges that do not cover fixed costs.
+
+## Time pricing
+
+This component is based on duration, but be careful not to confuse the three measures:
+
+| Duration type | What is measured | Use case |
+| --- | --- | --- |
+| **Charge duration** | From the start to the end of energy distribution | Bill the active occupation of the charger |
+| **Connection duration** | From plugging in to fully unplugging | Bill the parking time while the charger is occupied |
+| **Parking duration** | From unplugging to leaving the parking lot (if detected) | Bill the spot blocking after the charge |
+
+You can combine time pricing with other components. For example, bill energy per kWh during the charge, then bill connection per hour once the charge is complete.
+
+## Off-peak / peak hour pricing
+
+This component lets you apply two different prices according to fixed time windows. The goal is to encourage drivers to charge when electricity demand is low.
+
+Here is an example of a typical daily split:
+
+| Time window | Type | Example price |
+| --- | --- | --- |
+| 00:00 - 06:00 | Off-peak | 1.80 MAD/kWh |
+| 06:00 - 18:00 | Peak | 2.50 MAD/kWh |
+| 18:00 - 22:00 | Peak | 2.50 MAD/kWh |
+| 22:00 - 00:00 | Off-peak | 1.80 MAD/kWh |
+
+watt.ma calculates consumption per time window and applies the corresponding tariff. The total is the sum of the subtotals per window.
+
+## Price cap
+
+The cap protects the customer against an excessive charge. You can configure two types of limits:
+
+- **Total session cap**: the charge amount does not exceed a fixed maximum, regardless of energy or duration.
+- **Unit cap**: the price per kWh or per hour does not exceed a maximum value.
+
+**Example:** a tariff at 2.50 MAD/kWh with a total cap of 80.00 MAD. A session of 40 kWh would normally cost 100.00 MAD, but is limited to 80.00 MAD.
+
+## Cost price and margin
+
+To track the profitability of your charging sessions, watt.ma lets you enter a cost price per kWh and displays the margin achieved.
+
+| Element | Example value |
+| --- | --- |
+| Electricity cost | 1.20 MAD/kWh |
+| Operator margin | 0.80 MAD/kWh |
+| **Customer price** | **2.00 MAD/kWh** |
+
+You can define the margin as a fixed amount per kWh or as a percentage of the customer price. Revenue reports then display the net revenue after deducting the estimated cost price.
+
+## Monthly subscription
+
+The subscription is a recurring component. It suits contexts where the driver pays a fixed monthly fee in exchange for a preferential tariff or included charging sessions.
+
+Common models are:
+
+- **Residential**: monthly subscription covering parking and a share of the charging sessions.
+- **Company fleet**: global flat fee per vehicle, with a reduced price per kWh beyond the included volume.
+- **Parking plus charge**: flat fee combining the parking spot and access to the charger.
+
+The subscription appears as a recurring charge line on the driver account, separate from the session-related charges.
+
+## Tariff statuses
+
+A tariff can have one of the following statuses:
+
+| Status | Meaning |
+| --- | --- |
+| **Active** | The tariff is applied to new sessions that match its scope. |
+| **Inactive** | The tariff is no longer applied, but remains available in history. |
+| **Planned** | The tariff will automatically come into effect on the configured date and time. |
+
+A planned tariff lets you prepare a pricing change in advance without applying it immediately.
+
+## Permissions
+
+Only the **Admin** and **Operator** roles can create, modify, and activate tariffs. Users with the **Reader** role can view the tariffs in force but cannot modify them.
+
+<CardGroup>
+  <Card title="Tariffs" icon="tag" href="/en/sessions/tarifs">
+    Create and assign your base charging tariffs on sites and chargers.
+  </Card>
+
+  <Card title="Idle fees" icon="clock" href="/en/sessions/frais-inactivite">
+    Learn more about billing after the charge ends.
+  </Card>
+
+  <Card title="Group tariffs" icon="users" href="/en/sessions/tarifs-groupes">
+    Apply discounts or exclusive tariffs based on the driver group.
+  </Card>
+
+  <Card title="Tariff priority" icon="arrow-down-up" href="/en/sessions/priorite-tarifs">
+    Understand how watt.ma chooses which tariff to apply when several are available.
+  </Card>
+</CardGroup>

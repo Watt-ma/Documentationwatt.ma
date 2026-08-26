@@ -1,0 +1,131 @@
+---
+title: "Track customer balances and aged debt on watt.ma"
+sidebarTitle: "Customer Balances"
+description: "Track customer balances on watt.ma: uninvoiced, due, credit, and overdue amounts. Filter by account, status, and aging, and take action based on your role."
+---
+
+The Customer Balances page on watt.ma centralizes the financial exposure for each billing account in a single table. You can distinguish what is due, what is overdue, and what is in credit to make the right decisions: send a reminder, suspend service, or apply a credit note. This tracking is essential to maintain healthy cash flow and anticipate the risk of non-payment.
+
+## Overview
+
+The Customer Balances table aggregates all open transactions by billing account. It does not replace reviewing the detailed charge ledger, but provides an immediate summary for operations and administrative teams.
+
+Each row represents a customer account and shows several balances simultaneously, because a single account can combine multiple statuses: uninvoiced charges, an issued but unpaid invoice, and an available credit note.
+
+## Balance types
+
+### Uninvoiced balance
+
+The uninvoiced balance groups all charges accumulated since the last invoice and not yet included in an accounting document. These charges come from ongoing charging sessions, connection fees, idle fees, and current subscriptions.
+
+Example: Residence Al Andalous has a monthly cycle that closes on the 30th. On the 15th, the uninvoiced balance amounts to 312 MAD. This amount is not yet due, but it is visible so you can anticipate the upcoming invoice.
+
+### Amount due
+
+The amount due represents the total of issued invoices whose due date has been reached or is approaching, and which have not yet been paid. This is a certain, documented receivable.
+
+Example: Atlas Logistics received invoice F-2026-08-0042 for 12,500 MAD with a due date of August 20. The amount due is 12,500 MAD until the wire transfer is reconciled.
+
+### Overdue balance
+
+The overdue balance is the subset of the amount due whose due date has passed. watt.ma breaks down arrears by aging buckets to help you prioritize follow-up.
+
+Example: A customer with an invoice of 840 MAD issued on July 1 and unpaid on August 15 has an overdue balance of 840 MAD in the 30-60 day bucket.
+
+### Credit balance
+
+The credit balance represents credit notes and overpayments applied to the customer account. This amount is automatically deducted from the next invoice or can be refunded upon request.
+
+Example: A commercial gesture of 200 MAD was applied to the Green Energy Park account. This credit balance of 200 MAD will be offset against the next monthly invoice.
+
+## Example combined balance
+
+Here is how watt.ma presents a full financial exposure where multiple balance types coexist:
+
+```text
+Previous unpaid invoice         200 MAD
+Current month charges           145 MAD
+Customer credit note            -50 MAD
+------------------------------------
+Total exposure                  295 MAD
+```
+
+In this example, the customer has an old unpaid invoice of 200 MAD, uninvoiced current-month charges of 145 MAD, and benefits from a credit note of 50 MAD. Total exposure is 295 MAD. Only the 200 MAD of the issued invoice is legally enforceable today.
+
+## Available filters
+
+The Customer Balances table offers several filters to target accounts for action:
+
+| Filter | Options | Use |
+| --- | --- | --- |
+| **Billing account** | Search by name, ID, or ICE | Isolate a specific customer |
+| **Status** | Current, Overdue, Unpaid, Credit | Prioritize follow-up |
+| **Aging** | 0-30 days, 30-60 days, 60\+ days | Identify doubtful receivables |
+| **Balance type** | Uninvoiced, Due, Overdue, Credit | Show only positive or negative exposures |
+| **Site** | Green Energy Park, Parking A, etc. | Filter by operational scope |
+
+<Note>
+  Filters can be combined. For example, you can display only accounts with an overdue balance over 60 days belonging to the Green Energy Park site.
+</Note>
+
+## Available actions
+
+Depending on your role, several actions are accessible from a customer account row:
+
+| Action | Description | Role required |
+| --- | --- | --- |
+| **Send reminder** | Send an immediate follow-up email with balance details | Operator or Admin |
+| **Apply credit note** | Credit the customer account with an amount to deduct from the next invoice | Admin |
+| **Suspend charging** | Immediately block all badges and access linked to the account | Admin |
+| **Export detail** | Download a CSV of the detailed balance with all line items | Operator or Admin |
+| **Resend invoice** | Regenerate the PDF and resend the invoice by email | Operator or Admin |
+
+<Warning>
+  Suspending charging is immediate and affects all drivers linked to the billing account. Document the reason in the account notes before suspending.
+</Warning>
+
+## Account statuses
+
+watt.ma automatically calculates an overall status for each account based on its balances:
+
+| Status | Definition |
+| --- | --- |
+| **Current** | No unpaid amount due. The account may have an uninvoiced balance, but nothing is overdue. |
+| **Overdue** | At least one invoice has passed its due date by 1 to 30 days. |
+| **Unpaid** | At least one invoice has passed its due date by more than 30 days, or the cumulative amount of unpaid invoices has crossed the configured alert threshold. |
+| **Credit** | The credit balance exceeds the amount due. The account has a surplus in its favor. |
+
+<Info>
+  An account can be simultaneously Overdue and Credit if a credit note partially covers unpaid invoices. The displayed status is the one with the highest priority: Unpaid \> Overdue \> Credit \> Current.
+</Info>
+
+## Permissions
+
+| Action | Admin | Operator | Reader |
+| --- | :-: | :-: | :-: |
+| View balances | Yes | Yes | Yes |
+| Send reminder | Yes | Yes | No |
+| Export detail | Yes | Yes | No |
+| Resend invoice | Yes | Yes | No |
+| Apply credit note | Yes | No | No |
+| Suspend charging | Yes | No | No |
+
+## See also
+
+<CardGroup cols={2}>
+  <Card title="Collections" icon="money-bill" href="/en/rapports/encaissements">
+    Track reconciled payments by payment method and period.
+  </Card>
+
+  <Card title="Refunds and Credit Notes" icon="rotate-left" href="/en/rapports/remboursements-avoirs">
+    Distinguish cash refunds from accounting credit notes and manage both.
+  </Card>
+
+  <Card title="Billing Accounts" icon="user-group" href="/en/sessions/comptes-facturation">
+    Create and configure the customer accounts referenced in the balance table.
+  </Card>
+
+  <Card title="Invoicing" icon="file-invoice" href="/en/rapports/facturation">
+    Understand the full invoice lifecycle and how it feeds into balances.
+  </Card>
+</CardGroup>

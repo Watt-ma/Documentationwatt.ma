@@ -1,0 +1,114 @@
+---
+title: "Encaissements et suivi de trésorerie sur watt.ma"
+sidebarTitle: "Encaissements"
+description: "Suivez les encaissements sur watt.ma : distinguez paiement transactionnel et rapprochement comptable, filtrez par source CMI, virement ou avoir, et analysez la trésorerie nette."
+---
+
+Le module Encaissements de watt.ma vous donne une vision claire de la trésorerie réellement disponible sur votre compte bancaire. Il distingue le paiement, qui est un événement transactionnel côté fournisseur, de l'encaissement, qui est un événement comptable rapproché avec votre banque. Cette distinction est essentielle pour ne pas confondre le revenu facturé avec l'argent effectivement perçu.
+
+## Vue d'ensemble : paiement et encaissement
+
+Dans watt.ma, deux concepts distincts cohabitent :
+
+- **Paiement** : tentative de débit initiée par le client ou par prélèvement automatique. Le paiement a un statut chez le fournisseur (CMI ou Stripe) mais ne garantit pas que les fonds sont sur votre compte.
+- **Encaissement** : confirmation que les fonds ont été effectivement reçus sur le compte bancaire de l'opérateur et rapprochés dans watt.ma.
+
+Exemple : un client paie 145 MAD par QR CMI le 3 août. Le paiement passe au statut Réussi côté CMI le même jour. L'encaissement n'est confirmé que le 7 août lorsque le virement de CMI apparaît sur votre relevé bancaire et que vous le rapprochez dans watt.ma.
+
+## Sources d'encaissement
+
+watt.ma recense plusieurs sources d'encaissement dans le tableau de trésorerie :
+
+| Source | Description | Rapprochement |
+| --- | --- | --- |
+| **QR CMI** | Paiements immédiats par QR code via l'application CMI | Manuel via fichier de règlement ou virement bancaire |
+| **Prélèvement CMI** | Débits automatiques sur carte enregistrée à échéance de facture | Manuel via fichier de règlement |
+| **Virement bancaire** | Règlements manuels des entreprises et résidents | Saisie manuelle dans watt.ma (voir [Rapprochement](/sessions/rapprochement)) |
+| **Stripe** | Paiements par carte internationale et prélèvements récurrents | Automatique par webhook (voir [Stripe](/sessions/stripe), bientôt disponible) |
+| **Avoirs appliqués** | Corrections comptables utilisées pour compenser une facture | Comptable interne, sans mouvement bancaire |
+| **Remboursements** | Argent renvoyé au client, impact négatif sur la trésorerie | Suivi dans le module Remboursements |
+
+<Note>
+  Les avoirs appliqués et les remboursements réduisent le solde de trésorerie nette sans forcément passer par un encaissement bancaire. Ils apparaissent dans le tableau pour refléter la position réelle du compte client.
+</Note>
+
+## Statuts d'encaissement
+
+Chaque ligne du tableau des encaissements porte un statut qui indique son niveau de validation :
+
+| Statut | Définition |
+| --- | --- |
+| **En attente** | Le paiement est réussi côté fournisseur, mais le rapprochement bancaire n'est pas encore fait. |
+| **Rapproché** | Le montant a été confirmé sur le compte bancaire et lié à la facture ou au paiement dans watt.ma. |
+| **Rejeté** | Le virement ou le prélèvement a été retourné par la banque après un rapprochement initial (fraude, compte clôturé). |
+| **En litige** | Une différence existe entre le montant attendu et le montant reçu. En attente de résolution. |
+
+## Rapports disponibles
+
+Le module Encaissements propose trois vues préconfigurées :
+
+| Rapport | Fréquence | Usage |
+| --- | --- | --- |
+| **Rapport quotidien** | Jour par jour | Suivi opérationnel immédiat, détection des anomalies de rapprochement |
+| **Rapport mensuel** | Mois calendaire | Préparation de la liasse fiscale, analyse du chiffre d'affaires encaissé |
+| **Par moyen de paiement** | Période libre | Comparaison de la part de chaque canal (CMI, virement, Stripe) dans le total |
+
+## Frais fournisseur
+
+Les encaissements bruts ne reflètent pas la trésorerie réelle car les fournisseurs de paiement prélèvent leurs commissions. watt.ma permet d'enregistrer cette décomposition :
+
+| Élément | Exemple CMI | Exemple Stripe (beta) |
+| --- | --- | --- |
+| Encaissement brut | 500,00 MAD | 500,00 MAD |
+| Commission fournisseur | -12,50 MAD | -18,50 MAD |
+| Frais de conversion | 0 MAD | -8,00 MAD |
+| **Encaissement net** | **487,50 MAD** | **473,50 MAD** |
+
+<Info>
+  Les taux de commission CMI sont négociés avec votre banque commerçante et ne sont pas fixés par watt.ma. Les taux Stripe sont ceux du programme pilote en cours.
+</Info>
+
+## Exemple mensuel
+
+Voici un rapport d'encaissement net pour le mois d'août 2026, combinant toutes les sources de trésorerie :
+
+```text
+Août 2026
+QR CMI                    41 250 MAD
+Virements bancaires        8 500 MAD
+Avoirs appliqués          -1 200 MAD
+Remboursements              -450 MAD
+----------------------------------
+Encaissement net          48 100 MAD
+```
+
+Dans cet exemple, l'opérateur a encaissé 41 250 MAD via les paiements QR CMI et 8 500 MAD par virement bancaire. Les avoirs appliqués (1 200 MAD) et les remboursements (450 MAD) réduisent la position nette. L'encaissement net du mois est donc de 48 100 MAD.
+
+## Distinction des revenus
+
+Il est important de ne pas mélanger les notions financières dans vos rapports :
+
+- **Revenu facturé** : montant total des factures émises, indépendamment du paiement.
+- **Revenu encaissé** : somme des encaissements rapprochés dans la période, incluant les paiements d'avances.
+- **Revenu à régler** : somme des factures émises mais non encore rapprochées avec la banque.
+- **Marge de l'opérateur** : revenu encaissé moins les commissions fournisseurs, les taxes et les charges d'exploitation.
+
+## Voir aussi
+
+<CardGroup cols={2}>
+  <Card title="Soldes clients" icon="scale-unbalanced" href="/rapports/soldes-clients">
+    Consultez l'exposition financière par compte client avant de rapprocher les encaissements.
+  </Card>
+
+  <Card title="Paiements QR CMI" icon="qrcode" href="/sessions/paiements-qr-cmi">
+    Activez et configurez le paiement par QR code pour les applications bancaires marocaines.
+  </Card>
+
+  <Card title="Rapprochement bancaire" icon="building-columns" href="/sessions/rapprochement">
+    Enregistrez les virements et rapprochez les entrées bancaires avec les factures watt.ma.
+  </Card>
+
+  <Card title="Stripe" icon="credit-card" href="/sessions/stripe">
+    Rejoignez le programme pilote Stripe pour les paiements internationaux.
+  </Card>
+</CardGroup>

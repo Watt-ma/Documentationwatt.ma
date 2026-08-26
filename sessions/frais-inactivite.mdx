@@ -1,0 +1,99 @@
+---
+title: "Configurer les frais d'inactivité sur watt.ma"
+sidebarTitle: "Frais d'inactivité"
+description: "Apprenez à configurer les frais d'inactivité sur watt.ma : période de grâce, tarification au temps, notifications au conducteur et cas d'usage pour libérer les bornes."
+---
+
+Les frais d'inactivité sont appliqués après la fin de la recharge lorsqu'un véhicule reste branché à la borne sans consommer d'énergie. Cette fonction incite les conducteurs à déplacer leur véhicule rapidement, libérant la borne pour les suivants et améliorant le taux d'utilisation de votre parc.
+
+<Note>
+  Les frais d'inactivité sont actuellement en bêta. Leur comportement peut évoluer. Pour connaître la feuille de route, consultez la page [Roadmap](/roadmap).
+</Note>
+
+## Fonctionnement
+
+Voici le déroulement chronologique d'une session qui génère des frais d'inactivité :
+
+```text
+Recharge terminée → Période de grâce : 15 min → Véhicule toujours branché → Début des frais d'inactivité
+```
+
+1. La session de recharge se termine lorsque le véhicule atteint sa charge cible ou que le conducteur l'arrête.
+2. Une période de grâce configurable démarre. Pendant ce temps, aucun frais d'inactivité n'est appliqué.
+3. Si le véhicule reste branché au-delà de cette période, les frais d'inactivité commencent à courir au tarif configuré.
+4. Les frais s'accumulent jusqu'à ce que le véhicule soit débranché ou qu'un plafond soit atteint.
+
+## Configuration
+
+Dans le menu **Sessions \> Frais d'inactivité**, cliquez sur **Nouvelle règle**. Remplissez les paramètres suivants :
+
+| Paramètre | Description | Exemple |
+| --- | --- | --- |
+| **Période de grâce** | Durée avant le début des frais, en minutes. | 15 minutes |
+| **Montant par minute** | Tarif unitaire appliqué chaque minute d'inactivité. | 1,00 MAD/min |
+| **Montant par heure** | Alternative : tarif à l'heure, calculé au prorata de la minute. | 50,00 MAD/h |
+| **Plafond** | Montant maximal facturé pour cette période d'inactivité. | 30,00 MAD |
+| **Notification avant déclenchement** | Envoyer une alerte au conducteur X minutes avant la fin de la période de grâce. | 5 minutes avant |
+
+Vous pouvez appliquer une règle à l'échelle d'un site, d'une borne spécifique ou d'un groupe de conducteurs. Par exemple, vous pouvez accorder une période de grâce plus longue aux résidents qu'aux clients publics.
+
+## Cas d'utilisation
+
+Les frais d'inactivité sont particulièrement utiles dans les contextes suivants :
+
+- **Améliorer la disponibilité des bornes** : en incitant au débranchement rapide, vous réduisez le temps d'occupation inutile.
+- **Réduire le blocage des places** : idéal dans les parkings avec un nombre limité de places de recharge.
+- **Optimiser l'utilisation du parc** : les rapports de revenus distinguent les revenus liés à l'énergie et ceux liés à l'inactivité, vous permettant d'ajuster votre politique tarifaire.
+
+## Notifications au conducteur
+
+Avant le déclenchement des frais, watt.ma peut notifier le conducteur par SMS ou push mobile. Configurez le délai de notification dans la règle. Le message indique le temps restant avant le début des frais et le montant par minute.
+
+**Exemple de notification :**
+
+> Votre recharge est terminée. Débranchez dans 5 minutes pour éviter des frais d'inactivité de 1,00 MAD/min. Green Energy Park
+
+## Exemple concret : Green Energy Park
+
+Prenons une session sur la borne `CP-001` du site Green Energy Park :
+
+- Recharge active : 40 minutes, 18 kWh à 2,50 MAD/kWh = 45,00 MAD
+- Période de grâce après fin de recharge : 15 minutes (gratuit)
+- Temps resté branché au-delà : 25 minutes
+- Tarif d'inactivité : 1,00 MAD/min, plafond 30,00 MAD
+
+Calcul des frais d'inactivité : 25 minutes x 1,00 MAD = 25,00 MAD (sous le plafond)
+
+**Total de la session :** 45,00 MAD \+ 25,00 MAD = **70,00 MAD**
+
+## Statuts d'une période d'inactivité
+
+Une session avec frais d'inactivité traverse les états suivants :
+
+| Statut | Explication |
+| --- | --- |
+| **En période de grâce** | La recharge est terminée, le véhicule est encore branché, mais aucun frais ne courent encore. |
+| **Facturation active** | La période de grâce est écoulée. Les frais d'inactivité s'accumulent minute par minute. |
+| **Session clôturée** | Le véhicule a été débranché. La charge d'inactivité est figée et ajoutée au total de la session. |
+
+<Tip>
+  Dans le rapport de revenus, les frais d'inactivité apparaissent comme une ligne séparée de la charge énergie. Cela vous permet d'évaluer la part du revenu provenant de l'inactivité par rapport à l'énergie vendue.
+</Tip>
+
+<CardGroup>
+  <Card title="Tarifs" icon="tag" href="/sessions/tarifs">
+    Créez et configurez vos tarifs de base, énergie et temps.
+  </Card>
+
+  <Card title="Composants tarifaires" icon="layers" href="/sessions/composants-tarifaires">
+    Découvrez tous les éléments qui composent un tarif watt.ma.
+  </Card>
+
+  <Card title="Priorité entre tarifs" icon="arrow-down-up" href="/sessions/priorite-tarifs">
+    Comprenez comment watt.ma choisit le tarif à appliquer quand plusieurs sont disponibles.
+  </Card>
+
+  <Card title="Roadmap" icon="map" href="/roadmap">
+    Consultez la feuille de route pour connaître l'avancement de la fonction frais d'inactivité.
+  </Card>
+</CardGroup>

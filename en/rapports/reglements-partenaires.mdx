@@ -1,0 +1,116 @@
+---
+title: "Manage partner and landlord settlements on watt.ma"
+sidebarTitle: "Settlements"
+description: "Generate, approve, and track settlements owed to site owners, landlords, and business partners in watt.ma, with detailed statements."
+---
+
+A partner settlement materializes the money that watt.ma must pay to a third party for a given period: real estate landlord, parking operator, associated commercial operator, or advertising partner. Each settlement is based on the configured revenue sharing rules and the sessions actually performed.
+
+## Overview
+
+Settlement is distinct from the revenue report. The [revenue report](/en/rapports/revenus) measures activity and value generated. The settlement organizes payment to the partner, with its own statuses, audit trail, and approval procedure.
+
+## Settlement lifecycle
+
+```text
+Open → Calculated → Approved → To pay → Paid → Reconciled
+```
+
+| Status | Description |
+| --- | --- |
+| **Open** | Current period, sessions continue to feed the base |
+| **Calculated** | Period closed, sharing base frozen |
+| **Approved** | An administrator has validated the amount |
+| **To pay** | Awaiting execution of payment to the partner |
+| **Paid** | Wire transfer or check issued |
+| **Reconciled** | Payment confirmed on the bank account |
+
+<Note>
+  These states reflect the product target model. The current implementation may group some statuses. Contact support for the exact state of your deployment.
+</Note>
+
+## Monthly statement example
+
+```text
+Period                   August 2026
+Site                     Parking A
+Partner                  Sté Parking Al Amal
+
+Sessions                 412
+Energy                   8,421 kWh
+
+Charging revenue         21,420 MAD
+Refunds                    -220 MAD
+Adjustments                -100 MAD
+-----------------------------------
+Sharing base             21,100 MAD
+
+Owner share 20%           4,220 MAD
+
+Settlement amount         4,220 MAD
+Method                    Bank transfer
+Reference                 SETL-2026-08-017
+Status                    To pay
+```
+
+## Statement contents
+
+Each statement includes:
+
+- Partner and site
+- Covered period
+- Number of sessions and kWh delivered
+- Gross charging revenue
+- Adjustments (refunds, credit notes, manual corrections)
+- Sharing base after adjustments
+- Applied owner share
+- Status, settlement method (transfer, check), bank reference
+
+## Administrator actions
+
+<Steps>
+  <Step title="Calculate and approve">
+    At period close, the settlement moves to Calculated status. The administrator verifies the figures and clicks **Approve**.
+  </Step>
+  <Step title="Issue payment">
+    Record the bank transfer or check with its reference. The settlement moves to Paid status.
+  </Step>
+  <Step title="Reconcile payment">
+    When the debit appears on the bank account, click **Reconcile**. The settlement is then closed and archived. See [Reconciliation](/en/sessions/rapprochement) for the full procedure.
+  </Step>
+  <Step title="Export the statement">
+    Each statement can be exported to PDF for sending to the partner or to CSV for accounting. See [Export Data](/en/rapports/exporter-donnees).
+  </Step>
+</Steps>
+
+## Audit trail
+
+Every status change is timestamped with the author and kept in the settlement history. Approved amounts cannot be modified afterwards: any correction goes through an adjustment in the following period.
+
+## Permissions
+
+| Role | Approve | Mark paid | View |
+| --- | --- | --- | --- |
+| Admin | Yes | Yes | Yes |
+| Operator | No | No | Yes |
+| Reader | No | No | Yes |
+
+## See also
+
+<CardGroup cols={2}>
+  <Card title="Revenue Sharing" icon="percent" href="/en/rapports/partage-revenus">
+    Configure the rule that feeds settlements.
+  </Card>
+
+  <Card title="Reconciliation" icon="scale-balanced" href="/en/sessions/rapprochement">
+    Reconcile the settlement with the bank account.
+  </Card>
+
+  <Card title="Revenue" icon="chart-line" href="/en/rapports/revenus">
+    Track gross activity before sharing.
+  </Card>
+
+  <Card title="Export" icon="download" href="/en/rapports/exporter-donnees">
+    Export statements for accounting.
+  </Card>
+</CardGroup>

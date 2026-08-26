@@ -4,7 +4,7 @@ sidebarTitle: "Tarifs"
 description: "Créez des tarifs de recharge personnalisés sur watt.ma : au kWh, à l'heure ou forfaitaire, avec heures creuses et affectation par site ou borne."
 ---
 
-La gestion des tarifs vous permet de définir la politique de prix appliquée à chaque session de recharge. Vous pouvez tarifier au kilowattheure, à l'heure de branchement ou proposer des forfaits fixes, puis affecter ces tarifs à l'échelle d'un site, d'une borne ou d'un groupe d'utilisateurs.
+Le moteur tarifaire de watt.ma permet de composer chaque prix de recharge à partir de plusieurs composants : énergie, frais de connexion, temps, frais d'inactivité et remises. Vous pouvez tarifier au kilowattheure, à l'heure de branchement ou proposer des forfaits fixes, puis affecter ces tarifs à l'échelle d'un site, d'une borne ou d'un groupe d'utilisateurs. Cette page vous guide dans la création d'un tarif complet.
 
 <Steps>
   <Step title="Créer un nouveau tarif">
@@ -25,6 +25,49 @@ La gestion des tarifs vous permet de définir la politique de prix appliquée à
   </Step>
 </Steps>
 
+## Composants tarifaires
+
+Chaque tarif est une somme de composants que vous activez ou non selon votre modèle économique :
+
+| Composant | Description |
+| --- | --- |
+| **Prix de l'énergie** | Montant au kWh fourni pendant la recharge. |
+| **Frais de connexion** | Montant fixe appliqué une seule fois, dès le début de la session. |
+| **Tarification au temps** | Montant basé sur la durée de recharge, de connexion ou de stationnement. |
+| **Heures creuses / pleines** | Prix différenciés selon des tranches horaires configurables. |
+| **Frais d'inactivité** | Montant facturé après une période de grâce une fois la recharge terminée. |
+| **Remises et groupes** | Réductions appliquées selon le groupe de conducteurs (résidents, employés, flotte). |
+| **Prix plafond** | Limite maximale de la charge totale ou du prix unitaire. |
+| **Abonnement mensuel** | Forfait récurrent couvrant une partie ou la totalité des recharges. |
+
+Pour explorer chaque composant en détail, consultez la page [Composants tarifaires](/sessions/composants-tarifaires).
+
+## Priorité entre tarifs
+
+Lorsque plusieurs tarifs pourraient s'appliquer à la même session, watt.ma suit une hiérarchie déterministe du plus spécifique au plus général. Par exemple, un tarif rattaché à un connecteur prime sur un tarif rattaché au site entier. Si vous configurez des tarifs superposés, il est conseillé de comprendre cette logique avant la mise en production.
+
+Pour en savoir plus, consultez [Priorité entre tarifs](/sessions/priorite-tarifs).
+
 <Note>
   Les montants affichés dans watt.ma sont exprimés en dirhams marocains (MAD). La TVA applicable au Maroc pour les services de recharge électrique est de 20 %. Vous devez configurer le taux de TVA dans les paramètres de facturation de votre compte pour que les reçus et rapports reflètent correctement les montants TTC.
 </Note>
+
+### Voir aussi
+
+<CardGroup>
+  <Card title="Composants tarifaires" icon="layers" href="/sessions/composants-tarifaires">
+    Découvrez chaque composant de prix : énergie, connexion, temps, inactivité, remises et plafonds.
+  </Card>
+
+  <Card title="Frais d'inactivité" icon="clock" href="/sessions/frais-inactivite">
+    Configurez des frais après la fin de recharge pour libérer les bornes plus vite.
+  </Card>
+
+  <Card title="Tarifs par groupe" icon="users" href="/sessions/tarifs-groupes">
+    Appliquez des remises ou des tarifs dédiés selon le groupe de conducteurs.
+  </Card>
+
+  <Card title="Priorité entre tarifs" icon="arrow-down-up" href="/sessions/priorite-tarifs">
+    Comprenez comment watt.ma choisit le tarif à appliquer quand plusieurs sont disponibles.
+  </Card>
+</CardGroup>

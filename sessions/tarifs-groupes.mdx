@@ -1,0 +1,100 @@
+---
+title: "Tarifs par groupe de conducteurs sur watt.ma"
+sidebarTitle: "Tarifs par groupe"
+description: "Créez des groupes de conducteurs et appliquez des tarifs différenciés sur watt.ma : remises, tarifs alternatifs et gratuité selon les profils."
+---
+
+Les tarifs par groupe permettent d'appliquer des prix différents selon le profil du conducteur. Vous pouvez récompenser les résidents, les employés ou les abonnés flotte, tout en maintenant un tarif public standard sur les mêmes bornes. watt.ma associe chaque conducteur à un groupe et applique automatiquement la règle de tarification correspondante.
+
+## Cas d'utilisation
+
+Les groupes de conducteurs répondent à des besoins variés :
+
+- **Public** : conducteurs occasionnels payant le tarif plein, souvent via QR code CMI.
+- **Employés** : remise pour les salariés d'une entreprise disposant de bornes sur le parking.
+- **Résidents** : tarif préférentiel pour les habitants d'une résidence équipée de bornes partagées.
+- **Flotte d'entreprise** : tarif spécifique, parfois suivi par compte centralisé pour facturation interne.
+- **VIP** : gratuité ou tarif très réduit pour des partenaires ou clients privilégiés.
+
+## Exemple de table tarifaire par groupe
+
+Voici une politique de prix type pour un site mixte comme Résidence Al Andalous :
+
+| Groupe | Prix au kWh | Type de règle |
+| --- | --- | --- |
+| **Public** | 3,00 MAD/kWh | Tarif de base |
+| **Employés** | 1,80 MAD/kWh | Remise de 40 % |
+| **Résidents** | 2,00 MAD/kWh | Tarif alternatif |
+| **Flotte** | 1,70 MAD/kWh | Tarif alternatif |
+| **VIP** | 0,00 MAD/kWh | Gratuité 100 % |
+
+## Types de règles de groupe
+
+Quand vous créez une règle de groupe, vous choisissez parmi quatre modalités :
+
+| Type de règle | Description |
+| --- | --- |
+| **Remise en pourcentage** | Réduction appliquée sur le tarif de base. Par exemple, -40 % sur le prix public. |
+| **Remise fixe** | Montant déduit de la charge totale. Par exemple, -20,00 MAD par session. |
+| **Tarif alternatif** | Un tarif complet remplace le tarif par défaut pour ce groupe. |
+| **Gratuité 100 %** | La session ne génère aucune charge pour le conducteur. |
+
+## Créer un groupe et l'associer à des conducteurs
+
+Pour mettre en place un tarif par groupe, suivez ces étapes :
+
+<Steps>
+  <Step title="Créer le groupe">
+    Allez dans **Sessions \> Tarifs par groupe** et cliquez sur **Nouveau groupe**. Nommez-le explicitement : "Employés Atlas Logistics", "Résidents Parking A", etc.
+  </Step>
+  <Step title="Choisir le type de règle et le montant">
+    Sélectionnez le type de règle (remise %, remise fixe, tarif alternatif ou gratuité) et saisissez le montant ou le tarif complet.
+  </Step>
+  <Step title="Associer des badges RFID">
+    Liez le groupe à un ou plusieurs [badges RFID](/sessions/badges-rfid). Quand un conducteur présente son badge, watt.ma l'identifie et applique le tarif du groupe. Vous pouvez aussi lier un badge à un compte de facturation spécifique.
+  </Step>
+  <Step title="Lier à des comptes de facturation">
+    Si vous avez activé la facturation résidentielle ou d'entreprise, associez le groupe à un [compte de facturation](/sessions/comptes-facturation) pour que les charges soient regroupées sur une seule facture périodique.
+  </Step>
+</Steps>
+
+## Exemple : Atlas Logistics
+
+Atlas Logistics dispose de quatre conducteurs utilisant régulièrement les bornes du site. La configuration est la suivante :
+
+- Tarif public du site : 2,80 MAD/kWh
+- Groupe "Flotte Atlas" : tarif alternatif à 1,70 MAD/kWh
+- Les quatre conducteurs ont chacun un badge RFID associé au groupe "Flotte Atlas"
+
+Résultat : quand un employé d'Atlas Logistics présente son badge sur la borne `CP-003`, watt.ma identifie le groupe et applique 1,70 MAD/kWh au lieu de 2,80 MAD/kWh.
+
+## Statuts d'un groupe
+
+| Statut | Signification |
+| --- | --- |
+| **Actif** | Le groupe et sa règle sont appliqués aux nouvelles sessions. |
+| **Inactif** | Le groupe existe mais n'applique plus de règle tarifaire. |
+
+## Permissions
+
+- **Admin** : peut créer, modifier, supprimer des groupes et associer des conducteurs.
+- **Opérateur** : peut créer et modifier des groupes, associer des badges existants.
+- **Lecteur** : peut consulter la liste des groupes et leurs tarifs, sans possibilité de modification.
+
+<CardGroup>
+  <Card title="Tarifs" icon="tag" href="/sessions/tarifs">
+    Créez les tarifs de base qui serviront de référence pour les remises de groupe.
+  </Card>
+
+  <Card title="Composants tarifaires" icon="layers" href="/sessions/composants-tarifaires">
+    Découvrez tous les éléments qui composent un tarif watt.ma.
+  </Card>
+
+  <Card title="Badges RFID" icon="nfc" href="/sessions/badges-rfid">
+    Apprenez à créer et associer des badges RFID à vos groupes de conducteurs.
+  </Card>
+
+  <Card title="Priorité entre tarifs" icon="arrow-down-up" href="/sessions/priorite-tarifs">
+    Comprenez comment watt.ma choisit le tarif quand plusieurs règles se superposent.
+  </Card>
+</CardGroup>

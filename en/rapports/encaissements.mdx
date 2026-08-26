@@ -1,0 +1,223 @@
+---
+title: "Track collections and cash-in on watt.ma"
+sidebarTitle: "Collections"
+description: "Track collections on watt.ma: distinguish transactional payment from accounting reconciliation, filter by CMI source, wire transfer, or credit note, and analyze net cash flow."
+---
+
+The Collections module on watt.ma gives you a clear view of the cash actually available in your bank account. It distinguishes between payment, which is a transactional event on the provider side, and collection, which is an accounting event reconciled with your bank. This distinction is essential to avoid confusing invoiced revenue with money actually received.
+
+## Overview: payment vs. collection
+
+In watt.ma, two distinct concepts coexist:
+
+- **Payment**: a debit attempt initiated by the customer or by automatic debit. The payment has a status with the provider (CMI or Stripe) but does not guarantee that the funds are in your account.
+- **Collection**: confirmation that funds have actually been received in the operator's bank account and reconciled in watt.ma.
+
+Example: a customer pays 145 MAD by CMI QR code on August 3. The payment reaches Successful status with CMI the same day. Collection is only confirmed on August 7 when CMI's wire transfer appears on your bank statement and you reconcile it in watt.ma.
+
+## Collection sources
+
+watt.ma tracks several collection sources in the cash flow table:
+
+| Source | Description | Reconciliation |
+| --- | --- | --- |
+| **CMI QR** | Instant payments by QR code via the CMI app | Manual via settlement file or bank transfer |
+| **CMI Direct Debit** | Automatic card debits at invoice due date | Manual via settlement file |
+| **Wire transfer** | Manual payments from businesses and residents | Manual entry in watt.ma (see [Reconciliation](/en/sessions/rapprochement)) |
+| **Stripe** | International card payments and recurring debits | Automatic via webhook (see [Stripe](/en/sessions/stripe), coming soon) |
+| **Applied credit notes** | Accounting corrections used to offset an invoice | Internal accounting, no bank movement |
+| **Refunds** | Money returned to the customer, negative impact on cash flow | Tracked in the Refunds module |
+
+<Note>
+  Applied credit notes and refunds reduce the net cash position without necessarily going through a bank collection. They appear in the table to reflect the actual account position.
+</Note>
+
+## Collection statuses
+
+Each row in the collections table carries a status that indicates its level of validation:
+
+| Status | Definition |
+| --- | --- |
+| **Pending** | The payment is successful on the provider side, but bank reconciliation has not yet been done. |
+| **Reconciled** | The amount has been confirmed on the bank account and linked to the invoice or payment in watt.ma. |
+| **Rejected** | The wire transfer or direct debit was returned by the bank after initial reconciliation (fraud, account closed). |
+| **Disputed** | A discrepancy exists between the expected amount and the amount received. Pending resolution. |
+
+## Available reports
+
+The Collections module offers three preconfigured views:
+
+| Report | Frequency | Use |
+| --- | --- | --- |
+| **Daily report** | Day by day | Immediate operational follow-up, detection of reconciliation anomalies |
+| **Monthly report** | Calendar month | Preparation of the tax package, analysis of collected revenue |
+| **By payment method** | Custom period | Comparison of each channel share (CMI, wire transfer, Stripe) in the total |
+
+## Provider fees
+
+Gross collections do not reflect actual cash flow because payment providers deduct their commissions. watt.ma lets you record this breakdown:
+
+| Item | CMI example | Stripe example (beta) |
+| --- | --- | --- |
+| Gross collection | 500.00 MAD | 500.00 MAD |
+| Provider commission | -12.50 MAD | -18.50 MAD |
+| Conversion fees | 0 MAD | -8.00 MAD |
+| **Net collection** | **487.50 MAD** | **473.50 MAD** |
+
+<Info>
+  CMI commission rates are negotiated with your merchant bank and are not set by watt.ma. Stripe rates are those of the current pilot program.
+</Info>
+
+## Monthly example
+
+Here is a net collection report for August 2026, combining all cash flow sources:
+
+```text
+August 2026
+CMI QR                    41,250 MAD
+Wire transfers             8,500 MAD
+Applied credit notes      -1,200 MAD
+Refunds                     -450 MAD
+----------------------------------
+Net collection            48,100 MAD
+```
+
+In this example, the operator collected 41,250 MAD via CMI QR payments and 8,500 MAD by bank wire. Applied credit notes (1,200 MAD) and refunds (450 MAD) reduce the net position. Net collection for the month is therefore 48,100 MAD.
+
+## Distinguishing revenue concepts
+
+It is important not to mix financial notions in your reports:
+
+- **Invoiced revenue**: total amount of issued invoices, regardless of payment.
+- **Collected revenue**: sum of reconciled collections in the period, including advance payments.
+- **Revenue to settle**: sum of issued invoices not yet reconciled with the bank.
+- **Operator margin**: collected revenue minus provider commissions, taxes, and operating expenses.
+
+## See also
+
+<CardGroup cols={2}>
+  <Card title="Customer Balances" icon="scale-unbalanced" href="/en/rapports/soldes-clients">
+    Check the financial exposure by customer account before reconciling collections.
+  </Card>
+
+  <Card title="CMI QR Payments" icon="qrcode" href="/en/sessions/paiements-qr-cmi">
+    Activate and configure QR code payments for Moroccan banking apps.
+  </Card>
+
+  <Card title="Bank Reconciliation" icon="building-columns" href="/en/sessions/rapprochement">
+    Register wire transfers and reconcile bank entries with watt.ma invoices.
+  </Card>
+
+  <Card title="Stripe" icon="credit-card" href="/en/sessions/stripe">
+    Join the Stripe pilot program for international payments.
+  </Card>
+</CardGroup>
+
+The Collections module on watt.ma gives you a clear view of the cash actually available in your bank account. It distinguishes between payment, which is a transactional event on the provider side, and collection, which is an accounting event reconciled with your bank. This distinction is essential to avoid confusing invoiced revenue with money actually received.
+
+## Overview: payment vs. collection
+
+In watt.ma, two distinct concepts coexist:
+
+- **Payment**: a debit attempt initiated by the customer or by automatic debit. The payment has a status with the provider (CMI or Stripe) but does not guarantee that the funds are in your account.
+- **Collection**: confirmation that funds have actually been received in the operator's bank account and reconciled in watt.ma.
+
+Example: a customer pays 145 MAD by CMI QR code on August 3. The payment reaches Successful status with CMI the same day. Collection is only confirmed on August 7 when CMI's wire transfer appears on your bank statement and you reconcile it in watt.ma.
+
+## Collection sources
+
+watt.ma tracks several collection sources in the cash flow table:
+
+| Source | Description | Reconciliation |
+| --- | --- | --- |
+| **CMI QR** | Instant payments by QR code via the CMI app | Manual via settlement file or bank transfer |
+| **CMI Direct Debit** | Automatic card debits at invoice due date | Manual via settlement file |
+| **Wire transfer** | Manual payments from businesses and residents | Manual entry in watt.ma (see [Reconciliation](/en/sessions/rapprochement)) |
+| **Stripe** | International card payments and recurring debits | Automatic via webhook (see [Stripe](/en/sessions/stripe), coming soon) |
+| **Applied credit notes** | Accounting corrections used to offset an invoice | Internal accounting, no bank movement |
+| **Refunds** | Money returned to the customer, negative impact on cash flow | Tracked in the Refunds module |
+
+<Note>
+  Applied credit notes and refunds reduce the net cash position without necessarily going through a bank collection. They appear in the table to reflect the actual account position.
+</Note>
+
+## Collection statuses
+
+Each row in the collections table carries a status that indicates its level of validation:
+
+| Status | Definition |
+| --- | --- |
+| **Pending** | The payment is successful on the provider side, but bank reconciliation has not yet been done. |
+| **Reconciled** | The amount has been confirmed on the bank account and linked to the invoice or payment in watt.ma. |
+| **Rejected** | The wire transfer or direct debit was returned by the bank after initial reconciliation (fraud, account closed). |
+| **Disputed** | A discrepancy exists between the expected amount and the amount received. Pending resolution. |
+
+## Available reports
+
+The Collections module offers three preconfigured views:
+
+| Report | Frequency | Use |
+| --- | --- | --- |
+| **Daily report** | Day by day | Immediate operational follow-up, detection of reconciliation anomalies |
+| **Monthly report** | Calendar month | Preparation of the tax package, analysis of collected revenue |
+| **By payment method** | Custom period | Comparison of each channel share (CMI, wire transfer, Stripe) in the total |
+
+## Provider fees
+
+Gross collections do not reflect actual cash flow because payment providers deduct their commissions. watt.ma lets you record this breakdown:
+
+| Item | CMI example | Stripe example (beta) |
+| --- | --- | --- |
+| Gross collection | 500.00 MAD | 500.00 MAD |
+| Provider commission | -12.50 MAD | -18.50 MAD |
+| Conversion fees | 0 MAD | -8.00 MAD |
+| **Net collection** | **487.50 MAD** | **473.50 MAD** |
+
+<Info>
+  CMI commission rates are negotiated with your merchant bank and are not set by watt.ma. Stripe rates are those of the current pilot program.
+</Info>
+
+## Monthly example
+
+Here is a net collection report for August 2026, combining all cash flow sources:
+
+```text
+August 2026
+CMI QR                    41,250 MAD
+Wire transfers             8,500 MAD
+Applied credit notes      -1,200 MAD
+Refunds                     -450 MAD
+----------------------------------
+Net collection            48,100 MAD
+```
+
+In this example, the operator collected 41,250 MAD via CMI QR payments and 8,500 MAD by bank wire. Applied credit notes (1,200 MAD) and refunds (450 MAD) reduce the net position. Net collection for the month is therefore 48,100 MAD.
+
+## Distinguishing revenue concepts
+
+It is important not to mix financial notions in your reports:
+
+- **Invoiced revenue**: total amount of issued invoices, regardless of payment.
+- **Collected revenue**: sum of reconciled collections in the period, including advance payments.
+- **Revenue to settle**: sum of issued invoices not yet reconciled with the bank.
+- **Operator margin**: collected revenue minus provider commissions, taxes, and operating expenses.
+
+## See also
+
+<CardGroup cols={2}>
+  <Card title="Customer Balances" icon="scale-unbalanced" href="/en/rapports/soldes-clients">
+    Check the financial exposure by customer account before reconciling collections.
+  </Card>
+
+  <Card title="CMI QR Payments" icon="qrcode" href="/en/sessions/paiements-qr-cmi">
+    Activate and configure QR code payments for Moroccan banking apps.
+  </Card>
+
+  <Card title="Bank Reconciliation" icon="building-columns" href="/en/sessions/rapprochement">
+    Register wire transfers and reconcile bank entries with watt.ma invoices.
+  </Card>
+
+  <Card title="Stripe" icon="credit-card" href="/en/sessions/stripe">
+    Join the Stripe pilot program for international payments.
+  </Card>
+</CardGroup>

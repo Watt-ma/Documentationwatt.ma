@@ -1,0 +1,130 @@
+---
+title: "Configurer les cycles de facturation sur watt.ma"
+sidebarTitle: "Cycles Facturation"
+description: "Choisissez entre paiement immédiat, facture mensuelle ou facture manuelle sur watt.ma, avec dates d'echéance et encaissement automatique."
+---
+
+Les cycles de facturation définissent quand les charges enregistrées dans un compte client deviennent un document exigible. watt.ma supporte trois approches : paiement immédiat à la fin de chaque session, facture mensuelle consolidée pour les comptes réguliers, et facture manuelle générée par un administrateur sur demande.
+
+## Vue d'ensemble
+
+Le cycle de facturation est une propriété du compte de facturation. Il détermine le rythme auquel les lignes du [registre des charges](/sessions/registre-charges) sont regroupées en facture, et quand l'échéance devient effective.
+
+| Approche | Destinataires | Type de session | Compte requis |
+| --- | --- | --- | --- |
+| Paiement immédiat | Invités, particuliers, public | Au moment de la session | Non obligatoire |
+| Facture mensuelle | Entreprises, résidents, flottes, contrats | Sessions agrégées sur la période | Oui |
+| Facture manuelle | Tout client, sur demande | Sélection de charges par l'admin | Oui |
+
+## Paiement immédiat
+
+Le paiement immédiat déclenche un reçu ou une facture simplifiée à chaque session terminée. Ce mode est utilisé pour :
+
+- La recharge publique avec QR code CMI (disponible aujourd'hui)
+- Les sessions de visiteurs sans compte préalable
+- Les bornes en mode libre-service
+
+Le conducteur scanne le QR code CMI, valide le montant estimé, démarre la recharge et reçoit un reçu par SMS ou WhatsApp à la fin. Le paiement est capturé immédiatement par le terminal CMI.
+
+<Note>
+  Le paiement immédiat repose sur l'intégration CMI. Pour des modes de paiement supplémentaires, consultez la [roadmap](/roadmap).
+</Note>
+
+## Facture mensuelle
+
+La facturation mensuelle est le mode par défaut des comptes résidents et entreprises. Elle agrège toutes les sessions du cycle dans une seule facture, avec une date d'échéance décalée.
+
+### Configuration d'un cycle mensuel
+
+| Paramètre | Description | Exemple Atlas Logistics |
+| --- | --- | --- |
+| **Date de facturation** | Jour de génération de la facture (par exemple : 5 du mois suivant) | 5 mai 2024 |
+| **Période couverte** | Dates de début et de fin des sessions agrégées | 1–30 avril 2024 |
+| **Date d'échéance** | Jour limite de règlement (décalage après facturation) | 20 mai 2024 (J\+15) |
+| **Encaissement automatique** | Tentative de prélèvement automatique le jour de l'échéance | Activé sur CMI |
+| **Envoi par email** | Transmission automatique du PDF à l'adresse du compte | Oui |
+
+<Steps>
+  <Step title="Ouvrir la page du compte de facturation">
+    Dans **Sessions \> Comptes de facturation**, sélectionnez le compte à paramétrer.
+  </Step>
+  <Step title="Choisir le cycle mensuel">
+    Sélectionnez **Facture mensuelle** comme mode de facturation, puis définissez le jour de clôture (par exemple le 30) et le jour de l'échéance (par exemple J\+15).
+  </Step>
+  <Step title="Configurer l'encaissement automatique">
+    Activez ou désactivez le prélèvement automatique CMI. Si le client n'a pas de carte enregistrée, la facture est émise et envoyée sans prélèvement.
+  </Step>
+  <Step title="Valider les options d'envoi">
+    Choisissez l'envoi par email PDF, ou par email et portail. Un forçage peut être appliqué pour l'impression manuelle.
+  </Step>
+</Steps>
+
+<Info>
+  Le cycle mensuel d'Atlas Logistics clôture le 30, génère la facture le 5 du mois suivant, avec une échéance au 20 pour un règlement par prélèvement CMI automatique.
+</Info>
+
+## Facture manuelle
+
+La facture manuelle permet à un administrateur de générer une facture à tout moment en sélectionnant un sous-ensemble de charges non facturées. Ce mode est utile pour :
+
+- La résiliation d'un contrat nécessitant un solde intermédiaire
+- Une demande explicite du client pour une facture anticipée
+- La correction de cycle après un changement de tarif
+
+<Steps>
+  <Step title="Ouvrir le registre du compte">
+    Dans **Sessions \> Comptes de facturation**, ouvrez le compte client et filtrez les charges non facturées.
+  </Step>
+  <Step title="Sélectionner les lignes">
+    Cochez les charges à inclure dans la facture manuelle. Vous pouvez filtrer par borne, par date ou par type d'événement.
+  </Step>
+  <Step title="Générer la facture">
+    Cliquez sur **Générer une facture manuelle**. Le numéro séquentiel est attribué automatiquement. La période affichée est celle couvrant les lignes sélectionnées.
+  </Step>
+  <Step title="Émettre et envoyer">
+    Validez la facture et envoyez-la par email ou portail.
+  </Step>
+</Steps>
+
+<Note>
+  La facture manuelle est une fonction réservée aux comptes planifiés pour ce mode. Si vous ne voyez pas ce bouton, le compte est probablement paramétré en automatique mensuel.
+</Note>
+
+## Statuts du cycle
+
+| Statut | Description |
+| --- | --- |
+| **Ouvert** | Le cycle est actif et accepte de nouvelles sessions. Les charges s'accumulent. |
+| **Clôturé** | La période du cycle est terminée. Les nouvelles sessions alimentent le cycle suivant. Les charges de ce cycle sont gelées et prêtes pour la facturation. |
+| **Facturé** | Une facture a été générée et émise pour ce cycle. Le passage à cet état est définitif : les charges ne peuvent plus être modifiées, seuls des avoirs peuvent les compenser. |
+
+## Permissions
+
+| Action | Admin | Opérateur | Lecteur |
+| --- | :-: | :-: | :-: |
+| Créer un cycle | Oui | Non | Non |
+| Modifier la date d'échéance | Oui | Non | Non |
+| Clôturer un cycle | Oui | Oui | Non |
+| Générer une facture manuelle | Oui | Non | Non |
+| Consulter les cycles | Oui | Oui | Oui |
+| Réactiver un cycle clôturé | Non | Non | Non |
+
+## Voir aussi
+
+<CardGroup cols={2}>
+  <Card title="Facturation" icon="file-invoice" href="/rapports/facturation">
+    Comprenez le cycle de vie complet des factures et leurs statuts.
+  </Card>
+
+  <Card title="Factures résidents" icon="building" href="/rapports/factures-residents">
+    Appliquez les cycles de facturation à la copropriété.
+  </Card>
+
+  <Card title="Comptes de facturation" icon="user-group" href="/sessions/comptes-facturation">
+    Créez et configurez les comptes auxquels s'appliquent les cycles.
+  </Card>
+
+  <Card title="Tarifs" icon="tag" href="/sessions/tarifs">
+    Les charges du cycle sont calculées à partir des tarifs actifs.
+  </Card>
+</CardGroup>

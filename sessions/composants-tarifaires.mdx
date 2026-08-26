@@ -1,0 +1,120 @@
+---
+title: "Composants tarifaires de recharge sur watt.ma"
+sidebarTitle: "Composants tarifaires"
+description: "Explorez les composants tarifaires de watt.ma : énergie, connexion, temps, heures creuses, plafonds, marges et abonnements pour affiner votre politique de prix."
+---
+
+Un tarif watt.ma n'est pas un montant unique. C'est une somme de composants que vous activez et combinez selon votre modèle économique. Chaque session de recharge produit une ligne de charge par composant actif, et le total perçu du client correspond à l'addition de ces lignes. Cette page détaille chaque composant avec des exemples concrets en dirhams marocains.
+
+## Prix de l'énergie
+
+Le composant le plus courant. Vous définissez un prix au kWh et watt.ma multiplie ce prix par l'énergie effectivement délivrée pendant la session.
+
+**Exemple :** une session de 24 kWh à 2,50 MAD/kWh génère une charge de 60,00 MAD.
+
+Ce mode est recommandé pour les recharges publiques où le client paie ce qu'il consomme.
+
+## Frais de connexion
+
+Montant fixe appliqué une seule fois, au début de la session. Ce frais couvre les coûts opérationnels de chaque événement de recharge, indépendamment de l'énergie échangée.
+
+**Exemple :** une session avec une charge énergie de 60,00 MAD et un frais de connexion de 5,00 MAD donne un total de 65,00 MAD.
+
+Les cas d'usage typiques sont :
+
+- Bornes publiques payantes par QR code CMI, où le frais de connexion compense en partie les commissions bancaires.
+- Sessions courtes de faible consommation, pour éviter des charges dérisoires qui ne couvrent pas les coûts fixes.
+
+## Tarification au temps
+
+Ce composant se base sur la durée, mais attention à ne pas confondre les trois mesures :
+
+| Type de durée | Ce qui est mesuré | Cas d'usage |
+| --- | --- | --- |
+| **Durée de recharge** | Du début à la fin de la distribution d'énergie | Facturer l'occupation active de la borne |
+| **Durée de connexion** | Du branchement au débranchement total | Facturer le temps de stationnement avec la borne occupée |
+| **Durée de stationnement** | Du débranchement à la sortie du parking (si détectée) | Facturer le blocage de la place après la recharge |
+
+Vous pouvez combiner la tarification au temps avec d'autres composants. Par exemple, facturer l'énergie au kWh pendant la recharge, puis la connexion à l'heure une fois la recharge terminée.
+
+## Prix par heures creuses et pleines
+
+Ce composant permet d'appliquer deux prix différents selon des tranches horaires fixes. L'objectif est d'inciter les conducteurs à recharger quand la demande électrique est faible.
+
+Voici un exemple de découpage journalier type :
+
+| Tranche horaire | Type | Prix exemple |
+| --- | --- | --- |
+| 00:00 - 06:00 | Creuse | 1,80 MAD/kWh |
+| 06:00 - 18:00 | Pleine | 2,50 MAD/kWh |
+| 18:00 - 22:00 | Pleine | 2,50 MAD/kWh |
+| 22:00 - 00:00 | Creuse | 1,80 MAD/kWh |
+
+watt.ma calcule la consommation par tranche horaire et applique le tarif correspondant. Le total est la somme des sous-totaux par tranche.
+
+## Prix plafond
+
+Le plafond protège le client contre une charge excessive. Vous pouvez configurer deux types de limites :
+
+- **Plafond total de la session** : le montant charge ne dépasse pas un maximum fixe, quelle que soit l'énergie ou la durée.
+- **Plafond unitaire** : le prix au kWh ou à l'heure ne dépasse pas une valeur maximale.
+
+**Exemple :** un tarif à 2,50 MAD/kWh avec un plafond total de 80,00 MAD. Une session de 40 kWh coûte normalement 100,00 MAD, mais est limitée à 80,00 MAD.
+
+## Coût de revient et marge
+
+Pour suivre la rentabilité de vos recharges, watt.ma vous permet de saisir un coût de revient par kWh et d'afficher la marge réalisée.
+
+| Élément | Valeur exemple |
+| --- | --- |
+| Coût électricité | 1,20 MAD/kWh |
+| Marge opérateur | 0,80 MAD/kWh |
+| **Prix client** | **2,00 MAD/kWh** |
+
+Vous pouvez définir la marge comme un montant fixe par kWh ou comme un pourcentage du prix client. Les rapports de revenus affichent alors le revenu net après déduction du coût de revient estimé.
+
+## Abonnement mensuel
+
+L'abonnement est un composant récurrent. Il convient aux contextes où le conducteur paie un forfait fixe chaque mois, en échange d'un tarif préférentiel ou de recharges incluses.
+
+Les modèles courants sont :
+
+- **Résidentiel** : abonnement mensuel couvrant le stationnement et une part des recharges.
+- **Flotte d'entreprise** : forfait global par véhicule, avec un prix au kWh réduit au-delà du volume inclus.
+- **Parking plus charge** : forfait regroupant la place de parking et l'accès à la borne.
+
+L'abonnement apparaît comme une ligne de charge récurrente sur le compte du conducteur, séparée des charges liées aux sessions.
+
+## Statuts d'un tarif
+
+Un tarif peut porter l'un des statuts suivants :
+
+| Statut | Signification |
+| --- | --- |
+| **Actif** | Le tarif est appliqué aux nouvelles sessions qui correspondent à son périmètre. |
+| **Inactif** | Le tarif n'est plus appliqué, mais reste consultable dans l'historique. |
+| **Planifié** | Le tarif entrera en vigueur automatiquement à la date et l'heure configurées. |
+
+Un tarif planifié vous permet de préparer une évolution tarifaire en avance sans l'appliquer immédiatement.
+
+## Permissions
+
+Seuls les rôles **Admin** et **Opérateur** peuvent créer, modifier et activer des tarifs. Les utilisateurs ayant le rôle **Lecteur** peuvent consulter les tarifs en vigueur mais ne peuvent pas les modifier.
+
+<CardGroup>
+  <Card title="Tarifs" icon="tag" href="/sessions/tarifs">
+    Créez et affectez vos tarifs de recharge de base sur les sites et bornes.
+  </Card>
+
+  <Card title="Frais d'inactivité" icon="clock" href="/sessions/frais-inactivite">
+    En savoir plus sur la facturation après la fin de la recharge.
+  </Card>
+
+  <Card title="Tarifs par groupe" icon="users" href="/sessions/tarifs-groupes">
+    Appliquez des remises ou des tarifs exclusifs selon le groupe de conducteurs.
+  </Card>
+
+  <Card title="Priorité entre tarifs" icon="arrow-down-up" href="/sessions/priorite-tarifs">
+    Comprenez comment watt.ma choisit le tarif à appliquer quand plusieurs sont disponibles.
+  </Card>
+</CardGroup>
