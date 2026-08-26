@@ -1,51 +1,124 @@
 ---
-title: "Charging Station Details in the watt.ma App"
+title: "Charging station details in the watt.ma mobile app"
 sidebarTitle: "Station Details"
-description: "View a watt.ma station's information: connectors, power, real-time status, and GPS navigation from the mobile app."
+description: "See a watt.ma station's details in the mobile app: connectors, power, real-time OCPP status, MAD pricing, and one-tap GPS navigation."
 ---
 
-When you tap a station on the map or in the list, the watt.ma app opens a **Station Details** screen with all the useful information before you set off: opening status, address, available connectors, and GPS navigation.
-
-## Overview
+When you tap a station on the map or in the list, the watt.ma app opens the **Station details** screen. You get everything you need before driving out: live availability, connectors, per-kWh rate, and one-tap GPS routing.
 
 <img
   src="/images/app-mobile/13-station-details.png"
-  alt="Station Details screen in the watt.ma app"
+  alt="Station details screen in the watt.ma app"
   width="320"
 />
 
-The screen displays:
+## What you see at the top
 
-- **Status badge**: `Open`, `Closed`, or `Under maintenance`.
-- **Station name** (for example `Total Energies Djebilet`).
-- **Full address** and **city** (Casablanca, Rabat, Marrakech, Tangier, etc.).
-- **Three counters**: number of charge points, speed types, and connectors.
-- **Available connectors**: CCS2, CHAdeMO, Type 2.
-
-## Technical Information
-
-For each station, the app shows:
-
-| Field | Description |
+| Element | Meaning |
 | --- | --- |
-| Charge points | Total number of physical connectors on site |
-| Speed types | AC slow/fast, DC fast |
-| Connectors | Plug types: CCS2, CHAdeMO, Type 2 |
-| OCPP status | Available, Charging, Occupied, Out of service (from the CPMS) |
-| Pricing | MAD per kWh, set by the station operator |
+| **Status badge** | `Open`, `Closed`, or `Under maintenance`, based on hours and OCPP status |
+| **Station name** | Commercial name set by the operator (for example `Total Energies Djebilet`) |
+| **Address and city** | Full address with city (Casablanca, Rabat, Marrakech, Tangier, Ifrane, etc.) |
+| **Distance** | Estimate in km from your location, if location permission is granted |
+| **Rating** | Average driver rating, when available |
 
-Status is updated in real time from the [watt.ma CPMS](/en/bornes/vue-ensemble) via OCPP 1.6J.
+## Charge points and connectors
 
-## Start Navigation
+Below the header, three counters summarize the station's capacity:
 
-The **Start Navigation** button opens your phone's default map app (Google Maps, Apple Maps, or Waze) with the route preloaded to the station.
+<CardGroup cols={3}>
+  <Card title="Charge points" icon="charging-station">
+    Total number of physical connectors installed at the site.
+  </Card>
 
-## Available Actions
+  <Card title="Speeds" icon="gauge-high">
+    Slow AC, fast AC, and DC fast charging, with the max power in kW.
+  </Card>
 
-- **Add to favorites**: heart icon at the top right. See [Favorites](/en/app-mobile/favoris).
-- **Start charging**: from the **Charge** tab by scanning the station QR code on site. See [Start Charging](/en/app-mobile/demarrer-recharge).
-- **Report a problem**: coming in a future release.
+  <Card title="Connectors" icon="plug">
+    Supported plug types: CCS2, CHAdeMO, Type 2.
+  </Card>
+</CardGroup>
+
+Under the counters, the **Available connectors** list shows each plug with:
+
+- Connector type and rated power (for example `CCS2 · 60 kW`)
+- Live status: `Available`, `Charging`, `Occupied`, `Out of service`
+- Applied rate in MAD per kWh
+- A colored dot to spot free connectors at a glance
+
+<Tip>
+  Green dot = free, orange = charging (freeing up soon), red = out of service. Tap a connector to open the start-charging screen if you are on site.
+</Tip>
+
+## Real-time status
+
+Each connector's status is streamed live from the [watt.ma CPMS](/en/bornes/vue-ensemble) over **OCPP 1.6J**. `StatusNotification` events update the app within seconds, no manual refresh required.
 
 <Note>
-  Stations come from the watt.ma partner operator network. The first public field deployment is planned at Al Akhawayn University in Ifrane.
+  If you are outside network coverage, the app shows the last known status with a timestamp. It resyncs as soon as connectivity is back.
+</Note>
+
+## Rate and practical info
+
+- **Rate**: MAD per kWh, set by the charger operator in their [pricing profile](/en/sessions/tarifs). Some sites apply peak / off-peak rates.
+- **Hours**: public opening hours, with any exceptional closures.
+- **Access**: public, reserved for a venue's customers, or private (residential, office building).
+- **Amenities**: covered parking, café, restaurant, restrooms, wheelchair accessible.
+- **Payment accepted**: CMI (Moroccan bank card), Stripe (international card), watt.ma RFID card.
+
+## Start navigation
+
+The **Start navigation** button opens your phone's default maps app (Google Maps, Apple Maps, or Waze) with the route preloaded to the station.
+
+<Steps>
+  <Step title="Tap Start navigation">
+    The app offers the maps app installed on your phone.
+  </Step>
+  <Step title="Pick your navigation app">
+    Choose Google Maps, Apple Maps, Waze, or another compatible app. You can save this choice as default in [Settings](/en/app-mobile/parametres).
+  </Step>
+  <Step title="Follow the route">
+    The optimized route appears with estimated travel time and required kWh.
+  </Step>
+</Steps>
+
+## Quick actions
+
+<CardGroup cols={2}>
+  <Card title="Add to favorites" icon="heart" href="/en/app-mobile/favoris">
+    Tap the heart in the top right to find the station again in your favorites.
+  </Card>
+
+  <Card title="Start charging" icon="bolt" href="/en/app-mobile/demarrer-recharge">
+    On site, scan the charger's QR code to start the session.
+  </Card>
+
+  <Card title="Share" icon="share-nodes">
+    Send the station link over WhatsApp or SMS to another driver.
+  </Card>
+
+  <Card title="Report an issue" icon="flag">
+    Coming soon: report an out-of-service charger or blocked access.
+  </Card>
+</CardGroup>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Status shows Out of service but the charger seems to work">
+    The charger may have lost its OCPP connection. The app shows the last status reported by the CPMS. Contact support at \+212 770 238 225 if you are on site.
+  </Accordion>
+
+  <Accordion title="The Start navigation button does not open">
+    Confirm a maps app (Google Maps, Apple Maps, Waze) is installed and that you granted watt.ma permission to open other apps in the system settings.
+  </Accordion>
+
+  <Accordion title="The displayed rate does not match my invoice">
+    Some sites apply peak / off-peak rates or a resident-specific rate. See the [Pricing page](/en/sessions/tarifs) to understand the calculation, or open the session in [History](/en/app-mobile/historique) for the breakdown.
+  </Accordion>
+</AccordionGroup>
+
+<Note>
+  Stations shown come from watt.ma's partner operator network. The first public deployment is live at Al Akhawayn University in Ifrane.
 </Note>

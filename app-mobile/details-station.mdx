@@ -1,12 +1,10 @@
 ---
 title: "Détails d'une station de recharge dans l'app watt.ma"
 sidebarTitle: "Détails station"
-description: "Consultez les informations d'une station watt.ma : connecteurs, puissance, statut en temps réel et navigation GPS depuis l'app mobile."
+description: "Consultez les infos d'une station watt.ma dans l'app mobile : connecteurs, puissance, statut OCPP en temps réel, tarif MAD et navigation GPS."
 ---
 
-Quand vous touchez une station sur la carte ou dans la liste, l'app watt.ma ouvre un écran **Détails de la station** avec toutes les infos utiles avant de vous déplacer : statut d'ouverture, adresse, connecteurs disponibles et navigation GPS.
-
-## Vue d'ensemble
+Quand vous touchez une station sur la carte ou dans la liste, l'app watt.ma ouvre l'écran **Détails de la station**. Vous y trouvez tout ce qu'il faut savoir avant de vous déplacer : disponibilité en direct, connecteurs, tarif au kWh et itinéraire GPS en un tap.
 
 <img
   src="/images/app-mobile/13-station-details.png"
@@ -14,38 +12,113 @@ Quand vous touchez une station sur la carte ou dans la liste, l'app watt.ma ouvr
   width="320"
 />
 
-L'écran affiche :
+## Ce que vous voyez en haut
 
-- **Badge de statut** : `Ouvert`, `Fermé` ou `En maintenance`.
-- **Nom** de la station (par exemple `Total Energies Djebilet`).
-- **Adresse** complète et **ville** (Casablanca, Rabat, Marrakech, Tanger, etc.).
-- **Trois compteurs** : nombre de points de charge, types de vitesse et connecteurs.
-- **Connecteurs disponibles** : CCS2, CHAdeMO, Type 2.
-
-## Informations techniques
-
-Pour chaque station, l'app expose :
-
-| Champ | Description |
+| Élément | Signification |
 | --- | --- |
-| Points de charge | Nombre total de connecteurs physiques sur le site |
-| Types de vitesse | AC lente/rapide, DC rapide |
-| Connecteurs | Types de prises : CCS2, CHAdeMO, Type 2 |
-| Statut OCPP | Disponible, En charge, Occupé, Hors service (depuis le CPMS) |
-| Tarif | MAD par kWh, défini par l'opérateur de la borne |
+| **Badge de statut** | `Ouvert`, `Fermé` ou `En maintenance`, calculé depuis les horaires et le statut OCPP |
+| **Nom de la station** | Nom commercial défini par l'opérateur (par exemple `Total Energies Djebilet`) |
+| **Adresse et ville** | Adresse complète, avec ville (Casablanca, Rabat, Marrakech, Tanger, Ifrane, etc.) |
+| **Distance** | Estimation en km depuis votre position, si la localisation est autorisée |
+| **Note** | Moyenne des avis conducteurs, si disponible |
 
-Le statut est remonté en direct depuis le [CPMS watt.ma](/bornes/vue-ensemble) via OCPP 1.6J.
+## Points de charge et connecteurs
+
+Sous l'en-tête, trois compteurs résument la capacité de la station :
+
+<CardGroup cols={3}>
+  <Card title="Points de charge" icon="charging-station">
+    Nombre total de connecteurs physiques installés sur le site.
+  </Card>
+
+  <Card title="Vitesses" icon="gauge-high">
+    AC lente, AC rapide et DC rapide, avec la puissance max en kW.
+  </Card>
+
+  <Card title="Connecteurs" icon="plug">
+    Types de prises supportées : CCS2, CHAdeMO, Type 2.
+  </Card>
+</CardGroup>
+
+En dessous, la liste **Connecteurs disponibles** affiche chaque prise avec :
+
+- Le type de connecteur et sa puissance nominale (par exemple `CCS2 · 60 kW`)
+- Le statut en direct : `Disponible`, `En charge`, `Occupé`, `Hors service`
+- Le tarif appliqué en MAD par kWh
+- Une pastille de couleur pour repérer les connecteurs libres en un coup d'œil
+
+<Tip>
+  Pastille verte = libre, orange = en charge (bientôt libre), rouge = hors service. Un tap sur un connecteur ouvre l'écran de démarrage de recharge si vous êtes à proximité.
+</Tip>
+
+## Statut en temps réel
+
+Le statut de chaque connecteur est remonté en direct depuis le [CPMS watt.ma](/bornes/vue-ensemble) via **OCPP 1.6J**. Les événements `StatusNotification` mettent à jour l'app en quelques secondes, sans qu'il soit nécessaire de rafraîchir manuellement.
+
+<Note>
+  Si vous êtes en dehors de la zone de couverture réseau, l'app affiche le dernier statut connu avec un indicateur horaire. Le statut se resynchronise dès que vous retrouvez de la connectivité.
+</Note>
+
+## Tarif et informations pratiques
+
+- **Tarif** : MAD par kWh, défini par l'opérateur de la borne dans son [profil de tarifs](/sessions/tarifs). Certains sites appliquent des heures creuses / pleines.
+- **Horaires** : plage d'ouverture au public, avec fermetures exceptionnelles.
+- **Accès** : public, réservé aux clients d'un établissement, ou privatif (résidence, immeuble de bureaux).
+- **Équipements** : parking couvert, café, restauration, sanitaires, borne accessible PMR.
+- **Paiement accepté** : CMI (carte bancaire marocaine), Stripe (carte internationale), badge RFID watt.ma.
 
 ## Démarrer la navigation
 
 Le bouton **Démarrer la navigation** ouvre l'app de cartographie par défaut du téléphone (Google Maps, Apple Maps ou Waze) avec l'itinéraire préchargé vers la station.
 
-## Actions disponibles
+<Steps>
+  <Step title="Toucher Démarrer la navigation">
+    L'app propose l'app de cartographie installée sur votre téléphone.
+  </Step>
+  <Step title="Choisir votre app de navigation">
+    Sélectionnez Google Maps, Apple Maps, Waze ou une autre app compatible. Ce choix peut être mémorisé par défaut dans les [Paramètres](/app-mobile/parametres).
+  </Step>
+  <Step title="Suivre l'itinéraire">
+    L'itinéraire optimisé s'affiche avec l'estimation de temps de trajet et de kWh nécessaires.
+  </Step>
+</Steps>
 
-- **Ajouter aux favoris** : icône cœur en haut à droite. Voir [Favoris](/app-mobile/favoris).
-- **Démarrer une recharge** : depuis l'onglet **Recharger** en scannant le QR de la borne sur place. Voir [Démarrer une recharge](/app-mobile/demarrer-recharge).
-- **Signaler un problème** : à venir dans une prochaine version.
+## Actions rapides
+
+<CardGroup cols={2}>
+  <Card title="Ajouter aux favoris" icon="heart" href="/app-mobile/favoris">
+    Touchez le cœur en haut à droite pour retrouver la station dans vos favoris.
+  </Card>
+
+  <Card title="Démarrer une recharge" icon="bolt" href="/app-mobile/demarrer-recharge">
+    Sur place, scannez le QR code de la borne pour lancer la session.
+  </Card>
+
+  <Card title="Partager" icon="share-nodes">
+    Envoyez le lien de la station par WhatsApp ou SMS à un autre conducteur.
+  </Card>
+
+  <Card title="Signaler un problème" icon="flag">
+    Bientôt disponible : signalez une borne hors service ou un accès bloqué.
+  </Card>
+</CardGroup>
+
+## Dépannage
+
+<AccordionGroup>
+  <Accordion title="Le statut affiche Hors service mais la borne semble fonctionner">
+    La borne peut avoir perdu sa connexion OCPP. L'app affiche le dernier statut remonté par le CPMS. Contactez le support au \+212 770 238 225 si vous êtes sur place.
+  </Accordion>
+
+  <Accordion title="Le bouton Démarrer la navigation ne s'ouvre pas">
+    Vérifiez qu'une app de cartographie (Google Maps, Apple Maps, Waze) est bien installée et que vous avez autorisé watt.ma à ouvrir d'autres apps dans les réglages du système.
+  </Accordion>
+
+  <Accordion title="Le tarif affiché ne correspond pas à ce qui m'est facturé">
+    Certains sites appliquent des heures creuses / pleines ou un tarif spécifique aux résidents. Consultez la page [Tarifs](/sessions/tarifs) pour comprendre le calcul, ou ouvrez la session dans [Historique](/app-mobile/historique) pour voir le détail.
+  </Accordion>
+</AccordionGroup>
 
 <Note>
-  Les stations sont issues du réseau des opérateurs partenaires watt.ma. La première mise en service publique est prévue à l'Université Al Akhawayn à Ifrane.
+  Les stations affichées proviennent du réseau des opérateurs partenaires watt.ma. La première mise en service publique est déployée à l'Université Al Akhawayn à Ifrane.
 </Note>
