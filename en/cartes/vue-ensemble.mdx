@@ -1,0 +1,160 @@
+---
+title: "Interactive map of EV chargers in Morocco"
+sidebarTitle: "Overview"
+description: "map.watt.ma maps chargers on the watt.ma network, partner networks via OCPI and community-verified stations across Morocco."
+---
+
+The interactive map [**map.watt.ma**](https://map.watt.ma) is the public reference for EV charging stations in Morocco. It brings together in a single place the chargers managed by the watt.ma CPMS, partner networks interconnected through the OCPI protocol, and stations verified by the driver community.
+
+<CardGroup cols={2}>
+  <Card title="Open the map" icon="globe" href="https://map.watt.ma">
+    Browse the live charger network.
+  </Card>
+
+  <Card title="Find a charger" icon="location-dot" href="/en/cartes/localiser-une-borne">
+    Locate the nearest station.
+  </Card>
+
+  <Card title="Filters and search" icon="filter" href="/en/cartes/filtres-recherche">
+    Filter by availability, price and connector.
+  </Card>
+
+  <Card title="Station details" icon="info" href="/en/cartes/details-station">
+    Tariffs, hours and services on each station.
+  </Card>
+</CardGroup>
+
+## Three sources of chargers in one map
+
+map.watt.ma aggregates three distinct sources to offer the most complete coverage of the Moroccan territory.
+
+<CardGroup cols={3}>
+  <Card title="watt.ma network" icon="bolt">
+    All chargers supervised by the watt.ma CPMS over OCPP 1.6J, with real-time status, official tariffs and integrated CMI payment.
+  </Card>
+
+  <Card title="OCPI partner networks" icon="arrows-rotate">
+    Chargers from partner operators connected through the OCPI protocol, with availability and tariffs synced automatically.
+  </Card>
+
+  <Card title="Community" icon="users">
+    Stations not connected to any CPMS but identified and verified by drivers, with reviews and photos.
+  </Card>
+</CardGroup>
+
+### watt.ma network chargers
+
+Every charger supervised by the watt.ma CPMS appears on the map automatically. Status is updated live over OCPP 1.6J:
+
+- **Available** (green): ready to start a session
+- **In use** (orange): session in progress
+- **Out of service** (gray): disconnected or faulty
+
+Tariffs shown on the map come directly from the rules configured on [web.watt.ma](https://web.watt.ma). See [Tariffs](/en/sessions/tarifs) for supported pricing components.
+
+### Partner networks over OCPI
+
+watt.ma implements the **OCPI** (Open Charge Point Interface) protocol to interconnect its network with other Moroccan charge point operators. A partner charger connected through OCPI appears on map.watt.ma with:
+
+- Location and GPS coordinates
+- Synced availability status
+- Public tariffs from the operator
+- Connector types and power ratings
+- Operator name of origin
+
+<Note>
+  OCPI rollout is underway. See the [roadmap](/en/roadmap) for the progress of interconnection agreements and the list of available partner networks.
+</Note>
+
+### Community-identified chargers
+
+Some charging stations installed in Morocco are not yet connected to a CPMS or an OCPI network. Drivers can report them on map.watt.ma to help others locate them.
+
+Each community charger is marked distinctly and enriched with:
+
+- Address and photo reported by a driver
+- Observed connector type
+- Confirmation from other drivers that it works
+- Reviews and ratings after use
+- Outage or unavailability reports
+
+<Tip>
+  Do you know a charger in Morocco that is missing from the map? Add it from map.watt.ma to help other drivers and grow national coverage.
+</Tip>
+
+## Main features
+
+### Advanced filtering
+
+- **Source**: watt.ma network, OCPI partners, community
+- **Availability**: show only free chargers
+- **Connector type**: Type 2, CHAdeMO, CCS Combo, domestic
+- **Power**: slow, accelerated, fast, ultra-fast
+- **Pricing**: filter by kWh price range
+- **Operator**: show chargers from a specific operator
+
+### Station details
+
+Click a marker to open the full information: address, available connectors, tariffs, opening hours, user reviews, nearby amenities and origin operator.
+
+### Route planning
+
+Built-in GPS integration draws a route to the chosen station and suggests stops based on remaining range and tariffs.
+
+## Who uses map.watt.ma?
+
+<CardGroup cols={2}>
+  <Card title="Drivers" icon="car">
+    Find a charger, check live availability and reviews before you drive.
+  </Card>
+
+  <Card title="Charge point operators" icon="bolt">
+    Make your fleet of chargers publicly visible, update tariffs and hours from web.watt.ma.
+  </Card>
+
+  <Card title="Fleet managers" icon="truck">
+    Optimize trips and identify compatible chargers for your vehicles.
+  </Card>
+
+  <Card title="Local authorities" icon="city">
+    Map existing coverage before planning new installations.
+  </Card>
+</CardGroup>
+
+## Access to map.watt.ma
+
+The map is **public and free**. No account is required to browse the network. To manage favorites and report community chargers, sign in with your watt.ma account.
+
+## Data freshness
+
+| Data | Update frequency | Source |
+| --- | --- | --- |
+| watt.ma charger status | Real time (OCPP 1.6J) | watt.ma CPMS |
+| Partner charger status | OCPI sync | Origin operator |
+| Community chargers | On validation | Drivers and cross-checks |
+| Tariffs | On change | Origin operator |
+| User reviews | Continuous | Community |
+
+<Note>
+  Information comes from operators and the community. If you see incorrect data, report it from the station detail page.
+</Note>
+
+## See also
+
+<CardGroup cols={2}>
+  <Card title="Find a charger" icon="location-dot" href="/en/cartes/localiser-une-borne">
+    Use geolocation to find the nearest station.
+  </Card>
+
+  <Card title="Station details" icon="circle-info" href="/en/cartes/details-station">
+    Tariffs, hours, connectors and services of a charger.
+  </Card>
+
+  <Card title="OCPI roadmap" icon="arrows-rotate" href="/en/roadmap">
+    Progress of interconnection with partner networks.
+  </Card>
+
+  <Card title="Tariffs" icon="tag" href="/en/sessions/tarifs">
+    How the tariffs shown on the map are configured.
+  </Card>
+</CardGroup>

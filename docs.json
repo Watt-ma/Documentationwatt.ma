@@ -285,7 +285,7 @@
                 "group": "Interactive Map",
                 "icon": "map-location",
                 "pages": [
-                  "cartes/vue-ensemble",
+                  "en/cartes/vue-ensemble",
                   "cartes/localiser-une-borne",
                   "cartes/filtres-recherche",
                   "cartes/details-station"

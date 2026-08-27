@@ -5,86 +5,157 @@ description: "Découvrez la carte interactive des bornes de recharge watt.ma : l
 icon: "map"
 ---
 
-La carte interactive **[maps.watt.ma](https://maps.watt.ma)** vous permet de visualiser et d'explorer le réseau complet des bornes de recharge watt.ma au Maroc. Conçue pour les conducteurs, les opérateurs et les gestionnaires de flottes, cette plateforme offre une vue en temps réel de la disponibilité, des tarifs et de la localisation des stations de recharge compatibles OCPP 1.6J.
+La carte interactive [**map.watt.ma**](https://map.watt.ma) est la référence publique des bornes de recharge pour véhicules électriques au Maroc. Elle rassemble en un seul endroit les bornes gérées par le CPMS watt.ma, les réseaux partenaires interconnectés via le protocole OCPI et les stations vérifiées par la communauté des conducteurs.
 
 <CardGroup cols={2}>
-  <Card title="Accéder à la carte" icon="globe" href="https://maps.watt.ma">
-    Consultez le réseau de bornes en direct
+  <Card title="Accéder à la carte" icon="globe" href="https://map.watt.ma">
+    Consultez le réseau de bornes en direct.
   </Card>
 
   <Card title="Localiser une borne" icon="location-dot" href="/cartes/localiser-une-borne">
-    Trouvez la station la plus proche
+    Trouvez la station la plus proche.
   </Card>
 
   <Card title="Filtres et recherche" icon="filter" href="/cartes/filtres-recherche">
-    Filtrez par disponibilité, tarif, type
+    Filtrez par disponibilité, tarif et connecteur.
   </Card>
 
-  <Card title="Informations station" icon="info" href="/cartes/details-station">
-    Consultez tarifs, horaires et services
+  <Card title="Détails d'une station" icon="info" href="/cartes/details-station">
+    Consultez tarifs, horaires et services.
   </Card>
 </CardGroup>
 
-## Fonctionnalités principales
+## Trois sources de bornes en une carte
 
-### Localisation en temps réel
-Visualisez chaque borne OCPP 1.6J du réseau watt.ma sur une carte interactive. Les marqueurs affichent l'état actuel de chaque station : disponible (vert), occupée (orange) ou hors service (gris).
+map.watt.ma agrège trois sources distinctes pour offrir la couverture la plus complète du territoire marocain.
 
-### Filtrage avancé
-Affinez votre recherche selon vos besoins :
-- **Disponibilité** : afficher uniquement les bornes libres
-- **Type de connecteur** : Type 2, CHAdeMO, CCS
-- **Tarification** : filtrer par gamme de prix au kWh
-- **Services** : wifi, parking, restaurant à proximité
-- **Opérateur** : afficher les bornes d'un fournisseur spécifique
+<CardGroup cols={3}>
+  <Card title="Réseau watt.ma" icon="bolt">
+    Toutes les bornes supervisées par le CPMS watt.ma en OCPP 1.6J, avec statut en temps réel, tarifs officiels et paiement CMI intégré.
+  </Card>
 
-### Détails de chaque station
-Cliquez sur un marqueur pour accéder aux informations complètes :
-- Adresse et coordonnées GPS
-- Nombre de connecteurs disponibles
-- Tarifs appliqués (kWh, par minute ou forfaitaire)
-- Horaires d'ouverture
-- Avis et évaluations des utilisateurs
-- Services disponibles
+  <Card title="Réseaux partenaires OCPI" icon="arrows-rotate">
+    Bornes des opérateurs partenaires connectés via le protocole OCPI, avec disponibilité et tarifs synchronisés automatiquement.
+  </Card>
 
-### Planification d'itinéraire
-Utilisez l'intégration GPS pour tracer votre route vers la station la plus proche. La carte suggère automatiquement les meilleures arrêts en fonction de votre autonomie restante et des tarifs.
+  <Card title="Communauté" icon="users">
+    Stations non connectées à un CPMS mais identifiées et vérifiées par les conducteurs, avec avis et photos.
+  </Card>
+</CardGroup>
 
-## Qui peut utiliser maps.watt.ma ?
+### Bornes du réseau watt.ma
 
-### Conducteurs
-Trouvez rapidement une borne pour recharger votre véhicule électrique. Consultez la disponibilité en direct, les tarifs et les avis avant de vous déplacer.
+Chaque borne supervisée par le CPMS watt.ma remonte automatiquement sur la carte. Le statut est mis à jour en direct via OCPP 1.6J :
 
-### Opérateurs de recharge
-Visualisez votre parc de bornes, suivez leur statut et vérifiez leur visibilité publique. Mettez à jour les tarifs et les horaires d'ouverture directement depuis la plateforme.
+- **Disponible** (vert) : borne prête à démarrer une session
+- **Occupée** (orange) : session en cours
+- **Hors service** (gris) : borne déconnectée ou en panne
 
-### Gestionnaires de flottes
-Optimisez les trajets de votre flotte en localisant les stations compatibles. Consultez les tarifs pour la facturation des recharges.
+Les tarifs affichés proviennent directement des règles configurées sur [web.watt.ma](https://web.watt.ma). Consultez [Tarifs](/sessions/tarifs) pour les composants tarifaires possibles.
 
-### Collectivités et entreprises
-Planifiez le déploiement de nouvelles bornes en consultant le réseau existant. Identifiez les zones de couverture et les opportunités.
+### Réseaux partenaires via OCPI
 
-## Accès à maps.watt.ma
+watt.ma intègre le protocole **OCPI** (Open Charge Point Interface) pour interconnecter son réseau avec les autres opérateurs de recharge marocains. Une borne partenaire connectée via OCPI apparaît sur map.watt.ma avec :
 
-La carte est **publique et gratuite** : aucune authentification n'est requise pour consulter le réseau.
-
-Pour certaines fonctionnalités avancées (gestion de favoris, suivi de l'historique), une inscription est recommandée :
-- Créez un compte depuis [web.watt.ma](https://web.watt.ma)
-- Connectez-vous sur maps.watt.ma avec les mêmes identifiants
-- Activez les notifications pour les bornes favorites
-
-## Données affichées
-
-Les données de la carte sont mises à jour en temps réel :
-- État des bornes (toutes les 30 secondes)
-- Tarifs (mise à jour quotidienne)
-- Avis utilisateurs (continu)
-- Horaires d'ouverture (hébergé par l'opérateur)
+- Localisation et coordonnées GPS
+- Statut de disponibilité synchronisé
+- Tarifs publics de l'opérateur
+- Types de connecteurs et puissances
+- Nom de l'opérateur d'origine
 
 <Note>
-  Les informations affichées proviennent des opérateurs de recharge et de la communauté utilisateurs. Si vous observez une donnée inexacte, signalez-la directement depuis la page de détail de la station.
+  Le déploiement OCPI est en cours. Consultez la [roadmap](/roadmap) pour l'avancement des accords d'interconnexion et la liste des réseaux partenaires disponibles.
 </Note>
 
+### Bornes identifiées par la communauté
+
+Certaines stations installées au Maroc ne sont pas encore raccordées à un CPMS ni à un réseau OCPI. La communauté des conducteurs peut les signaler sur map.watt.ma pour aider les autres conducteurs à les localiser.
+
+Chaque borne communautaire est marquée distinctement et enrichie par :
+
+- Adresse et photo signalées par un conducteur
+- Type de connecteur observé
+- Confirmation par d'autres conducteurs qu'elle fonctionne
+- Avis et notes après utilisation
+- Signalement d'une panne ou d'une indisponibilité
+
 <Tip>
-  Consultez la page [Intégrer la carte à votre site](/cartes/integrer-api) pour embarquer maps.watt.ma dans votre propre application ou site web via l'API publique.
+  Vous connaissez une borne au Maroc qui n'apparaît pas sur la carte ? Ajoutez-la depuis map.watt.ma pour aider les autres conducteurs et faire grandir la couverture nationale.
 </Tip>
+
+## Fonctionnalités principales
+
+### Filtrage avancé
+
+- **Source** : réseau watt.ma, partenaires OCPI, communauté
+- **Disponibilité** : afficher uniquement les bornes libres
+- **Type de connecteur** : Type 2, CHAdeMO, CCS Combo, domestique
+- **Puissance** : lente, accélérée, rapide, ultra-rapide
+- **Tarification** : gamme de prix au kWh
+- **Opérateur** : afficher les bornes d'un opérateur spécifique
+
+### Détails de chaque station
+
+Cliquez sur un marqueur pour accéder aux informations complètes : adresse, connecteurs disponibles, tarifs, horaires, avis utilisateurs, services à proximité et opérateur d'origine.
+
+### Planification d'itinéraire
+
+L'intégration GPS trace un itinéraire vers la station choisie et suggère des arrêts en fonction de l'autonomie restante et des tarifs.
+
+## Qui utilise map.watt.ma ?
+
+<CardGroup cols={2}>
+  <Card title="Conducteurs" icon="car">
+    Trouvez une borne pour recharger, consultez la disponibilité en direct et les avis avant de vous déplacer.
+  </Card>
+
+  <Card title="Opérateurs de recharge" icon="bolt">
+    Rendez votre parc visible publiquement, mettez à jour tarifs et horaires depuis web.watt.ma.
+  </Card>
+
+  <Card title="Gestionnaires de flottes" icon="truck">
+    Optimisez les trajets et identifiez les bornes compatibles pour vos véhicules.
+  </Card>
+
+  <Card title="Collectivités" icon="city">
+    Cartographiez la couverture existante avant de planifier de nouvelles installations.
+  </Card>
+</CardGroup>
+
+## Accès à map.watt.ma
+
+La carte est **publique et gratuite**. Aucune authentification n'est requise pour consulter le réseau. Pour gérer vos favoris et signaler des bornes communautaires, connectez-vous avec votre compte watt.ma.
+
+## Fraîcheur des données
+
+| Donnée | Fréquence de mise à jour | Source |
+| --- | --- | --- |
+| État des bornes watt.ma | Temps réel (OCPP 1.6J) | CPMS watt.ma |
+| État des bornes partenaires | Synchronisation OCPI | Opérateur d'origine |
+| Bornes communautaires | À la validation | Conducteurs et vérifications croisées |
+| Tarifs | À chaque modification | Opérateur d'origine |
+| Avis utilisateurs | Continu | Communauté |
+
+<Note>
+  Les informations proviennent des opérateurs et de la communauté. Si vous observez une donnée inexacte, signalez-la depuis la page de détail de la station.
+</Note>
+
+## Voir aussi
+
+<CardGroup cols={2}>
+  <Card title="Localiser une borne" icon="location-dot" href="/cartes/localiser-une-borne">
+    Utilisez la géolocalisation pour trouver la borne la plus proche.
+  </Card>
+
+  <Card title="Détails de station" icon="circle-info" href="/cartes/details-station">
+    Tarifs, horaires, connecteurs et services d'une borne.
+  </Card>
+
+  <Card title="Roadmap OCPI" icon="arrows-rotate" href="/roadmap">
+    Avancement de l'interconnexion avec les réseaux partenaires.
+  </Card>
+
+  <Card title="Tarifs" icon="tag" href="/sessions/tarifs">
+    Comment les tarifs affichés sur la carte sont configurés.
+  </Card>
+</CardGroup>
