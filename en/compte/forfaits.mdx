@@ -1,59 +1,92 @@
 ---
 title: "Plans and pricing on watt.ma"
 sidebarTitle: "Plans"
-description: "Compare the Startup, Production, and Enterprise plans on watt.ma. Choose the right offer for your fleet size and integration needs."
+description: "Compare the Starter, Startup, Production, and Enterprise plans on watt.ma. Start for free, then manage your subscription self-service through Stripe."
 ---
 
-watt.ma offers three plans tailored to every stage of your charging business: from small property managers with a few stations to national operators or manufacturers looking to deploy a white-label solution. All plans include real-time monitoring, OCPP 1.6J protocol support, and email technical support.
+watt.ma offers four plans tailored to every stage of your charging business: from the free Starter plan to test the platform with your first stations to the Enterprise plan for national operators and white-label deployments. All plans include real-time monitoring, OCPP 1.6J protocol support, and email technical support.
 
 <Note>
-  watt.ma uses a SaaS model billed per connector (per charging socket), not per meter. A dual-socket station therefore counts as two connectors on your plan.
+  Paid plans are billed per active charger on your account, with a choice of monthly or yearly billing. When you add or remove a charger, watt.ma automatically adjusts your Stripe subscription quantity and applies a proration for the current period.
 </Note>
 
 ## Plan comparison
 
-| Feature | Startup | Production | Enterprise |
-| --- | --- | --- | --- |
-| Stations (connectors) | Up to 30 | Up to 500 | Unlimited |
-| Sites | Unlimited | Unlimited | Unlimited |
-| RFID cards | Up to 500 | Unlimited | Unlimited |
-| CMI QR code payments | Included | Included | Included |
-| WhatsApp receipts | Included | Included | Included |
-| Real-time dashboard | Included | Included | Included |
-| API | Read-only | Full access | Full access |
-| Revenue sharing reports | No | Included | Included |
-| Smart charging (load balancing) | No | Included | Included |
-| Administrators | Up to 3 | Up to 15 | Unlimited |
-| Scheduled exports | No | Included | Included |
-| White label | No | No | On request |
-| Support | Email | Priority email | Dedicated with SLA |
-| Custom integrations | No | No | On request |
+| Feature | Starter | Startup | Production | Enterprise |
+| --- | --- | --- | --- | --- |
+| Price | Free | 60 MAD / charger / month | 60 MAD / charger / month | Custom quote |
+| Chargers | Up to 2 | Up to 30 | Up to 500 | Unlimited |
+| Real-time dashboard | Included | Included | Included | Included |
+| OCPP 1.6J protocol | Included | Included | Included | Included |
+| Basic analytics | Included | Included | Included | Included |
+| Site and driver management | No | Included | Included | Included |
+| Smart charging (load balancing) | No | Included | Included | Included |
+| API access | No | No | Full | Full |
+| Revenue sharing reports | No | No | Included | Included |
+| White label | No | No | Options | On request |
+| Custom integrations | No | No | No | On request |
+| Support | Email | Priority | Dedicated | Dedicated with SLA |
+
+## Pricing
+
+- **Starter** is free forever, no credit card required.
+- **Startup** and **Production** are billed per charger: **60 MAD / charger / month** with monthly billing, or **50 MAD / charger / month** with yearly billing (600 MAD / charger / year, about 17% savings).
+- **Enterprise** uses custom pricing.
+
+Your first paid subscription includes a **15-day free trial**. The trial can only be used once per account.
+
+## Starter
+
+The Starter plan is free and lets you connect up to 2 chargers. It includes the real-time dashboard, basic analytics, and email support. It is the ideal starting point to try watt.ma before deploying a larger fleet.
 
 ## Startup
 
-The Startup plan is for small operators, property managers, hotels, and residences deploying their first charging stations. It includes the essentials to monitor a modest fleet and accept CMI QR code payments without a large upfront investment.
+The Startup plan is for small operators, property managers, hotels, and residences deploying up to 30 chargers. It unlocks site and driver management, smart charging to balance electrical consumption, and priority support.
 
 ## Production
 
-The Production plan meets the needs of CPOs (Charge Point Operators) and growing station manufacturers. It unlocks full API access, revenue sharing reports, smart charging to optimize electrical consumption on your sites, and scheduled exports to automate your reporting.
+The Production plan meets the needs of CPOs (Charge Point Operators) and growing station manufacturers, up to 500 chargers. It unlocks full API access, revenue sharing reports, white-label options, and dedicated support.
 
 ## Enterprise
 
-The Enterprise plan is designed for large charge point operators, car manufacturers, and integrators looking to deploy watt.ma at scale or as a white label. It includes dedicated support with an SLA guarantee, custom integrations, and unlimited stations, RFID cards, and administrators.
+The Enterprise plan is designed for large charge point operators, car manufacturers, and integrators looking to deploy watt.ma at scale or as a white label. It includes unlimited chargers, custom integrations, and dedicated support with an SLA guarantee.
 
-## Upgrade your plan
+## Change your plan
+
+Plan changes are self-service through Stripe, with no need to contact sales (except for Enterprise).
 
 <Steps>
-  <Step title="Review your current plan">
-    Sign in to [web.watt.ma](https://web.watt.ma) and open **Account \> Plans** to view your current plan and usage.
+  <Step title="Open the billing page">
+    Sign in to [web.watt.ma](https://web.watt.ma) and open **Billing \> My Plan**. The **Overview** tab shows your current plan, renewal date, and trial end date if applicable.
   </Step>
-  <Step title="Choose the new plan">
-    Click **Upgrade** under the plan you want. The price difference is calculated pro rata for the remaining time in your billing period.
+  <Step title="Choose the plan and billing period">
+    In the **Plans** tab, select **Monthly** or **Yearly**, then click the plan you want.
   </Step>
-  <Step title="Confirm the upgrade">
-    Validate the change. New features are activated immediately and the new billing applies starting with the next cycle.
+  <Step title="Pay through Stripe Checkout">
+    If this is your first paid subscription, watt.ma redirects you to Stripe Checkout to enter your card details. Your 15-day free trial starts immediately if you have not used it yet.
+  </Step>
+  <Step title="Switch plans on an active subscription">
+    If you already have an active subscription, the change applies immediately without going through Checkout again. The price difference is prorated for the remaining time in your billing period.
   </Step>
 </Steps>
+
+<Note>
+  Downgrading to the Starter plan cancels your Stripe subscription. Your chargers stay connected, but paid plan features are disabled.
+</Note>
+
+## Manage your subscription and payment methods
+
+From the **Overview** tab, click **Manage subscription & payment methods** to open the Stripe billing portal. The portal lets you:
+
+- Update your card
+- View and download your invoices
+- Cancel your subscription
+
+The **Payment Methods** tab on the billing page lists your saved cards and lets you set the default card.
+
+## Charger limits
+
+Each plan sets a maximum number of chargers. When you reach the limit, adding a new charger is rejected (the API returns an HTTP `402` error with the limit and your current charger count). Upgrade to a higher plan to connect more chargers.
 
 ## Request an Enterprise quote
 
