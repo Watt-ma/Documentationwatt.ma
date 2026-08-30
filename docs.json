@@ -7,7 +7,7 @@
     "light": "#22C55E",
     "dark": "#15803D"
   },
-  "favicon": "/images/logo.png",
+  "favicon": "/images/favicon.svg",
   "navigation": {
     "languages": [
       {
@@ -28,7 +28,7 @@
               },
               {
                 "group": "Gestion des Bornes",
-                "icon": "bolt",
+                "icon": "plug-circle-bolt",
                 "pages": [
                   "bornes/vue-ensemble",
                   "bornes/connecter-une-borne",
@@ -38,13 +38,13 @@
               },
               {
                 "group": "Sessions et Recharges",
-                "icon": "bolt",
+                "icon": "charging-station",
                 "pages": [
                   "sessions/suivi-sessions",
                   "sessions/badges-rfid",
                   {
                     "group": "Tarifs",
-                    "icon": "tag",
+                    "icon": "tags",
                     "pages": [
                       "sessions/tarifs",
                       "sessions/composants-tarifaires",
@@ -65,11 +65,12 @@
                   "sessions/cycle-paiement",
                   "sessions/echecs-paiement",
                   "sessions/rapprochement"
-                ]
+                ],
+                "tag": "NEW"
               },
               {
                 "group": "Facturation",
-                "icon": "file-invoice",
+                "icon": "file-invoice-dollar",
                 "pages": [
                   "sessions/comptes-facturation",
                   "sessions/facturation-residentielle",
@@ -78,11 +79,12 @@
                   "rapports/facturation",
                   "rapports/cycles-facturation",
                   "rapports/factures-residents"
-                ]
+                ],
+                "tag": "NEW"
               },
               {
                 "group": "Revenus et Analytique",
-                "icon": "chart-bar",
+                "icon": "chart-mixed",
                 "pages": [
                   "rapports/vue-ensemble",
                   "rapports/revenus",
@@ -94,7 +96,8 @@
                   "rapports/marge-energie",
                   "rapports/analytique-financiere",
                   "rapports/exporter-donnees"
-                ]
+                ],
+                "tag": "NEW"
               },
               {
                 "group": "Intégrations et API",
@@ -114,13 +117,14 @@
               },
               {
                 "group": "Carte Interactive",
-                "icon": "map-location",
+                "icon": "map-location-dot",
                 "pages": [
                   "cartes/vue-ensemble",
                   "cartes/localiser-une-borne",
                   "cartes/filtres-recherche",
                   "cartes/details-station"
-                ]
+                ],
+                "tag": "NEW"
               },
               {
                 "group": "Roadmap",
@@ -197,7 +201,7 @@
               },
               {
                 "group": "Charge Point Management",
-                "icon": "bolt",
+                "icon": "plug-circle-bolt",
                 "pages": [
                   "en/bornes/vue-ensemble",
                   "en/bornes/connecter-une-borne",
@@ -207,13 +211,13 @@
               },
               {
                 "group": "Sessions and Charging",
-                "icon": "bolt",
+                "icon": "charging-station",
                 "pages": [
                   "en/sessions/suivi-sessions",
                   "en/sessions/badges-rfid",
                   {
                     "group": "Tariffs",
-                    "icon": "tag",
+                    "icon": "tags",
                     "pages": [
                       "en/sessions/tarifs",
                       "en/sessions/composants-tarifaires",
@@ -234,11 +238,12 @@
                   "en/sessions/cycle-paiement",
                   "en/sessions/echecs-paiement",
                   "en/sessions/rapprochement"
-                ]
+                ],
+                "tag": "NEW"
               },
               {
                 "group": "Billing",
-                "icon": "file-invoice",
+                "icon": "file-invoice-dollar",
                 "pages": [
                   "en/sessions/comptes-facturation",
                   "en/sessions/facturation-residentielle",
@@ -247,11 +252,12 @@
                   "en/rapports/facturation",
                   "en/rapports/cycles-facturation",
                   "en/rapports/factures-residents"
-                ]
+                ],
+                "tag": "NEW"
               },
               {
                 "group": "Revenue and Analytics",
-                "icon": "chart-bar",
+                "icon": "chart-mixed",
                 "pages": [
                   "en/rapports/vue-ensemble",
                   "en/rapports/revenus",
@@ -263,7 +269,8 @@
                   "en/rapports/marge-energie",
                   "en/rapports/analytique-financiere",
                   "en/rapports/exporter-donnees"
-                ]
+                ],
+                "tag": "NEW"
               },
               {
                 "group": "Integrations and API",
@@ -283,13 +290,14 @@
               },
               {
                 "group": "Interactive Map",
-                "icon": "map-location",
+                "icon": "map-location-dot",
                 "pages": [
                   "en/cartes/vue-ensemble",
                   "cartes/localiser-une-borne",
                   "cartes/filtres-recherche",
                   "cartes/details-station"
-                ]
+                ],
+                "tag": "NEW"
               },
               {
                 "group": "Roadmap",
