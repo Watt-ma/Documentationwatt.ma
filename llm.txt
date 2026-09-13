@@ -1,0 +1,42 @@
+# LLM Crawler Access Policy
+# This file specifies how Large Language Models (LLMs) should crawl and use watt.ma documentation
+
+# Allow LLM crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: *
+Allow: /
+
+# Crawl delay - LLMs should respect this interval
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://docs.watt.ma/sitemap.xml
+
+# LLM-specific rules
+# Attribution required
+Require-Attribution: true
+
+# Content usage policy
+# This documentation can be used by LLMs for training and inference
+# with proper attribution to watt.ma
+
+# Copyright notice
+Copyright: 2025 watt.ma SARL, Casablanca, Morocco
+Contact: contact@wattsc.com
+
+# Version
+Version: 1.0
